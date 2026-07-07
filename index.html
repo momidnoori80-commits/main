@@ -3,22 +3,34 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>Mohammad Omid Noori | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="description" content="Mohammad Omid Noori - Developer, Designer, and Powerlifting enthusiast.">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="author" content="Mohammad Omid Noori">
 
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <title>Mohammad Omid Noori | Portfolio</title>
 
 
-<link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+    <!-- Font Awesome Icons -->
+    <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+
 
 </head>
 
@@ -26,133 +38,110 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
 <body>
 
 
-<!-- MODERN VISITOR CLOCK -->
+<!-- =========================
+     PAGE LOADER
+========================= -->
 
-<div class="visitor-clock"
+<div class="page-loader">
 
-style="
-position:fixed;
-top:25px;
-left:25px;
-z-index:3000;
-padding:18px 25px;
-border-radius:25px;
-background:linear-gradient(
-135deg,
-rgba(0,234,255,0.18),
-rgba(138,46,255,0.25)
-);
-backdrop-filter:blur(20px);
-border:1px solid rgba(255,255,255,.2);
-box-shadow:
-0 0 30px rgba(0,234,255,.25),
-inset 0 0 20px rgba(255,255,255,.05);
-color:white;
-font-family:Poppins,sans-serif;
-text-align:center;
-min-width:230px;
-">
-
-<div style="
-font-size:1.2rem;
-opacity:.8;
-letter-spacing:1px;
-">
-LOCAL TIME
-</div>
-
-
-<div id="date"
-
-style="
-font-size:1.3rem;
-margin-top:8px;
-">
-Loading date...
-</div>
-
-
-<div id="time"
-
-style="
-font-size:2.5rem;
-font-weight:800;
-color:#00eaff;
-letter-spacing:2px;
-margin-top:5px;
-">
-00:00:00
-</div>
-
-
-<div style="
-font-size:1.1rem;
-opacity:.7;
-margin-top:5px;
-">
-Your timezone
-</div>
-
+    <div class="loader-circle"></div>
 
 </div>
 
 
 
 
-
-<div class="background-blur"></div>
-
-
-
+<!-- =========================
+     HEADER
+========================= -->
 
 
-<header>
+<header class="header">
 
 
-<div class="logo">
-OMID
-</div>
+    <a href="#home" class="logo">
 
+        OMID NOORI
 
-
-
-<nav>
-
-<a href="#hero">Home</a>
-
-<a href="#about">About</a>
-
-<a href="#experience">Experience</a>
-
-<a href="#education">Education</a>
-
-<a href="#skills">Skills</a>
-
-<a href="#contact">Contact</a>
-
-</nav>
+    </a>
 
 
 
+    <!-- Desktop Navigation -->
+
+    <nav class="desktop-nav">
 
 
-<div class="theme-switch">
+        <a href="#home">Home</a>
 
-<input type="checkbox" id="theme-toggle">
+        <a href="#about">About</a>
 
+        <a href="#experience">Experience</a>
 
-<label for="theme-toggle">
+        <a href="#education">Education</a>
 
-<i class="fa-solid fa-sun"></i>
+        <a href="#skills">Skills</a>
 
-<i class="fa-solid fa-moon"></i>
-
-<span class="ball"></span>
-
-</label>
+        <a href="#contact">Contact</a>
 
 
-</div>
+    </nav>
+
+
+
+
+
+    <div class="header-actions">
+
+
+
+        <!-- Dark Light Mode -->
+
+        <div class="theme-toggle">
+
+
+            <input type="checkbox" id="theme-checkbox">
+
+
+            <label for="theme-checkbox">
+
+
+                <i class="fa-solid fa-sun"></i>
+
+
+                <i class="fa-solid fa-moon"></i>
+
+
+                <span class="toggle-ball"></span>
+
+
+            </label>
+
+
+        </div>
+
+
+
+
+
+        <!-- Mobile Menu Button -->
+
+        <button class="menu-button" aria-label="Open menu">
+
+
+            <span></span>
+
+            <span></span>
+
+            <span></span>
+
+
+        </button>
+
+
+
+    </div>
+
 
 
 </header>
@@ -162,70 +151,791 @@ OMID
 
 
 
+<!-- =========================
+     MOBILE NAVIGATION
+========================= -->
 
 
-<section class="hero" id="hero">
+<nav class="mobile-nav">
 
 
-<div class="hero-content">
+    <a href="#home">Home</a>
 
+    <a href="#about">About</a>
 
+    <a href="#experience">Experience</a>
 
-<div class="profile-container">
+    <a href="#education">Education</a>
 
+    <a href="#skills">Skills</a>
 
-<div class="glow-circle"></div>
-
-
-<img src="me.jpg" alt="Mohammad Omid Noori">
-
-
-</div>
-
-
-
-
-
-<h1>
-
-Mohammad <span>Omid Noori</span>
-
-</h1>
+    <a href="#contact">Contact</a>
 
 
 
-
-<p class="typing">
-
-Powerlifter • Wrestler • Web Developer
-
-</p>
+</nav>
 
 
 
 
 
 
-<div class="hero-buttons">
+
+<!-- =========================
+     HERO SECTION
+========================= -->
 
 
-<a href="#about" class="btn">
-
-Explore
-
-</a>
-
-
-
-<a href="#contact" class="btn secondary">
-
-Contact Me
-
-</a>
+<main>
 
 
 
-</div>
+<section class="hero" id="home">
+
+
+
+    <div class="hero-background"></div>
+
+
+
+    <div class="hero-content">
+
+
+
+
+
+        <div class="profile-wrapper">
+
+
+            <!-- Replace this image -->
+
+            <img 
+            src="me.png" 
+            alt="Mohammad Omid Noori profile picture"
+            class="profile-image">
+
+
+        </div>
+
+
+
+
+
+        <h1>
+
+
+            Mohammad <span>Omid Noori</span>
+
+
+        </h1>
+
+
+
+
+
+        <h2 class="hero-title">
+
+
+            Designer • Developer • Athlete
+
+
+        </h2>
+
+
+
+
+
+        <p class="hero-description">
+
+
+            A self-taught technology enthusiast, graphic designer,
+            programmer, and powerlifting athlete passionate about
+            continuous learning and personal growth.
+
+
+        </p>
+
+
+
+
+
+
+        <div class="hero-buttons">
+
+
+            <a href="#about" class="primary-button">
+
+                Explore My Journey
+
+            </a>
+
+
+
+            <a href="#contact" class="secondary-button">
+
+                Contact Me
+
+            </a>
+
+
+        </div>
+
+
+
+
+        <div class="social-links">
+
+
+            <a href="#" aria-label="Github">
+
+                <i class="fa-brands fa-github"></i>
+
+            </a>
+
+
+            <a href="#" aria-label="LinkedIn">
+
+                <i class="fa-brands fa-linkedin"></i>
+
+            </a>
+
+
+            <a href="#" aria-label="Instagram">
+
+                <i class="fa-brands fa-instagram"></i>
+
+            </a>
+
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+</section>
+<!-- =========================
+     ABOUT SECTION
+========================= -->
+
+<section class="about section" id="about">
+
+
+    <div class="section-header">
+
+
+        <span class="section-number">01</span>
+
+        <h2>About Me</h2>
+
+        <p>
+            Discover my journey, interests, and the skills I have developed over the years.
+        </p>
+
+
+    </div>
+
+
+
+
+
+    <div class="about-container">
+
+
+
+        <div class="about-card glass-card">
+
+
+            <h3>
+
+                Who I Am
+
+            </h3>
+
+
+
+            <p>
+
+                I am a passionate and self-motivated young creator from Afghanistan,
+                born in Kabul and currently living in Herat. I completed my school
+                education at the age of 17 and have always been interested in
+                technology, creativity, sports, and continuous self-improvement.
+
+            </p>
+
+
+            <p>
+
+                My journey combines computer knowledge, programming, graphic design,
+                English learning, and strength training. I believe that curiosity,
+                discipline, and consistency are the foundations of personal growth.
+
+            </p>
+
+
+        </div>
+
+
+
+
+
+        <div class="about-highlights">
+
+
+
+            <div class="highlight-card">
+
+
+                <i class="fa-solid fa-location-dot"></i>
+
+
+                <div>
+
+                    <h4>Location</h4>
+
+                    <p>
+                        Herat, Afghanistan
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+            <div class="highlight-card">
+
+
+                <i class="fa-solid fa-laptop-code"></i>
+
+
+                <div>
+
+                    <h4>Technology</h4>
+
+                    <p>
+                        Programming & Computer Skills
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+            <div class="highlight-card">
+
+
+                <i class="fa-solid fa-dumbbell"></i>
+
+
+                <div>
+
+                    <h4>Sport</h4>
+
+                    <p>
+                        Powerlifting & Strength Training
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+            <div class="highlight-card">
+
+
+                <i class="fa-solid fa-palette"></i>
+
+
+                <div>
+
+                    <h4>Creative Work</h4>
+
+                    <p>
+                        Graphic Design & Digital Art
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- =========================
+     JOURNEY SECTION
+========================= -->
+
+
+<section class="journey section">
+
+
+
+    <div class="section-header">
+
+
+        <span class="section-number">02</span>
+
+
+        <h2>My Journey</h2>
+
+
+        <p>
+
+            A timeline of my learning and personal development.
+
+        </p>
+
+
+    </div>
+
+
+
+
+
+
+
+    <div class="journey-timeline">
+
+
+
+
+
+        <div class="journey-item">
+
+
+            <div class="journey-icon">
+
+
+                <i class="fa-solid fa-computer"></i>
+
+
+            </div>
+
+
+
+            <div class="journey-content">
+
+
+                <h3>
+
+                    Early Computer Experience
+
+                </h3>
+
+
+                <span>
+
+                    Childhood
+
+                </span>
+
+
+                <p>
+
+                    I developed an interest in computers from a young age.
+                    Through exploration and self-learning, I learned computer
+                    troubleshooting, software usage, and technical problem solving.
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+        <div class="journey-item">
+
+
+            <div class="journey-icon">
+
+
+                <i class="fa-solid fa-paintbrush"></i>
+
+
+            </div>
+
+
+
+            <div class="journey-content">
+
+
+                <h3>
+
+                    Graphic Design
+
+                </h3>
+
+
+                <span>
+
+                    Started in 2021
+
+                </span>
+
+
+                <p>
+
+                    I started learning Adobe Photoshop and later Adobe Illustrator,
+                    creating logos, editing images, and exploring digital creativity.
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+        <div class="journey-item">
+
+
+            <div class="journey-icon">
+
+
+                <i class="fa-solid fa-code"></i>
+
+
+            </div>
+
+
+
+            <div class="journey-content">
+
+
+                <h3>
+
+                    Programming Journey
+
+                </h3>
+
+
+                <span>
+
+                    Started in 2023
+
+                </span>
+
+
+                <p>
+
+                    I began learning HTML, CSS, JavaScript, and Python,
+                    developing my understanding of programming and web development.
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+        <div class="journey-item">
+
+
+            <div class="journey-icon">
+
+
+                <i class="fa-solid fa-trophy"></i>
+
+
+            </div>
+
+
+
+            <div class="journey-content">
+
+
+                <h3>
+
+                    Strength Training
+
+                </h3>
+
+
+                <span>
+
+                    Several Years
+
+                </span>
+
+
+                <p>
+
+                    Powerlifting became one of my greatest passions,
+                    teaching me discipline, patience, and commitment.
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- =========================
+     EXPERIENCE SECTION START
+========================= -->
+
+
+<section class="experience section" id="experience">
+
+
+
+    <div class="section-header">
+
+
+        <span class="section-number">03</span>
+
+
+        <h2>Experience</h2>
+
+
+        <p>
+
+            My professional and practical experiences.
+
+        </p>
+
+
+    </div>
+    <!-- =========================
+     EXPERIENCE CONTENT
+========================= -->
+
+
+<div class="experience-grid">
+
+
+
+    <article class="experience-card glass-card">
+
+
+        <div class="experience-icon">
+
+            <i class="fa-solid fa-palette"></i>
+
+        </div>
+
+
+        <h3>
+
+            Graphic Design
+
+        </h3>
+
+
+        <span>
+
+            5 Years Experience
+
+        </span>
+
+
+        <p>
+
+            I have been practicing graphic design for approximately five years.
+            I started with Adobe Photoshop and later expanded my skills with
+            Adobe Illustrator and digital art tools. I have created logos,
+            edited images, and explored different creative design concepts.
+
+        </p>
+
+
+    </article>
+
+
+
+
+
+
+    <article class="experience-card glass-card">
+
+
+        <div class="experience-icon">
+
+            <i class="fa-solid fa-code"></i>
+
+        </div>
+
+
+        <h3>
+
+            Programming & Web Development
+
+        </h3>
+
+
+        <span>
+
+            3 Years Experience
+
+        </span>
+
+
+        <p>
+
+            I have studied HTML, CSS, JavaScript, and Python. My journey has
+            included learning programming logic, website development, and
+            software concepts through self-learning and practice.
+
+        </p>
+
+
+    </article>
+
+
+
+
+
+
+    <article class="experience-card glass-card">
+
+
+        <div class="experience-icon">
+
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+
+        </div>
+
+
+        <h3>
+
+            Computer Technician
+
+        </h3>
+
+
+        <span>
+
+            Volunteer Experience
+
+        </span>
+
+
+        <p>
+
+            I have helped different places with computer-related problems
+            voluntarily to increase my practical knowledge. This experience
+            improved my troubleshooting, hardware, and technical skills.
+
+        </p>
+
+
+    </article>
+
+
+
+
+
+
+    <article class="experience-card glass-card">
+
+
+        <div class="experience-icon">
+
+            <i class="fa-solid fa-calculator"></i>
+
+        </div>
+
+
+        <h3>
+
+            Accounting Experience
+
+        </h3>
+
+
+        <span>
+
+            Professional Experience
+
+        </span>
+
+
+        <p>
+
+            I have worked as an accountant in a hospital environment and also
+            as a young accountant in a company, developing responsibility,
+            organization, accuracy, and workplace skills.
+
+        </p>
+
+
+    </article>
+
 
 
 
@@ -242,65 +952,612 @@ Contact Me
 
 
 
-<section class="quick-menu">
+<!-- =========================
+     EDUCATION SECTION
+========================= -->
 
 
-
-<div class="menu-card" data-target="about">
-
-<i class="fa-solid fa-user"></i>
-
-<h3>About</h3>
-
-</div>
+<section class="education section" id="education">
 
 
+    <div class="section-header">
 
 
-
-<div class="menu-card" data-target="experience">
-
-<i class="fa-solid fa-briefcase"></i>
-
-<h3>Experience</h3>
-
-</div>
+        <span class="section-number">04</span>
 
 
+        <h2>Education</h2>
 
 
+        <p>
 
-<div class="menu-card" data-target="education">
+            My academic background and self-learning journey.
 
-<i class="fa-solid fa-graduation-cap"></i>
+        </p>
 
-<h3>Education</h3>
 
-</div>
+    </div>
 
 
 
 
 
-<div class="menu-card" data-target="skills">
 
-<i class="fa-solid fa-code"></i>
-
-<h3>Skills</h3>
-
-</div>
+    <div class="education-container glass-card">
 
 
 
+        <h3>
+
+            School Education
+
+        </h3>
 
 
-<div class="menu-card" data-target="contact">
 
-<i class="fa-solid fa-envelope"></i>
+        <p>
 
-<h3>Contact</h3>
+            I started my school education at Milad Noor School in Herat
+            at the age of 5. I continued my studies until graduating from
+            Sultan Ghiyasuddin Ghori High School at the age of 17.
 
-</div>
+        </p>
+
+
+
+
+
+        <h3>
+
+            English Language Learning
+
+        </h3>
+
+
+        <p>
+
+            I improved my English through self-learning and later studied at
+            Nanonet Academy in Herat. I continued learning through online
+            lessons and personal practice. Eventually, I achieved a score of
+            130 in the Duolingo English Test (DET).
+
+        </p>
+
+
+
+
+
+
+        <h3>
+
+            Computer & Technology Learning
+
+        </h3>
+
+
+        <p>
+
+            Most of my computer knowledge has been developed through
+            independent learning and internet resources. I have explored
+            computer systems, troubleshooting, software, programming,
+            and digital technologies.
+
+        </p>
+
+
+
+
+
+
+        <h3>
+
+            Creative & Programming Education
+
+        </h3>
+
+
+        <p>
+
+            I started graphic design in 2021 and later started programming
+            in 2023, learning HTML, CSS, JavaScript, and Python.
+            Although there were some pauses in my journey, I continued
+            improving my skills and returning to learning.
+
+        </p>
+
+
+
+    </div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- =========================
+     SKILLS SECTION
+========================= -->
+
+
+<section class="skills section" id="skills">
+
+
+    <div class="section-header">
+
+
+        <span class="section-number">05</span>
+
+
+        <h2>Skills</h2>
+
+
+        <p>
+
+            Technologies and abilities I have developed.
+
+        </p>
+
+
+    </div>
+
+
+
+
+
+    <div class="skills-grid">
+
+
+
+
+
+
+        <div class="skill-card">
+
+
+            <div class="skill-title">
+
+                <i class="fa-brands fa-html5"></i>
+
+                <h3>HTML</h3>
+
+            </div>
+
+
+            <div class="skill-bar">
+
+                <span style="width:90%"></span>
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+        <div class="skill-card">
+
+
+            <div class="skill-title">
+
+                <i class="fa-brands fa-css3-alt"></i>
+
+                <h3>CSS</h3>
+
+            </div>
+
+
+            <div class="skill-bar">
+
+                <span style="width:85%"></span>
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+        <div class="skill-card">
+
+
+            <div class="skill-title">
+
+                <i class="fa-brands fa-js"></i>
+
+                <h3>JavaScript</h3>
+
+            </div>
+
+
+            <div class="skill-bar">
+
+                <span style="width:70%"></span>
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+        <div class="skill-card">
+
+
+            <div class="skill-title">
+
+                <i class="fa-brands fa-python"></i>
+
+                <h3>Python</h3>
+
+            </div>
+
+
+            <div class="skill-bar">
+
+                <span style="width:65%"></span>
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <div class="skill-card">
+
+
+            <div class="skill-title">
+
+                <i class="fa-solid fa-pen-nib"></i>
+
+                <h3>Graphic Design</h3>
+
+            </div>
+
+
+            <div class="skill-bar">
+
+                <span style="width:90%"></span>
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <div class="skill-card">
+
+
+            <div class="skill-title">
+
+                <i class="fa-solid fa-dumbbell"></i>
+
+                <h3>Powerlifting</h3>
+
+            </div>
+
+
+            <div class="skill-bar">
+
+                <span style="width:95%"></span>
+
+            </div>
+
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+</section>
+<!-- =========================
+     PROJECTS SECTION
+========================= -->
+
+<section class="projects section" id="projects">
+
+
+    <div class="section-header">
+
+
+        <span class="section-number">06</span>
+
+
+        <h2>Projects</h2>
+
+
+        <p>
+            Some of my creative and technical interests.
+        </p>
+
+
+    </div>
+
+
+
+
+
+    <div class="projects-grid">
+
+
+
+        <article class="project-card glass-card">
+
+
+            <i class="fa-solid fa-globe"></i>
+
+
+            <h3>
+                Personal Portfolio Website
+            </h3>
+
+
+            <p>
+                A modern responsive portfolio website created using HTML,
+                CSS, and JavaScript to present my skills, experiences,
+                and journey.
+            </p>
+
+
+        </article>
+
+
+
+
+
+        <article class="project-card glass-card">
+
+
+            <i class="fa-solid fa-paintbrush"></i>
+
+
+            <h3>
+                Graphic Design Works
+            </h3>
+
+
+            <p>
+                Collection of logos, digital artwork, image editing,
+                and creative designs created through my design journey.
+            </p>
+
+
+        </article>
+
+
+
+
+
+        <article class="project-card glass-card">
+
+
+            <i class="fa-solid fa-laptop-code"></i>
+
+
+            <h3>
+                Programming Projects
+            </h3>
+
+
+            <p>
+                Web development and programming projects created while
+                improving my knowledge of HTML, CSS, JavaScript, and Python.
+            </p>
+
+
+        </article>
+
+
+
+    </div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- =========================
+     FAMILY INSPIRATION SECTION
+========================= -->
+
+<section class="inspiration section">
+
+
+    <div class="section-header">
+
+
+        <span class="section-number">07</span>
+
+
+        <h2>Inspiration</h2>
+
+
+        <p>
+            People who have influenced my journey.
+        </p>
+
+
+    </div>
+
+
+
+
+
+    <div class="inspiration-card glass-card">
+
+
+        <h3>
+            My Uncle - English Educator
+        </h3>
+
+
+
+        <p>
+
+            My uncle is a young and dedicated English educator who has built
+            his career through passion, self-learning, and continuous improvement.
+
+            He completed his school education at the age of 17 and today,
+            at the age of 24, he is the head of Hewad Institute in Kabul.
+
+            He developed most of his English knowledge through self-learning
+            and studied at Azerakhsh Language Academy in Kabul.
+
+            His teaching journey started at a university, and later he began
+            teaching English online with his close friend Mr. Eiwaz, who was
+            also his classmate at Azerakhsh Academy.
+
+            Alhamdulillah, he is now a successful person who continues helping
+            students improve their English skills. I wish him continued success
+            and the best in every step of his life.
+
+        </p>
+
+
+    </div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- =========================
+     CONTACT SECTION
+========================= -->
+
+
+<section class="contact section" id="contact">
+
+
+    <div class="section-header">
+
+
+        <span class="section-number">08</span>
+
+
+        <h2>Contact</h2>
+
+
+        <p>
+            Feel free to connect with me.
+        </p>
+
+
+    </div>
+
+
+
+
+
+
+
+    <div class="contact-grid">
+
+
+
+        <a href="mailto:your-email@example.com" class="contact-card">
+
+
+            <i class="fa-solid fa-envelope"></i>
+
+
+            <h3>
+                Email
+            </h3>
+
+
+            <p>
+                your-email@example.com
+            </p>
+
+
+        </a>
+
+
+
+
+
+
+        <a href="#" class="contact-card">
+
+
+            <i class="fa-brands fa-github"></i>
+
+
+            <h3>
+                GitHub
+            </h3>
+
+
+            <p>
+                github.com/786omid786
+            </p>
+
+
+        </a>
+
+
+
+
+
+
+        <a href="#" class="contact-card">
+
+
+            <i class="fa-brands fa-instagram"></i>
+
+
+            <h3>
+                Instagram
+            </h3>
+
+
+            <p>
+                Your Instagram
+            </p>
+
+
+        </a>
+
+
+
+
+    </div>
 
 
 
@@ -314,503 +1571,21 @@ Contact Me
 
 
 
-<section id="about" class="section">
 
-
-<h2>About Me</h2>
-
-
-
-<div class="glass-card">
-
-
-<p>
-
-## About Me
-
-I am a passionate and self-motivated young creator from Afghanistan, born in Kabul and currently living in Herat. I completed my school education at the age of 17, and throughout my journey I have always been driven by curiosity, self-learning, and the desire to develop new skills.
-
-My interests have always been connected to technology, creativity, and personal growth. From an early age, around 6 or 7 years old, I became interested in computers and enjoyed exploring how they work. Over time, I started learning how to troubleshoot and solve computer problems independently. Understanding technology and finding solutions became an enjoyable challenge for me.
-
-My journey in digital creativity began in 2021 when I started learning Adobe Photoshop by myself. I explored graphic design by creating logos, editing personal images, and experimenting with different visual concepts. Later, in 2023, I expanded my design skills by learning Adobe Illustrator, which helped me develop a deeper understanding of professional design. I have also created digital artwork and designs using mobile applications such as ibisPaint X.
-
-In 2023, I started my journey in programming and web development. I began learning Python, JavaScript, HTML, and CSS, building my foundation in software development and understanding how websites and applications are created. Although my progress has not always been continuous because of different pauses and interruptions, I have continued returning to learning and improving my skills. My goal is to become highly skilled in programming and create professional, modern, and useful digital projects.
-
-Alongside technology and creativity, fitness has been one of the most important parts of my life. I have trained consistently for several years, and my favorite sport is powerlifting. Through discipline, hard work, and dedication, I have achieved remarkable strength levels at a young age without using any supplements. Training has taught me valuable lessons about patience, consistency, mental strength, and the importance of continuous improvement.
-
-I believe that true growth comes from curiosity, discipline, and the courage to keep learning. My journey combines technology, design, programming, and physical development, and I am always looking for new challenges that help me improve and create something meaningful.
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-<section id="experience" class="section">
-
-
-<h2>Experience</h2>
-
-
-
-
-<div class="timeline">
-
-
-<div class="timeline-item">
-
-
-<h3>Your Experience</h3>
-
-
-<span>2025 - Present</span>
-
-
-<p>
-
-Experience
-
-Graphic Design — 5 Years
-
-I have been exploring and practicing graphic design for approximately 5 years. My journey started with Adobe Photoshop, where I learned the fundamentals of image editing, visual composition, and creative design. Over time, I expanded my skills into logo design, digital artwork, personal image editing, and creating different visual concepts.
-
-I later started learning Adobe Illustrator, which helped me improve my understanding of vector design, professional graphics, and more advanced design techniques. I have also worked with digital drawing and creative design applications such as ibisPaint X, continuously improving my creativity and attention to detail.
-
-### Programming & Web Development — 3 Years
-
-I have been learning programming and web development for approximately 3 years. During this time, I have developed a foundation in Python, JavaScript, HTML, and CSS.
-
-My learning journey has included understanding programming logic, creating web pages, working with front-end technologies, and exploring how software and websites are built. Although my progress has included some pauses, I have continued developing my knowledge and improving my skills through self-learning and practice.
-
-My goal is to continue advancing my programming abilities and create professional, efficient, and creative digital solutions.
-
-### English Language Learning — 2 Years
-
-I have spent approximately 2 years improving my English language skills through self-study, practice, and regular exposure to English content.
-
-Learning English has helped me access more educational resources, communicate with a wider community, and continue learning in fields such as technology, programming, and design, where English plays an important role.
-
-I continue improving my vocabulary, communication skills, and understanding through consistent practice.
-
-
-</p>
-
-
-</div>
-
-
-
-
-<div class="timeline-item">
-
-
-<h3>Previous Experience</h3>
-
-
-<span>2023 - 2025</span>
-
-
-<p>
-
-## Professional Experience
-
-### Computer Technician — Volunteer Experience
-
-I have worked as a computer technician on a voluntary basis for different places, helping with computer-related tasks and technical problems. These experiences allowed me to improve my practical knowledge, understand hardware and software issues, troubleshoot problems, and develop real-world problem-solving skills.
-
-Although these roles were not focused on financial compensation, they were important opportunities for personal growth and expanding my technical abilities through hands-on experience.
-
-### Accountant — Healthcare Sector
-
-I gained professional experience working as an accountant in a hospital environment, where I developed skills in organization, responsibility, accuracy, and managing financial-related tasks.
-
-Working in a healthcare environment taught me the importance of attention to detail, reliability, and maintaining professionalism while handling important information.
-
-### Young Accountant — Company Experience
-
-I also worked as a young accountant in a company, gaining experience in financial management, record keeping, organization, and workplace communication.
-
-This experience helped me develop professional skills, understand business operations, and improve my ability to work responsibly in a team environment.
-
-
-</p>
-
-
-</div>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-<section id="education" class="section">
-
-
-<h2>Education</h2>
-
-
-
-
-<div class="glass-card">
-
-
-<h3>Your Education</h3>
-
-
-<p>
-
-Add your education, certificates and courses here.
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-<section id="skills" class="section">
-
-
-<h2>Skills</h2>
-
-
-
-<div class="skills-grid">
-
-
-
-<div class="skill">
-
-<h3>HTML</h3>
-
-<div class="progress">
-
-<div class="progress-fill html"></div>
-
-</div>
-
-</div>
-
-
-
-
-
-<div class="skill">
-
-<h3>CSS</h3>
-
-<div class="progress">
-
-<div class="progress-fill css"></div>
-
-</div>
-
-</div>
-
-
-
-
-
-<div class="skill">
-
-<h3>JavaScript</h3>
-
-<div class="progress">
-
-<div class="progress-fill js"></div>
-
-</div>
-
-</div>
-
-
-
-
-
-<div class="skill">
-
-<h3>Strength Training</h3>
-
-<div class="progress">
-
-<div class="progress-fill power"></div>
-
-</div>
-
-</div>
-
-
-
-</div>
-
-
-</section>
-<!-- CONTACT SECTION -->
-
-<section id="contact" class="section">
-
-
-<h2>Contact Me</h2>
-
-
-
-<div class="contact-grid">
-
-
-
-
-
-<div class="contact-card">
-
-
-<i class="fa-solid fa-envelope"></i>
-
-
-<h3>Email</h3>
-
-
-<p>
-noori7omid86@gmail.com
-</p>
-
-
-
-<button 
-class="copy-btn"
-data-copy="noori7omid86@gmail.com"
-
-style="
-margin-top:20px;
-padding:14px 30px;
-border-radius:50px;
-border:1px solid rgba(0,234,255,.5);
-background:linear-gradient(135deg,rgba(0,234,255,.2),rgba(138,46,255,.35));
-backdrop-filter:blur(15px);
-color:white;
-font-size:1.6rem;
-font-weight:600;
-cursor:pointer;
-display:flex;
-align-items:center;
-gap:12px;
-transition:.4s;
-box-shadow:0 10px 30px rgba(0,234,255,.25);
-">
-
-<i class="fa-solid fa-copy"></i>
-
-Copy Email
-
-</button>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="contact-card">
-
-
-<i class="fa-brands fa-github"></i>
-
-
-<h3>GitHub</h3>
-
-
-<p>
-github.com/786omid786
-</p>
-
-
-
-<button 
-class="copy-btn"
-data-copy="https://github.com/786omid786"
-
-style="
-margin-top:20px;
-padding:14px 30px;
-border-radius:50px;
-border:1px solid rgba(0,234,255,.5);
-background:linear-gradient(135deg,rgba(0,234,255,.2),rgba(138,46,255,.35));
-backdrop-filter:blur(15px);
-color:white;
-font-size:1.6rem;
-font-weight:600;
-cursor:pointer;
-display:flex;
-align-items:center;
-gap:12px;
-transition:.4s;
-box-shadow:0 10px 30px rgba(0,234,255,.25);
-">
-
-<i class="fa-solid fa-copy"></i>
-
-Copy GitHub
-
-</button>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="contact-card">
-
-
-<i class="fa-brands fa-instagram"></i>
-
-
-<h3>Instagram</h3>
-
-
-<p>
-@mohammadomidnoori786
-</p>
-
-
-
-<button 
-class="copy-btn"
-data-copy="@mohammadomidnoori786"
-
-style="
-margin-top:20px;
-padding:14px 30px;
-border-radius:50px;
-border:1px solid rgba(0,234,255,.5);
-background:linear-gradient(135deg,rgba(0,234,255,.2),rgba(138,46,255,.35));
-backdrop-filter:blur(15px);
-color:white;
-font-size:1.6rem;
-font-weight:600;
-cursor:pointer;
-display:flex;
-align-items:center;
-gap:12px;
-transition:.4s;
-box-shadow:0 10px 30px rgba(0,234,255,.25);
-">
-
-<i class="fa-solid fa-copy"></i>
-
-Copy Username
-
-</button>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="contact-card">
-
-
-<i class="fa-brands fa-linkedin"></i>
-
-
-<h3>LinkedIn</h3>
-
-
-<p>
-Your LinkedIn Profile
-</p>
-
-
-
-<button 
-class="copy-btn"
-data-copy="www.linkedin.com/in/mohammad-omid-noori-68b723420"
-
-style="
-margin-top:20px;
-padding:14px 30px;
-border-radius:50px;
-border:1px solid rgba(0,234,255,.5);
-background:linear-gradient(135deg,rgba(0,234,255,.2),rgba(138,46,255,.35));
-backdrop-filter:blur(15px);
-color:white;
-font-size:1.6rem;
-font-weight:600;
-cursor:pointer;
-display:flex;
-align-items:center;
-gap:12px;
-transition:.4s;
-box-shadow:0 10px 30px rgba(0,234,255,.25);
-">
-
-<i class="fa-solid fa-copy"></i>
-
-Copy LinkedIn
-
-</button>
-
-
-</div>
-
-
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
+<!-- =========================
+     FOOTER
+========================= -->
 
 
 <footer>
 
 
-<p>
-© 2026 Mohammad Omid Noori
-</p>
+    <p>
+
+        © 2026 Mohammad Omid Noori.
+        All Rights Reserved.
+
+    </p>
 
 
 </footer>
@@ -820,9 +1595,32 @@ Copy LinkedIn
 
 
 
+
+<!-- =========================
+     BACK TO TOP BUTTON
+========================= -->
+
+
+<button class="back-to-top" aria-label="Back to top">
+
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+
+</button>
+
+
+
+
+
+
+<!-- JavaScript -->
+
 <script src="script.js"></script>
 
 
+
 </body>
+
 
 </html>
