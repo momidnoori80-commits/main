@@ -1,96 +1,295 @@
-/* ==========================================
-   OMID NOORI PORTFOLIO
-   JAVASCRIPT PART 1
-========================================== */
+/* =================================
+   OMID PORTFOLIO JAVASCRIPT
+================================= */
 
 
-
-// ==========================
-// PAGE LOADER
-// ==========================
-
+/* ==========================
+   LOADER
+========================== */
 
 window.addEventListener("load", () => {
 
+    const loader = document.querySelector(".loader");
 
-    const loader = document.querySelector(".page-loader");
-
-
-    setTimeout(() => {
-
+    if (loader) {
 
         loader.style.opacity = "0";
 
-
-        loader.style.pointerEvents = "none";
-
-
         setTimeout(() => {
+            loader.style.display = "none";
+        }, 500);
 
-
-            loader.remove();
-
-
-        },500);
-
-
-
-    },800);
-
-
+    }
 
 });
 
 
 
 
+/* ==========================
+   LIVE CLOCK
+========================== */
+
+const clock = document.getElementById("live-clock");
 
 
+function updateClock() {
 
-// ==========================
-// MOBILE MENU
-// ==========================
+    if (!clock) return;
 
+    const now = new Date();
 
-const menuButton = document.querySelector(".menu-button");
+    clock.textContent =
+    now.toLocaleTimeString();
 
-const mobileNav = document.querySelector(".mobile-nav");
-
-const mobileLinks = document.querySelectorAll(".mobile-nav a");
-
+}
 
 
+setInterval(updateClock, 1000);
 
-menuButton.addEventListener("click", () => {
-
-
-    mobileNav.classList.toggle("active");
-
-
-    menuButton.classList.toggle("active");
-
-
-
-});
+updateClock();
 
 
 
 
 
 
-// Close mobile menu after clicking a link
+
+/* ==========================
+   TYPING ANIMATION
+========================== */
+
+const typingElement =
+document.querySelector(".typing");
 
 
-mobileLinks.forEach(link => {
+const words = [
+
+    "Programmer",
+
+    "Graphic Designer",
+
+    "Technology Enthusiast",
+
+    "Powerlifting Athlete",
+
+    "Creative Learner"
+
+];
 
 
-    link.addEventListener("click", () => {
+let wordIndex = 0;
+
+let letterIndex = 0;
+
+let deleting = false;
 
 
-        mobileNav.classList.remove("active");
+
+function typingAnimation() {
 
 
-        menuButton.classList.remove("active");
+    if (!typingElement) return;
+
+
+    const currentWord =
+    words[wordIndex];
+
+
+
+    if (!deleting) {
+
+
+        typingElement.textContent =
+        currentWord.substring(
+            0,
+            letterIndex++
+        );
+
+
+        if (letterIndex > currentWord.length) {
+
+
+            deleting = true;
+
+
+            setTimeout(
+                typingAnimation,
+                1000
+            );
+
+
+            return;
+
+        }
+
+
+    } else {
+
+
+        typingElement.textContent =
+        currentWord.substring(
+            0,
+            letterIndex--
+        );
+
+
+        if (letterIndex < 0) {
+
+
+            deleting = false;
+
+
+            wordIndex++;
+
+
+            if (wordIndex >= words.length) {
+
+                wordIndex = 0;
+
+            }
+
+
+        }
+
+
+    }
+
+
+
+    setTimeout(
+
+        typingAnimation,
+
+        deleting ? 50 : 120
+
+    );
+
+
+}
+
+
+typingAnimation();
+
+
+
+
+
+
+
+
+/* ==========================
+   DARK / LIGHT MODE
+========================== */
+
+
+const themeButton =
+document.getElementById(
+"theme-toggle"
+);
+
+
+
+if (themeButton) {
+
+
+    themeButton.addEventListener(
+    "click",
+    () => {
+
+
+        document.body.classList.toggle(
+        "light-mode"
+        );
+
+
+
+        const icon =
+        themeButton.querySelector("i");
+
+
+
+        if (
+        document.body.classList.contains(
+        "light-mode")
+        ) {
+
+
+            icon.className =
+            "fa-solid fa-sun";
+
+
+        } else {
+
+
+            icon.className =
+            "fa-solid fa-moon";
+
+
+        }
+
+
+    });
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+   MOBILE MENU
+========================== */
+
+
+const menuButton =
+document.querySelector(".menu-btn");
+
+
+const navLinks =
+document.querySelector(".nav-links");
+
+
+
+if (menuButton && navLinks) {
+
+
+    menuButton.addEventListener(
+    "click",
+    () => {
+
+
+        navLinks.classList.toggle(
+        "active"
+        );
+
+
+    });
+
+
+}
+
+
+
+
+document.querySelectorAll(
+".nav-links a"
+)
+.forEach(link => {
+
+
+    link.addEventListener(
+    "click",
+    () => {
+
+
+        navLinks.classList.remove(
+        "active"
+        );
 
 
     });
@@ -105,73 +304,56 @@ mobileLinks.forEach(link => {
 
 
 
-
-// ==========================
-// DARK / LIGHT MODE
-// ==========================
-
-
-const themeCheckbox = document.querySelector("#theme-checkbox");
-
-const body = document.body;
+/* ==========================
+   SCROLL ANIMATIONS
+========================== */
 
 
-
-// Load saved theme
-
-
-const savedTheme = localStorage.getItem("theme");
+const animatedElements =
+document.querySelectorAll(
+".glass-card, .section-title"
+);
 
 
 
-if(savedTheme === "light"){
+const observer =
+new IntersectionObserver(
+
+(entries) => {
 
 
-    body.classList.add("light");
+entries.forEach(entry => {
 
 
-    themeCheckbox.checked = true;
+    if(entry.isIntersecting){
 
+
+        entry.target.classList.add(
+        "show"
+        );
+
+
+    }
+
+
+});
+
+
+},
+
+{
+
+threshold:0.15
 
 }
 
+);
 
 
 
+animatedElements.forEach(element => {
 
-
-themeCheckbox.addEventListener("change", () => {
-
-
-
-    if(themeCheckbox.checked){
-
-
-        body.classList.add("light");
-
-
-        localStorage.setItem(
-            "theme",
-            "light"
-        );
-
-
-
-    }else{
-
-
-        body.classList.remove("light");
-
-
-        localStorage.setItem(
-            "theme",
-            "dark"
-        );
-
-
-    }
-
-
+    observer.observe(element);
 
 });
 
@@ -180,432 +362,267 @@ themeCheckbox.addEventListener("change", () => {
 
 
 
-// ==========================
-// HEADER SHADOW ON SCROLL
-// ==========================
 
 
-const header = document.querySelector(".header");
+/* ==========================
+   BACK TO TOP BUTTON
+========================== */
 
 
-
-window.addEventListener("scroll", () => {
-
-
-
-    if(window.scrollY > 50){
-
-
-        header.style.background =
-        "rgba(0,0,0,0.65)";
+const backButton =
+document.getElementById(
+"back-top"
+);
 
 
 
-    }else{
+window.addEventListener(
+"scroll",
+() => {
 
 
-        header.style.background =
-        "rgba(0,0,0,0.25)";
-
-
-
-    }
-
-
-
-});
-/* ==========================================
-   JAVASCRIPT PART 2
-   FINAL INTERACTIONS
-========================================== */
-
-
-
-// ==========================
-// BACK TO TOP BUTTON
-// ==========================
-
-
-const backToTop = document.querySelector(".back-to-top");
-
-
-
-window.addEventListener("scroll", () => {
+    if(!backButton) return;
 
 
 
     if(window.scrollY > 500){
 
 
-        backToTop.classList.add("active");
+        backButton.classList.add(
+        "active"
+        );
 
 
-    }else{
+    }
+
+    else{
 
 
-        backToTop.classList.remove("active");
+        backButton.classList.remove(
+        "active"
+        );
 
 
     }
 
 
-
 });
 
 
 
 
 
-backToTop.addEventListener("click", () => {
+if(backButton){
 
 
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-    });
+    backButton.addEventListener(
+    "click",
+    () => {
 
 
-});
+        window.scrollTo({
 
+            top:0,
 
+            behavior:"smooth"
 
-
-
-
-
-
-
-// ==========================
-// ACTIVE NAVIGATION
-// ==========================
-
-
-const sections = document.querySelectorAll("section");
-
-const navLinks = document.querySelectorAll(
-    ".desktop-nav a, .mobile-nav a"
-);
-
-
-
-
-window.addEventListener("scroll", () => {
-
-
-
-    let current = "";
-
-
-
-    sections.forEach(section => {
-
-
-
-        const sectionTop = section.offsetTop - 150;
-
-
-        const sectionHeight = section.offsetHeight;
-
-
-
-        if(
-            scrollY >= sectionTop &&
-            scrollY < sectionTop + sectionHeight
-        ){
-
-
-            current = section.getAttribute("id");
-
-
-        }
-
+        });
 
 
     });
-
-
-
-
-
-
-    navLinks.forEach(link => {
-
-
-
-        link.classList.remove("active");
-
-
-
-        if(
-            link.getAttribute("href") === "#" + current
-        ){
-
-
-            link.classList.add("active");
-
-
-        }
-
-
-
-    });
-
-
-
-});
-
-
-
-
-
-
-
-
-
-// ==========================
-// SMOOTH ANCHOR SCROLLING
-// ==========================
-
-
-document.querySelectorAll(
-    'a[href^="#"]'
-).forEach(anchor => {
-
-
-
-    anchor.addEventListener(
-        "click",
-        function(e){
-
-
-
-            const target =
-            document.querySelector(
-                this.getAttribute("href")
-            );
-
-
-
-            if(target){
-
-
-                e.preventDefault();
-
-
-
-                target.scrollIntoView({
-
-                    behavior:"smooth",
-
-                    block:"start"
-
-                });
-
-
-
-            }
-
-
-
-        }
-
-    );
-
-
-
-});
-
-
-
-
-
-
-
-
-
-// ==========================
-// REVEAL ANIMATION FALLBACK
-// FOR MOBILE BROWSERS
-// ==========================
-
-
-const animatedElements =
-document.querySelectorAll(
-".glass-card, .skill-card, .project-card, .experience-card, .journey-item"
-);
-
-
-
-
-const observer =
-new IntersectionObserver(
-(entries)=>{
-
-
-
-    entries.forEach(entry=>{
-
-
-
-        if(entry.isIntersecting){
-
-
-
-            entry.target.style.opacity="1";
-
-
-            entry.target.style.transform=
-            "translateY(0)";
-
-
-
-            observer.unobserve(
-                entry.target
-            );
-
-
-
-        }
-
-
-
-    });
-
-
-
-},
-{
-
-    threshold:0.15
-
-});
-
-
-
-
-
-
-animatedElements.forEach(element=>{
-
-
-    element.style.opacity="0";
-
-
-    element.style.transform=
-    "translateY(50px)";
-
-
-    element.style.transition=
-    "opacity .7s ease, transform .7s ease";
-
-
-    observer.observe(element);
-
-
-});
-
-
-
-
-
-
-
-
-
-// ==========================
-// MOBILE HEIGHT FIX
-// ANDROID CHROME
-// ==========================
-
-
-// Fixes 100vh issues on mobile browsers
-
-
-function setMobileHeight(){
-
-
-    document.documentElement.style
-    .setProperty(
-        "--vh",
-        `${window.innerHeight * 0.01}px`
-    );
 
 
 }
 
 
 
-setMobileHeight();
 
 
 
-window.addEventListener(
-    "resize",
-    setMobileHeight
+
+
+/* ==========================
+   EMAILJS CONTACT FORM
+========================== */
+
+
+(function(){
+
+
+    emailjs.init({
+
+        publicKey:
+        "ViuNUOQ_RYxORWZlc"
+
+    });
+
+
+})();
+
+
+
+
+
+
+const contactForm =
+document.getElementById(
+"contact-form"
 );
 
 
 
 
+if(contactForm){
 
 
-
-// ==========================
-// PREVENT DOUBLE TAP ZOOM
-// ON BUTTONS
-// ==========================
-
-
-let lastTouchEnd = 0;
-
-
-
-document.addEventListener(
-"touchend",
-function(event){
-
-
-    const now =
-    new Date().getTime();
-
-
-
-    if(now - lastTouchEnd <= 300){
+    contactForm.addEventListener(
+    "submit",
+    function(event){
 
 
         event.preventDefault();
 
 
-    }
+
+        const button =
+        contactForm.querySelector(
+        "button"
+        );
 
 
 
-    lastTouchEnd = now;
-
-
-
-},
-false
-);
-
-
-
+        button.innerHTML =
+        "Sending...";
 
 
 
 
 
-// ==========================
-// CONSOLE MESSAGE
-// ==========================
+        emailjs.sendForm(
+
+            "service_a5305nm",
+
+            "template_fjyje18",
+
+            this
+
+        )
 
 
-console.log(
-`
-Welcome to Mohammad Omid Noori's Portfolio.
-Designed with HTML, CSS and JavaScript.
-`
-);
+
+        .then(() => {
+
+
+
+            button.innerHTML =
+            "Message Sent ✓";
+
+
+
+            contactForm.reset();
+
+
+
+
+            setTimeout(() => {
+
+
+                button.innerHTML =
+                "Send Message";
+
+
+            },3000);
+
+
+
+        })
+
+
+
+        .catch((error)=>{
+
+
+            console.log(
+            "EmailJS Error:",
+            error
+            );
+
+
+
+            button.innerHTML =
+            "Try Again";
+
+
+
+            alert(
+            "Message could not be sent. Please try again."
+            );
+
+
+        });
+
+
+
+    });
+
+
+}
+/* ==========================
+   BLOG SEARCH
+========================== */
+
+
+const searchInput =
+document.getElementById("blog-search");
+
+
+const blogCards =
+document.querySelectorAll(".blog-card");
+
+
+
+if(searchInput){
+
+
+searchInput.addEventListener(
+"input",
+()=>{
+
+
+const searchValue =
+searchInput.value.toLowerCase();
+
+
+
+blogCards.forEach(card=>{
+
+
+const text =
+card.textContent.toLowerCase();
+
+
+
+if(text.includes(searchValue)){
+
+
+card.style.display="block";
+
+
+}
+
+else{
+
+
+card.style.display="none";
+
+
+}
+
+
+});
+
+
+});
+
+
+}
