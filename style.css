@@ -1,0 +1,1404 @@
+/* ===============================
+   OMID PORTFOLIO WEBSITE
+   CSS PART 1/2
+================================ */
+
+
+/* GOOGLE FONT FALLBACK */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+
+:root {
+
+    --bg-color: #050505;
+    --second-bg: #101010;
+    --card-bg: rgba(255,255,255,0.08);
+
+    --text-color: #ffffff;
+    --secondary-text: #bdbdbd;
+
+    --main-color: #00eaff;
+    --second-color: #8a2eff;
+
+    --shadow-color: rgba(0,234,255,0.3);
+
+    --border-color: rgba(255,255,255,0.15);
+
+}
+
+
+body.light {
+
+    --bg-color: #f5f5f5;
+    --second-bg: #ffffff;
+
+    --card-bg: rgba(0,0,0,0.05);
+
+    --text-color: #111111;
+    --secondary-text: #555;
+
+    --main-color: #0077ff;
+    --second-color: #7b00ff;
+
+    --shadow-color: rgba(0,100,255,0.25);
+
+    --border-color: rgba(0,0,0,0.1);
+
+}
+
+
+
+html {
+
+    font-size: 62.5%;
+
+}
+
+
+
+body {
+
+    font-family: "Poppins", sans-serif;
+
+    background: var(--bg-color);
+
+    color: var(--text-color);
+
+    overflow-x: hidden;
+
+    transition: .5s ease;
+
+}
+
+
+/* ===============================
+   BACKGROUND ANIMATION
+================================ */
+
+
+.background-blur {
+
+    position: fixed;
+
+    width: 600px;
+
+    height: 600px;
+
+    background: linear-gradient(
+        45deg,
+        var(--main-color),
+        var(--second-color)
+    );
+
+    filter: blur(160px);
+
+    opacity: .25;
+
+    top: -200px;
+
+    left: -200px;
+
+    z-index: -1;
+
+    animation: moveGlow 10s infinite alternate;
+
+}
+
+
+
+@keyframes moveGlow {
+
+    0% {
+
+        transform: translate(0,0);
+
+    }
+
+
+    100% {
+
+        transform: translate(500px,500px);
+
+    }
+
+}
+
+
+
+/* ===============================
+ HEADER
+================================ */
+
+
+header {
+
+    width:100%;
+
+    height:90px;
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 8%;
+
+    backdrop-filter:blur(20px);
+
+    background:rgba(0,0,0,.25);
+
+    border-bottom:1px solid var(--border-color);
+
+    z-index:1000;
+
+}
+
+
+
+.logo {
+
+    font-size:3rem;
+
+    font-weight:800;
+
+    letter-spacing:2px;
+
+    background:linear-gradient(
+        45deg,
+        var(--main-color),
+        var(--second-color)
+    );
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+}
+
+
+
+nav {
+
+    display:flex;
+
+    gap:3rem;
+
+}
+
+
+
+nav a {
+
+    color:var(--text-color);
+
+    text-decoration:none;
+
+    font-size:1.6rem;
+
+    font-weight:500;
+
+    position:relative;
+
+    transition:.3s;
+
+}
+
+
+
+nav a::after {
+
+    content:"";
+
+    position:absolute;
+
+    width:0;
+
+    height:3px;
+
+    background:var(--main-color);
+
+    bottom:-8px;
+
+    left:0;
+
+    transition:.3s;
+
+}
+
+
+
+nav a:hover::after {
+
+    width:100%;
+
+}
+
+
+
+nav a:hover {
+
+    color:var(--main-color);
+
+}
+
+
+
+/* ===============================
+ THEME SWITCH
+================================ */
+
+
+.theme-switch input {
+
+    display:none;
+
+}
+
+
+
+.theme-switch label {
+
+    width:70px;
+
+    height:35px;
+
+    background:var(--card-bg);
+
+    border-radius:50px;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    position:relative;
+
+    cursor:pointer;
+
+    border:1px solid var(--border-color);
+
+}
+
+
+
+.theme-switch i {
+
+    font-size:1.5rem;
+
+}
+
+
+
+.theme-switch .ball {
+
+    position:absolute;
+
+    width:28px;
+
+    height:28px;
+
+    background:var(--main-color);
+
+    border-radius:50%;
+
+    left:4px;
+
+    transition:.4s;
+
+}
+
+
+
+.theme-switch input:checked + label .ball {
+
+    transform:translateX(34px);
+
+}
+
+
+
+/* ===============================
+ HERO SECTION
+================================ */
+
+
+.hero {
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding-top:90px;
+
+}
+
+
+
+.hero-content {
+
+    animation:fadeUp 1.5s ease;
+
+}
+
+
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity:0;
+
+        transform:translateY(80px);
+
+    }
+
+
+    to {
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* PROFILE IMAGE */
+
+
+.profile-container {
+
+    width:280px;
+
+    height:280px;
+
+    margin:auto;
+
+    position:relative;
+
+}
+
+
+
+.profile-container img {
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:5px solid var(--main-color);
+
+    position:relative;
+
+    z-index:2;
+
+    box-shadow:
+
+    0 0 40px var(--shadow-color);
+
+    animation:floating 4s infinite ease-in-out;
+
+}
+
+
+
+.glow-circle {
+
+    position:absolute;
+
+    inset:-20px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        45deg,
+        var(--main-color),
+        var(--second-color)
+    );
+
+    filter:blur(30px);
+
+    opacity:.7;
+
+    animation:rotateGlow 6s linear infinite;
+
+}
+
+
+
+@keyframes floating {
+
+    0%,100% {
+
+        transform:translateY(0);
+
+    }
+
+    50% {
+
+        transform:translateY(-20px);
+
+    }
+
+}
+
+
+
+@keyframes rotateGlow {
+
+    from {
+
+        transform:rotate(0deg);
+
+    }
+
+
+    to {
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+
+
+.hero h1 {
+
+    margin-top:3rem;
+
+    font-size:5rem;
+
+    font-weight:800;
+
+}
+
+
+
+.hero h1 span {
+
+    background:linear-gradient(
+        45deg,
+        var(--main-color),
+        var(--second-color)
+    );
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+}
+
+
+
+.typing {
+
+    margin-top:1rem;
+
+    font-size:2rem;
+
+    color:var(--secondary-text);
+
+}
+
+
+
+/* ===============================
+ BUTTONS
+================================ */
+
+
+.hero-buttons {
+
+    margin-top:4rem;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:2rem;
+
+}
+
+
+
+.btn {
+
+    padding:1.5rem 3.5rem;
+
+    border-radius:50px;
+
+    background:linear-gradient(
+        45deg,
+        var(--main-color),
+        var(--second-color)
+    );
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:1.6rem;
+
+    font-weight:600;
+
+    transition:.4s;
+
+}
+
+
+
+.btn:hover {
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 30px var(--shadow-color);
+
+}
+
+
+
+.btn.secondary {
+
+    background:transparent;
+
+    border:2px solid var(--main-color);
+
+    color:var(--text-color);
+
+}
+
+
+
+/* ===============================
+ QUICK MENU
+================================ */
+
+
+.quick-menu {
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:2rem;
+
+    padding:5rem 8%;
+
+}
+
+
+
+.menu-card {
+
+    width:180px;
+
+    height:150px;
+
+    background:var(--card-bg);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid var(--border-color);
+
+    border-radius:25px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:1rem;
+
+    cursor:pointer;
+
+    transition:.5s;
+
+}
+
+
+
+.menu-card i {
+
+    font-size:3rem;
+
+    color:var(--main-color);
+
+}
+
+
+
+.menu-card h3 {
+
+    font-size:1.8rem;
+
+}
+
+
+
+.menu-card:hover {
+
+    transform:translateY(-15px) scale(1.05);
+
+    box-shadow:
+
+    0 20px 40px var(--shadow-color);
+
+}
+/* ===============================
+   OMID PORTFOLIO WEBSITE
+   CSS PART 2/2
+================================ */
+
+
+/* ===============================
+   GENERAL SECTIONS
+================================ */
+
+
+.section {
+
+    min-height:100vh;
+
+    padding:10rem 8%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+
+
+.section h2 {
+
+    font-size:4rem;
+
+    margin-bottom:5rem;
+
+    position:relative;
+
+    text-align:center;
+
+}
+
+
+
+.section h2::after {
+
+    content:"";
+
+    position:absolute;
+
+    width:80px;
+
+    height:4px;
+
+    background:linear-gradient(
+        90deg,
+        var(--main-color),
+        var(--second-color)
+    );
+
+    bottom:-15px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    border-radius:20px;
+
+}
+
+
+
+/* ===============================
+   GLASS CARDS
+================================ */
+
+
+.glass-card {
+
+    max-width:900px;
+
+    width:100%;
+
+    padding:4rem;
+
+    background:var(--card-bg);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid var(--border-color);
+
+    border-radius:30px;
+
+    transition:.5s;
+
+}
+
+
+
+.glass-card:hover {
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 50px var(--shadow-color);
+
+}
+
+
+
+.glass-card p {
+
+    font-size:1.8rem;
+
+    line-height:2;
+
+    color:var(--secondary-text);
+
+}
+
+
+
+/* ===============================
+ EXPERIENCE TIMELINE
+================================ */
+
+
+.timeline {
+
+    width:100%;
+
+    max-width:900px;
+
+    position:relative;
+
+}
+
+
+
+.timeline::before {
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:0;
+
+    width:4px;
+
+    height:100%;
+
+    background:linear-gradient(
+        var(--main-color),
+        var(--second-color)
+    );
+
+    transform:translateX(-50%);
+
+}
+
+
+
+.timeline-item {
+
+    width:45%;
+
+    padding:3rem;
+
+    background:var(--card-bg);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid var(--border-color);
+
+    border-radius:25px;
+
+    margin:4rem 0;
+
+    position:relative;
+
+    transition:.5s;
+
+}
+
+
+
+.timeline-item:nth-child(odd){
+
+    margin-left:auto;
+
+}
+
+
+
+.timeline-item:hover {
+
+    transform:scale(1.05);
+
+    box-shadow:0 20px 40px var(--shadow-color);
+
+}
+
+
+
+.timeline-item h3 {
+
+    font-size:2.3rem;
+
+    margin-bottom:1rem;
+
+}
+
+
+
+.timeline-item span {
+
+    color:var(--main-color);
+
+    font-size:1.5rem;
+
+}
+
+
+
+.timeline-item p {
+
+    margin-top:1.5rem;
+
+    font-size:1.6rem;
+
+    color:var(--secondary-text);
+
+}
+
+
+
+/* ===============================
+ SKILLS
+================================ */
+
+
+.skills-grid {
+
+    width:100%;
+
+    max-width:900px;
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:3rem;
+
+}
+
+
+
+.skill {
+
+    padding:3rem;
+
+    background:var(--card-bg);
+
+    border:1px solid var(--border-color);
+
+    border-radius:25px;
+
+    transition:.4s;
+
+}
+
+
+
+.skill:hover {
+
+    transform:translateY(-10px);
+
+}
+
+
+
+.skill h3 {
+
+    font-size:2rem;
+
+    margin-bottom:2rem;
+
+}
+
+
+
+.progress {
+
+    width:100%;
+
+    height:15px;
+
+    background:rgba(255,255,255,.1);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+
+
+.progress-fill {
+
+    height:100%;
+
+    border-radius:20px;
+
+    background:linear-gradient(
+        90deg,
+        var(--main-color),
+        var(--second-color)
+    );
+
+    animation:loadBar 2s ease;
+
+}
+
+
+
+.html {
+
+    width:90%;
+
+}
+
+
+
+.css {
+
+    width:85%;
+
+}
+
+
+
+.js {
+
+    width:75%;
+
+}
+
+
+
+.power {
+
+    width:95%;
+
+}
+
+
+
+@keyframes loadBar {
+
+    from {
+
+        width:0;
+
+    }
+
+}
+
+
+
+/* ===============================
+ CONTACT SECTION
+================================ */
+
+
+.contact-grid {
+
+    width:100%;
+
+    max-width:1000px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:3rem;
+
+}
+
+
+
+.contact-card {
+
+    padding:3rem;
+
+    text-align:center;
+
+    background:var(--card-bg);
+
+    border:1px solid var(--border-color);
+
+    border-radius:25px;
+
+    transition:.5s;
+
+}
+
+
+
+.contact-card i {
+
+    font-size:4rem;
+
+    color:var(--main-color);
+
+    margin-bottom:2rem;
+
+}
+
+
+
+.contact-card h3 {
+
+    font-size:2rem;
+
+    margin-bottom:1rem;
+
+}
+
+
+
+.contact-card p {
+
+    font-size:1.5rem;
+
+    color:var(--secondary-text);
+
+}
+
+
+
+.contact-card:hover {
+
+    transform:translateY(-15px);
+
+    box-shadow:0 20px 50px var(--shadow-color);
+
+}
+
+
+
+/* ===============================
+ FOOTER
+================================ */
+
+
+footer {
+
+    height:100px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-top:1px solid var(--border-color);
+
+}
+
+
+
+footer p {
+
+    font-size:1.5rem;
+
+    color:var(--secondary-text);
+
+}
+
+
+
+/* ===============================
+ SCROLL ANIMATION SUPPORT
+================================ */
+
+
+.section,
+.menu-card,
+.timeline-item,
+.contact-card {
+
+    animation:appear linear;
+
+    animation-timeline:view();
+
+    animation-range:entry 0% cover 30%;
+
+}
+
+
+
+@keyframes appear {
+
+    from {
+
+        opacity:0;
+
+        transform:translateY(80px);
+
+    }
+
+
+    to {
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* ===============================
+ MOBILE RESPONSIVE
+================================ */
+
+
+@media(max-width:900px){
+
+
+    header {
+
+        padding:0 4%;
+
+    }
+
+
+    nav {
+
+        display:none;
+
+    }
+
+
+    .hero h1 {
+
+        font-size:3.5rem;
+
+    }
+
+
+    .profile-container {
+
+        width:220px;
+
+        height:220px;
+
+    }
+
+
+    .skills-grid {
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .contact-grid {
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .timeline::before {
+
+        left:20px;
+
+    }
+
+
+    .timeline-item {
+
+        width:90%;
+
+        margin-left:50px!important;
+
+    }
+
+
+}
+
+
+
+@media(max-width:500px){
+
+
+    html {
+
+        font-size:55%;
+
+    }
+
+
+    .hero-buttons {
+
+        flex-direction:column;
+
+    }
+
+
+    .btn {
+
+        width:200px;
+
+        margin:auto;
+
+    }
+
+
+    .menu-card {
+
+        width:140px;
+
+        height:130px;
+
+    }
+
+
+}
+
+
+
+/* ===============================
+ EXTRA PREMIUM EFFECTS
+================================ */
+
+
+::selection {
+
+    background:var(--main-color);
+
+    color:white;
+
+}
+
+
+
+::-webkit-scrollbar {
+
+    width:12px;
+
+}
+
+
+
+::-webkit-scrollbar-track {
+
+    background:var(--bg-color);
+
+}
+
+
+
+::-webkit-scrollbar-thumb {
+
+    background:linear-gradient(
+        var(--main-color),
+        var(--second-color)
+    );
+
+    border-radius:20px;
+
+}
+
+
+
+a {
+
+    transition:.3s;
+
+}
+
+
+
+/* floating particles effect */
+
+.hero::before {
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+
+    height:300px;
+
+    border-radius:50%;
+
+    background:var(--main-color);
+
+    filter:blur(180px);
+
+    opacity:.3;
+
+    animation:particleMove 8s infinite alternate;
+
+}
+
+
+
+@keyframes particleMove {
+
+    from {
+
+        transform:translate(-200px,-100px);
+
+    }
+
+
+    to {
+
+        transform:translate(200px,100px);
+
+    }
+
+}
