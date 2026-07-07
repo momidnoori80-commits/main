@@ -1,89 +1,269 @@
-/* =====================================
-   OMID PORTFOLIO WEBSITE
-   COMPLETE JAVASCRIPT
-===================================== */
+/* ==========================================
+   OMID NOORI PORTFOLIO
+   JAVASCRIPT PART 1
+========================================== */
 
 
-/* ===============================
-   DARK / LIGHT MODE
-================================ */
+
+// ==========================
+// PAGE LOADER
+// ==========================
 
 
-const themeToggle = document.getElementById("theme-toggle");
+window.addEventListener("load", () => {
 
 
-if(themeToggle){
-
-    const savedTheme = localStorage.getItem("theme");
+    const loader = document.querySelector(".page-loader");
 
 
-    if(savedTheme === "light"){
+    setTimeout(() => {
 
-        document.body.classList.add("light");
 
-        themeToggle.checked = true;
+        loader.style.opacity = "0";
+
+
+        loader.style.pointerEvents = "none";
+
+
+        setTimeout(() => {
+
+
+            loader.remove();
+
+
+        },500);
+
+
+
+    },800);
+
+
+
+});
+
+
+
+
+
+
+
+// ==========================
+// MOBILE MENU
+// ==========================
+
+
+const menuButton = document.querySelector(".menu-button");
+
+const mobileNav = document.querySelector(".mobile-nav");
+
+const mobileLinks = document.querySelectorAll(".mobile-nav a");
+
+
+
+
+menuButton.addEventListener("click", () => {
+
+
+    mobileNav.classList.toggle("active");
+
+
+    menuButton.classList.toggle("active");
+
+
+
+});
+
+
+
+
+
+
+// Close mobile menu after clicking a link
+
+
+mobileLinks.forEach(link => {
+
+
+    link.addEventListener("click", () => {
+
+
+        mobileNav.classList.remove("active");
+
+
+        menuButton.classList.remove("active");
+
+
+    });
+
+
+});
+
+
+
+
+
+
+
+
+
+// ==========================
+// DARK / LIGHT MODE
+// ==========================
+
+
+const themeCheckbox = document.querySelector("#theme-checkbox");
+
+const body = document.body;
+
+
+
+// Load saved theme
+
+
+const savedTheme = localStorage.getItem("theme");
+
+
+
+if(savedTheme === "light"){
+
+
+    body.classList.add("light");
+
+
+    themeCheckbox.checked = true;
+
+
+}
+
+
+
+
+
+
+themeCheckbox.addEventListener("change", () => {
+
+
+
+    if(themeCheckbox.checked){
+
+
+        body.classList.add("light");
+
+
+        localStorage.setItem(
+            "theme",
+            "light"
+        );
+
+
+
+    }else{
+
+
+        body.classList.remove("light");
+
+
+        localStorage.setItem(
+            "theme",
+            "dark"
+        );
+
 
     }
 
 
 
-    themeToggle.addEventListener("change",()=>{
-
-
-        document.body.classList.toggle("light");
-
-
-        if(document.body.classList.contains("light")){
-
-            localStorage.setItem("theme","light");
-
-        }
-
-        else{
-
-            localStorage.setItem("theme","dark");
-
-        }
-
-
-    });
-
-}
+});
 
 
 
 
 
-/* ===============================
-   QUICK MENU SCROLL
-================================ */
+
+// ==========================
+// HEADER SHADOW ON SCROLL
+// ==========================
 
 
-const menuCards = document.querySelectorAll(".menu-card");
+const header = document.querySelector(".header");
 
 
-menuCards.forEach(card=>{
+
+window.addEventListener("scroll", () => {
 
 
-    card.addEventListener("click",()=>{
+
+    if(window.scrollY > 50){
 
 
-        let target = card.getAttribute("data-target");
+        header.style.background =
+        "rgba(0,0,0,0.65)";
 
 
-        let section = document.getElementById(target);
+
+    }else{
 
 
-        if(section){
+        header.style.background =
+        "rgba(0,0,0,0.25)";
 
-            section.scrollIntoView({
 
-                behavior:"smooth"
 
-            });
+    }
 
-        }
 
+
+});
+/* ==========================================
+   JAVASCRIPT PART 2
+   FINAL INTERACTIONS
+========================================== */
+
+
+
+// ==========================
+// BACK TO TOP BUTTON
+// ==========================
+
+
+const backToTop = document.querySelector(".back-to-top");
+
+
+
+window.addEventListener("scroll", () => {
+
+
+
+    if(window.scrollY > 500){
+
+
+        backToTop.classList.add("active");
+
+
+    }else{
+
+
+        backToTop.classList.remove("active");
+
+
+    }
+
+
+
+});
+
+
+
+
+
+backToTop.addEventListener("click", () => {
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
 
     });
 
@@ -96,53 +276,79 @@ menuCards.forEach(card=>{
 
 
 
-/* ===============================
-   NAVIGATION ACTIVE EFFECT
-================================ */
+
+
+// ==========================
+// ACTIVE NAVIGATION
+// ==========================
 
 
 const sections = document.querySelectorAll("section");
 
-const navLinks = document.querySelectorAll("nav a");
+const navLinks = document.querySelectorAll(
+    ".desktop-nav a, .mobile-nav a"
+);
 
 
 
-window.addEventListener("scroll",()=>{
+
+window.addEventListener("scroll", () => {
 
 
-    let current="";
+
+    let current = "";
 
 
-    sections.forEach(section=>{
+
+    sections.forEach(section => {
 
 
-        let top = section.offsetTop - 200;
+
+        const sectionTop = section.offsetTop - 150;
 
 
-        if(scrollY >= top){
+        const sectionHeight = section.offsetHeight;
 
-            current = section.id;
+
+
+        if(
+            scrollY >= sectionTop &&
+            scrollY < sectionTop + sectionHeight
+        ){
+
+
+            current = section.getAttribute("id");
+
 
         }
+
 
 
     });
 
 
 
-    navLinks.forEach(link=>{
 
 
-        link.style.color="";
+
+    navLinks.forEach(link => {
 
 
-        if(link.getAttribute("href") === "#" + current){
+
+        link.classList.remove("active");
 
 
-            link.style.color="var(--main-color)";
+
+        if(
+            link.getAttribute("href") === "#" + current
+        ){
+
+
+            link.classList.add("active");
 
 
         }
+
 
 
     });
@@ -157,181 +363,189 @@ window.addEventListener("scroll",()=>{
 
 
 
-/* ===============================
-   TYPING ANIMATION
-================================ */
 
 
-const typing = document.querySelector(".typing");
+// ==========================
+// SMOOTH ANCHOR SCROLLING
+// ==========================
 
 
-if(typing){
+document.querySelectorAll(
+    'a[href^="#"]'
+).forEach(anchor => {
 
 
-const words=[
 
-"Powerlifter",
+    anchor.addEventListener(
+        "click",
+        function(e){
 
-"Wrestler",
 
-"Web Developer",
 
-"Creative Thinker"
+            const target =
+            document.querySelector(
+                this.getAttribute("href")
+            );
 
-];
 
 
-let wordIndex=0;
+            if(target){
 
-let charIndex=0;
 
-let deleting=false;
+                e.preventDefault();
 
 
 
-function typeEffect(){
+                target.scrollIntoView({
 
+                    behavior:"smooth",
 
-let word = words[wordIndex];
+                    block:"start"
 
+                });
 
 
-if(!deleting){
 
+            }
 
-typing.textContent =
-word.substring(0,charIndex++);
 
 
+        }
 
-if(charIndex > word.length){
+    );
 
 
-deleting=true;
-
-setTimeout(typeEffect,1000);
-
-return;
-
-
-}
-
-
-
-}
-
-else{
-
-
-typing.textContent =
-word.substring(0,charIndex--);
-
-
-
-if(charIndex < 0){
-
-
-deleting=false;
-
-wordIndex++;
-
-
-if(wordIndex >= words.length){
-
-wordIndex=0;
-
-}
-
-
-}
-
-
-
-}
-
-
-
-setTimeout(typeEffect,100);
-
-
-}
-
-
-
-typeEffect();
-
-
-}
-
-
-
-
-
-
-
-
-
-/* ===============================
-   VISITOR LOCAL CLOCK
-================================ */
-
-
-function updateClock(){
-
-
-const now = new Date();
-
-
-
-const dateElement =
-document.getElementById("date");
-
-
-const timeElement =
-document.getElementById("time");
-
-
-
-if(dateElement){
-
-
-dateElement.textContent =
-now.toLocaleDateString(undefined,{
-
-weekday:"long",
-
-year:"numeric",
-
-month:"long",
-
-day:"numeric"
 
 });
 
 
+
+
+
+
+
+
+
+// ==========================
+// REVEAL ANIMATION FALLBACK
+// FOR MOBILE BROWSERS
+// ==========================
+
+
+const animatedElements =
+document.querySelectorAll(
+".glass-card, .skill-card, .project-card, .experience-card, .journey-item"
+);
+
+
+
+
+const observer =
+new IntersectionObserver(
+(entries)=>{
+
+
+
+    entries.forEach(entry=>{
+
+
+
+        if(entry.isIntersecting){
+
+
+
+            entry.target.style.opacity="1";
+
+
+            entry.target.style.transform=
+            "translateY(0)";
+
+
+
+            observer.unobserve(
+                entry.target
+            );
+
+
+
+        }
+
+
+
+    });
+
+
+
+},
+{
+
+    threshold:0.15
+
+});
+
+
+
+
+
+
+animatedElements.forEach(element=>{
+
+
+    element.style.opacity="0";
+
+
+    element.style.transform=
+    "translateY(50px)";
+
+
+    element.style.transition=
+    "opacity .7s ease, transform .7s ease";
+
+
+    observer.observe(element);
+
+
+});
+
+
+
+
+
+
+
+
+
+// ==========================
+// MOBILE HEIGHT FIX
+// ANDROID CHROME
+// ==========================
+
+
+// Fixes 100vh issues on mobile browsers
+
+
+function setMobileHeight(){
+
+
+    document.documentElement.style
+    .setProperty(
+        "--vh",
+        `${window.innerHeight * 0.01}px`
+    );
+
+
 }
 
 
 
-if(timeElement){
-
-
-timeElement.textContent =
-now.toLocaleTimeString();
-
-
-}
+setMobileHeight();
 
 
 
-}
-
-
-
-setInterval(updateClock,1000);
-
-
-updateClock();
+window.addEventListener(
+    "resize",
+    setMobileHeight
+);
 
 
 
@@ -339,143 +553,59 @@ updateClock();
 
 
 
-
-/* ===============================
-   COPY BUTTON SYSTEM
-================================ */
-
-
-const copyButtons =
-document.querySelectorAll(".copy-btn");
+// ==========================
+// PREVENT DOUBLE TAP ZOOM
+// ON BUTTONS
+// ==========================
 
 
-
-copyButtons.forEach(button=>{
-
-
-button.addEventListener("click",async()=>{
-
-
-const text =
-button.getAttribute("data-copy");
+let lastTouchEnd = 0;
 
 
 
-try{
+document.addEventListener(
+"touchend",
+function(event){
 
 
-await navigator.clipboard.writeText(text);
-
-
-
-const old =
-button.innerHTML;
+    const now =
+    new Date().getTime();
 
 
 
-button.innerHTML =
+    if(now - lastTouchEnd <= 300){
 
+
+        event.preventDefault();
+
+
+    }
+
+
+
+    lastTouchEnd = now;
+
+
+
+},
+false
+);
+
+
+
+
+
+
+
+
+// ==========================
+// CONSOLE MESSAGE
+// ==========================
+
+
+console.log(
 `
-<i class="fa-solid fa-check"></i>
-Text Copied!
-`;
-
-
-
-button.style.transform =
-"scale(1.08)";
-
-
-
-setTimeout(()=>{
-
-
-button.innerHTML=old;
-
-
-button.style.transform="";
-
-
-},2000);
-
-
-
-}
-
-
-catch(error){
-
-
-alert("Copy failed. Please copy manually.");
-
-
-}
-
-
-
-});
-
-
-});
-
-
-
-
-
-
-
-
-/* ===============================
-   PROFILE 3D MOVEMENT
-================================ */
-
-
-const profile =
-document.querySelector(".profile-container");
-
-
-
-if(profile){
-
-
-window.addEventListener("mousemove",(event)=>{
-
-
-let x =
-(window.innerWidth/2 - event.clientX)/50;
-
-
-let y =
-(window.innerHeight/2 - event.clientY)/50;
-
-
-
-profile.style.transform =
-`rotateY(${x}deg) rotateX(${y}deg)`;
-
-
-
-});
-
-
-}
-
-
-
-
-
-
-
-
-/* ===============================
-   PAGE LOAD EFFECT
-================================ */
-
-
-window.addEventListener("load",()=>{
-
-
-document.body.style.opacity="1";
-
-
-});
+Welcome to Mohammad Omid Noori's Portfolio.
+Designed with HTML, CSS and JavaScript.
+`
+);
