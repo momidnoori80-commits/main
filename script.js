@@ -676,12 +676,12 @@ file:"2.mp3"
 },
 
 {
-name:"qatre-qatre",
-file:"1.mp3"
+name:"ahmad zahir; to ba yak dasht por az gol",
+file:"musics/to-ba-yak-dasht-por-az-gol.mp3"
 },
 
 {
-name:"My Third Song",
+name:"pashimon",
 file:"pashimon.mp3"
 }
 
