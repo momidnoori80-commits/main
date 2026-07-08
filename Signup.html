@@ -1,1 +1,257 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+
+<title>Sign Up | Mohammad Omid</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<style>
+
+*{
+box-sizing:border-box;
+font-family:Inter,Arial;
+}
+
+
+body{
+
+height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:linear-gradient(135deg,#050505,#171717);
+
+color:white;
+
+}
+
+
+
+.container{
+
+width:380px;
+
+padding:40px;
+
+background:#ffffff12;
+
+backdrop-filter:blur(20px);
+
+border-radius:25px;
+
+}
+
+
+
+h1{
+
+text-align:center;
+
+}
+
+
+
+input{
+
+width:100%;
+
+padding:14px;
+
+margin:10px 0;
+
+border:none;
+
+border-radius:12px;
+
+background:#ffffff15;
+
+color:white;
+
+}
+
+
+
+button{
+
+width:100%;
+
+padding:14px;
+
+margin-top:15px;
+
+border:none;
+
+border-radius:12px;
+
+background:#4f46e5;
+
+color:white;
+
+font-size:16px;
+
+cursor:pointer;
+
+}
+
+
+
+a{
+
+color:#8ab4ff;
+
+}
+
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<h1>
+Create Account
+</h1>
+
+
+<input id="name" placeholder="Your Name">
+
+
+<input id="email" placeholder="Email">
+
+
+<input id="password" type="password" placeholder="Password">
+
+
+<button id="signupBtn">
+Create Account
+</button>
+
+
+<p style="text-align:center">
+
+Already have account?
+
+<a href="login.html">
+Login
+</a>
+
+
+</p>
+
+
+</div>
+
+
+
+<script type="module">
+
+
+import {auth,db} from "./firebase.js";
+
+
+import {
+
+createUserWithEmailAndPassword
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+
+
+import {
+
+doc,
+setDoc
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+
+
+
+signupBtn.onclick=async()=>{
+
+
+try{
+
+
+const userCredential =
+
+await createUserWithEmailAndPassword(
+
+auth,
+
+email.value,
+
+password.value
+
+);
+
+
+
+await setDoc(
+
+doc(db,"users",userCredential.user.uid),
+
+{
+
+name:name.value,
+
+email:email.value,
+
+role:"user",
+
+createdAt:new Date()
+
+}
+
+
+);
+
+
+
+alert("Account created");
+
+
+location.href="index.html";
+
+
+}
+
+
+catch(error){
+
+alert(error.message);
+
+}
+
+
+};
+
+
+
+</script>
+
+
+</body>
+
+</html>
