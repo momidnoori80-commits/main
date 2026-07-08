@@ -361,31 +361,72 @@ border-radius:20px;
 
 
 }
-.navbar {
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+/* ==========================
+   AUTHENTICATION BUTTONS
+========================== */
+
+.auth-btn,
+.platform-btn{
+
+padding:11px 22px;
+
+border-radius:30px;
+
+text-decoration:none;
+
+font-weight:700;
+
+transition:.3s;
+
+display:inline-block;
+
+}
+
+
+.login-btn{
+
+background:rgba(255,255,255,.08);
+
+border:1px solid rgba(255,255,255,.25);
+
+color:white;
 
 }
 
 
-.nav-links {
 
-    display:flex;
-    gap:30px;
+.signup-btn{
+
+background:
+linear-gradient(90deg,#00d9ff,#8a2cff);
+
+color:white;
+
+}
+
+
+
+.platform-btn{
+
+background:
+linear-gradient(90deg,#00ff99,#00d9ff);
+
+color:#050505;
+
+box-shadow:
+0 0 25px #00d9ff88;
 
 }
 
 
-.nav-actions {
 
-    display:flex;
-    align-items:center;
-    gap:15px;
+.auth-btn:hover,
+.platform-btn:hover{
+
+transform:translateY(-3px);
 
 }
-
 
 .logo {
 
