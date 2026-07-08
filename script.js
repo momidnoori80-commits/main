@@ -672,17 +672,17 @@ const playlist = [
 
 {
 name:"navazesh-tataloo",
-file:"2.mp3"
+file:"navazesh.mp3"
 },
 
 {
 name:"ahmad zahir; to ba yak dasht por az gol",
-file:"musics/to-ba-yak-dasht-por-az-gol.mp3"
+file:"tbydpag.mp3"
 },
 
 {
-name:"pashimon",
-file:"pashimon.mp3"
+name:"shab ke mishe",
+file:"skm.mp3"
 }
 
 ];
