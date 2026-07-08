@@ -1,4 +1,9 @@
 import { auth, db } from "./firebase.js";
+
+console.log("Firebase connected!");
+console.log(auth);
+console.log(db);
+
 /* =================================
    OMID PORTFOLIO JAVASCRIPT
 ================================= */
