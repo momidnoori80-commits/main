@@ -626,3 +626,267 @@ card.style.display="none";
 
 
 }
+/* ==========================
+   MUSIC PLAYER
+========================== */
+
+
+const musicButton =
+document.querySelector(".music-toggle");
+
+
+const musicPanel =
+document.querySelector(".music-panel");
+
+
+const closeMusic =
+document.querySelector(".close-music");
+
+
+const audio =
+document.getElementById("audio-player");
+
+
+const songs =
+document.querySelectorAll(".song");
+
+
+const playButton =
+document.getElementById("play-song");
+
+
+const previousButton =
+document.getElementById("previous-song");
+
+
+const nextButton =
+document.getElementById("next-song");
+
+
+const title =
+document.getElementById("current-song");
+
+
+const progress =
+document.getElementById("progress");
+
+
+const volume =
+document.getElementById("volume");
+
+
+
+let currentSong = 0;
+
+
+
+const playlist = [
+
+{
+name:"My First Song",
+file:"music1.mp3"
+},
+
+{
+name:"My Second Song",
+file:"music2.mp3"
+},
+
+{
+name:"My Third Song",
+file:"music3.mp3"
+}
+
+];
+
+
+
+
+
+musicButton.onclick = () => {
+
+musicPanel.classList.toggle("active");
+
+};
+
+
+
+closeMusic.onclick = () => {
+
+musicPanel.classList.remove("active");
+
+};
+
+
+
+
+
+function loadSong(index){
+
+
+currentSong=index;
+
+
+audio.src =
+playlist[index].file;
+
+
+title.innerHTML =
+playlist[index].name;
+
+
+audio.play();
+
+
+playButton.innerHTML =
+'<i class="fa-solid fa-pause"></i>';
+
+}
+
+
+
+songs.forEach((song,index)=>{
+
+
+song.onclick=()=>{
+
+
+loadSong(index);
+
+
+};
+
+
+});
+
+
+
+
+
+playButton.onclick=()=>{
+
+
+if(audio.paused){
+
+
+audio.play();
+
+
+playButton.innerHTML =
+'<i class="fa-solid fa-pause"></i>';
+
+
+}
+
+else{
+
+
+audio.pause();
+
+
+playButton.innerHTML =
+'<i class="fa-solid fa-play"></i>';
+
+
+}
+
+
+};
+
+
+
+
+
+
+nextButton.onclick=()=>{
+
+
+currentSong++;
+
+
+if(currentSong>=playlist.length){
+
+currentSong=0;
+
+}
+
+
+loadSong(currentSong);
+
+
+};
+
+
+
+
+
+previousButton.onclick=()=>{
+
+
+currentSong--;
+
+
+if(currentSong<0){
+
+currentSong=
+playlist.length-1;
+
+}
+
+
+loadSong(currentSong);
+
+
+};
+
+
+
+
+
+
+audio.addEventListener(
+"timeupdate",
+()=>{
+
+
+progress.value =
+(audio.currentTime/audio.duration)*100 || 0;
+
+
+});
+
+
+
+
+
+progress.oninput=()=>{
+
+
+audio.currentTime =
+(progress.value/100)*audio.duration;
+
+
+};
+
+
+
+
+
+volume.oninput=()=>{
+
+
+audio.volume =
+volume.value;
+
+
+};
+
+
+
+audio.onended=()=>{
+
+
+nextButton.click();
+
+
+};
