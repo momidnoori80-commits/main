@@ -775,7 +775,9 @@ playButton.addEventListener("click",()=>{
 
 if(audio.paused){
 
-audio.play();
+audio.play().catch(error=>{
+    console.log("Playback blocked:", error);
+});
 
 playButton.innerHTML =
 '<i class="fa-solid fa-pause"></i>';
