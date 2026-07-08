@@ -671,13 +671,13 @@ let currentSong = 0;
 const playlist = [
 
 {
-name:"Navazesh by Amir Tataloo",
-file:"Navazesh(MP3_320K).mp3"
+name:"navazesh-tataloo",
+file:"navazesh-tataloo.mp3"
 },
 
 {
-name:"qatre qatre, amir tataloo",
-file:"qatre qatre, amir tataloo.mp3"
+name:"qatre-qatre",
+file:"qatre-qatre.mp3"
 },
 
 {
