@@ -634,50 +634,38 @@ card.style.display="none";
 const musicButton =
 document.querySelector(".music-toggle");
 
-
 const musicPanel =
 document.querySelector(".music-panel");
-
 
 const closeMusic =
 document.querySelector(".close-music");
 
-
 const audio =
 document.getElementById("audio-player");
-
 
 const songs =
 document.querySelectorAll(".song");
 
-
 const playButton =
 document.getElementById("play-song");
-
 
 const previousButton =
 document.getElementById("previous-song");
 
-
 const nextButton =
 document.getElementById("next-song");
-
 
 const title =
 document.getElementById("current-song");
 
-
 const progress =
 document.getElementById("progress");
-
 
 const volume =
 document.getElementById("volume");
 
 
-
 let currentSong = 0;
-
 
 
 const playlist = [
@@ -701,27 +689,39 @@ file:"music3.mp3"
 
 
 
+if(musicButton && musicPanel){
 
 
-musicButton.onclick = () => {
+musicButton.addEventListener("click",()=>{
 
 musicPanel.classList.toggle("active");
 
-};
+});
+
+
+}
 
 
 
-closeMusic.onclick = () => {
+if(closeMusic && musicPanel){
+
+
+closeMusic.addEventListener("click",()=>{
 
 musicPanel.classList.remove("active");
 
-};
+});
 
+
+}
 
 
 
 
 function loadSong(index){
+
+
+if(!audio || !title) return;
 
 
 currentSong=index;
@@ -731,15 +731,20 @@ audio.src =
 playlist[index].file;
 
 
-title.innerHTML =
+title.textContent =
 playlist[index].name;
 
 
 audio.play();
 
 
+if(playButton){
+
 playButton.innerHTML =
 '<i class="fa-solid fa-pause"></i>';
+
+}
+
 
 }
 
@@ -748,13 +753,13 @@ playButton.innerHTML =
 songs.forEach((song,index)=>{
 
 
-song.onclick=()=>{
+song.addEventListener("click",()=>{
 
 
 loadSong(index);
 
 
-};
+});
 
 
 });
@@ -762,49 +767,49 @@ loadSong(index);
 
 
 
+if(playButton){
 
-playButton.onclick=()=>{
+
+playButton.addEventListener("click",()=>{
 
 
 if(audio.paused){
 
-
 audio.play();
-
 
 playButton.innerHTML =
 '<i class="fa-solid fa-pause"></i>';
-
 
 }
 
 else{
 
-
 audio.pause();
-
 
 playButton.innerHTML =
 '<i class="fa-solid fa-play"></i>';
+
+}
+
+
+});
 
 
 }
 
 
-};
 
 
+if(nextButton){
 
 
-
-
-nextButton.onclick=()=>{
+nextButton.addEventListener("click",()=>{
 
 
 currentSong++;
 
 
-if(currentSong>=playlist.length){
+if(currentSong >= playlist.length){
 
 currentSong=0;
 
@@ -814,22 +819,26 @@ currentSong=0;
 loadSong(currentSong);
 
 
-};
+});
+
+
+}
 
 
 
 
+if(previousButton){
 
-previousButton.onclick=()=>{
+
+previousButton.addEventListener("click",()=>{
 
 
 currentSong--;
 
 
-if(currentSong<0){
+if(currentSong < 0){
 
-currentSong=
-playlist.length-1;
+currentSong=playlist.length-1;
 
 }
 
@@ -837,56 +846,75 @@ playlist.length-1;
 loadSong(currentSong);
 
 
-};
+});
+
+
+}
 
 
 
 
+if(audio && progress){
 
 
-audio.addEventListener(
-"timeupdate",
-()=>{
+audio.addEventListener("timeupdate",()=>{
 
 
 progress.value =
-(audio.currentTime/audio.duration)*100 || 0;
+(audio.currentTime / audio.duration) * 100 || 0;
 
 
 });
 
 
+}
 
 
 
-progress.oninput=()=>{
+if(progress && audio){
+
+
+progress.addEventListener("input",()=>{
 
 
 audio.currentTime =
-(progress.value/100)*audio.duration;
+(progress.value/100) * audio.duration;
 
 
-};
+});
+
+
+}
 
 
 
+if(volume && audio){
 
 
-volume.oninput=()=>{
+volume.addEventListener("input",()=>{
 
 
 audio.volume =
 volume.value;
 
 
-};
+});
+
+
+}
 
 
 
-audio.onended=()=>{
+if(audio && nextButton){
+
+
+audio.addEventListener("ended",()=>{
 
 
 nextButton.click();
 
 
-};
+});
+
+
+}
