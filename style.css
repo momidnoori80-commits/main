@@ -361,7 +361,30 @@ border-radius:20px;
 
 
 }
+.navbar {
 
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+}
+
+
+.nav-links {
+
+    display:flex;
+    gap:30px;
+
+}
+
+
+.nav-actions {
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+}
 
 
 .logo {
