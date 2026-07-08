@@ -496,11 +496,46 @@ const provider =
 new GoogleAuthProvider();
 
 
-await signInWithPopup(auth,provider);
+const result = await signInWithPopup(auth,provider);
 
 
-location.href="index.html";
+const userDoc = await getDoc(
+    doc(db,"users",result.user.uid)
+);
 
+
+if(!userDoc.exists()){
+
+    location.href="phone.html";
+
+}
+
+else{
+
+
+const data = userDoc.data();
+
+
+if(data.phoneVerified !== true){
+
+    location.href="phone.html";
+
+}
+
+else if(data.passwordCreated !== true){
+
+    location.href="create-password.html";
+
+}
+
+else{
+
+    location.href="index.html";
+
+}
+
+
+}
 
 }
 
