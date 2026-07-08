@@ -672,12 +672,12 @@ const playlist = [
 
 {
 name:"navazesh-tataloo",
-file:"navazesh-tataloo.mp3"
+file:"2.mp3"
 },
 
 {
 name:"qatre-qatre",
-file:"qatre-qatre.mp3"
+file:"1.mp3"
 },
 
 {
