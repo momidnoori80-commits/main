@@ -1,5 +1,78 @@
 import { auth, db } from "./firebase.js";
 
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+import {
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+
+
+const authButtons =
+document.getElementById("auth-buttons");
+
+
+const platformButton =
+document.getElementById("platform-button");
+
+
+
+onAuthStateChanged(auth, async (user)=>{
+
+
+    if(user){
+
+
+        // Check if user completed profile setup
+
+        const userDoc =
+        await getDoc(
+            doc(db,"users",user.uid)
+        );
+
+
+        if(userDoc.exists()){
+
+
+            const data =
+            userDoc.data();
+
+
+            if(
+                data.phoneVerified === true &&
+                data.passwordCreated === true
+            ){
+
+
+                authButtons.style.display="none";
+
+                platformButton.style.display="block";
+
+
+            }
+
+
+        }
+
+
+
+    }
+
+    else{
+
+
+        authButtons.style.display="block";
+
+        platformButton.style.display="none";
+
+
+    }
+
+
+});
 
 /* =================================
    OMID PORTFOLIO JAVASCRIPT
