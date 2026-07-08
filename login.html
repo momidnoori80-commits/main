@@ -381,7 +381,7 @@ Create Account
 <script type="module">
 
 
-import {auth} from "./firebase.js";
+import {auth, db} from "./firebase.js";
 
 
 import {
@@ -399,13 +399,30 @@ from
 "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 
 
+import {
+
+doc,
+
+getDoc
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+from
+
+"https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+
 
 
 loginBtn.onclick=async()=>{
 
 try{
 
-await signInWithEmailAndPassword(
+const result = await signInWithEmailAndPassword(
 
 auth,
 
@@ -416,7 +433,43 @@ password.value
 );
 
 
-location.href="index.html";
+const userDoc = await getDoc(
+    doc(db,"users",result.user.uid)
+);
+
+
+if(!userDoc.exists()){
+
+    location.href="phone.html";
+
+}
+
+else{
+
+
+const data = userDoc.data();
+
+
+if(data.phoneVerified !== true){
+
+    location.href="phone.html";
+
+}
+
+else if(data.passwordCreated !== true){
+
+    location.href="create-password.html";
+
+}
+
+else{
+
+    location.href="index.html";
+
+}
+
+
+}
 
 
 }
