@@ -617,31 +617,16 @@ password.value
 );
 
 
-
 await setDoc(
-
-doc(
-
-db,
-
-"users",
-
-result.user.uid
-
-),{
-
-
-name:username.value,
-
-email:email.value,
-
-role:"user",
-
-createdAt:new Date()
-
-
+doc(db,"users",result.user.uid),
+{
+    name: username.value,
+    email: email.value,
+    role: "user",
+    phoneVerified: false,
+    passwordCreated: true,
+    createdAt: new Date()
 }
-
 );
 
 
