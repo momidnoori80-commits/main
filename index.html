@@ -7,10 +7,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>OMID Community</title>
+<title>
+OMID Community
+</title>
 
 
-<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="index.css">
 
 
 <link rel="stylesheet"
@@ -20,52 +22,156 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 </head>
 
 
-
 <body>
 
 
 
-<div class="background"></div>
+<!-- ================================
+     BACKGROUND EFFECT SYSTEM
+================================ -->
+
+
+<div class="background">
+
+<div class="gradient-orb orb-one"></div>
+
+<div class="gradient-orb orb-two"></div>
+
+<div class="gradient-orb orb-three"></div>
+
+
+<div class="particles">
+
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+
+</div>
+
+
+</div>
 
 
 
 
-<div class="app">
 
 
 
-<!-- ================= HEADER ================= -->
+<!-- ================================
+          NAVIGATION
+================================ -->
 
 
-<header>
+<header class="navbar">
+
+
+<div class="logo-container">
+
+
+<div class="logo-icon">
+
+<i class="fa-solid fa-users"></i>
+
+</div>
 
 
 
-<div class="profile-area" id="profileButton">
+<div class="logo-text">
 
+<h1>
+OMID<span>.</span>
+</h1>
 
-<img 
-id="profileImage"
-src="default-avatar.png"
-alt="Profile">
-
-
-<div class="profile-text">
-
-
-<h3 id="displayName">
-Username
-</h3>
-
-
-<p id="displayID">
-@user000000
+<p>
+Community
 </p>
 
 
 </div>
 
 
+</div>
+
+
+
+
+
+<nav id="navigation">
+
+
+<a href="#home">
+Home
+</a>
+
+
+<a href="#features">
+Features
+</a>
+
+
+<a href="#music">
+Music
+</a>
+
+
+<a href="#about">
+About
+</a>
+
+
+<a href="#contact">
+Contact
+</a>
+
+
+</nav>
+
+
+
+
+
+
+
+<div class="nav-actions">
+
+
+<button 
+id="themeButton"
+class="theme-button">
+
+
+<i class="fa-solid fa-moon"></i>
+
+
+</button>
+
+
+
+
+<a href="login.html"
+class="nav-login">
+
+
+Login
+
+
+</a>
+
+
+
+
+<a href="signup.html"
+class="nav-signup">
+
+
+Create Account
+
+
+</a>
+
+
 
 </div>
 
@@ -74,11 +180,15 @@ Username
 
 
 
-<button id="themeButton">
+<button id="mobileMenu"
+class="mobile-menu">
 
-<i class="fa-solid fa-moon"></i>
+
+<i class="fa-solid fa-bars"></i>
+
 
 </button>
+
 
 
 
@@ -92,189 +202,130 @@ Username
 
 
 
-<!-- ================= PROFILE POPUP ================= -->
+<!-- ================================
+          HERO SECTION
+================================ -->
 
 
-<div class="profile-popup" id="profilePopup">
+<section id="home"
+class="hero">
 
 
-<div class="popup-image">
 
 
-<img
-id="popupImage"
-src="default-avatar.png">
+
+<div class="hero-content">
+
+
+
+<div class="badge">
+
+
+<i class="fa-solid fa-bolt"></i>
+
+
+The future of online community
 
 
 </div>
 
 
 
-<h2 id="popupName">
-Username
+
+
+
+
+<h2>
+
+
+Connect.
+Share.
+Create.
+
+
 </h2>
 
 
 
+
+
+
 <p>
-Your ID:
+
+
+OMID Community is a modern platform where people
+can chat, share files, discover music and build
+real connections.
+
+
 </p>
 
 
-<strong id="popupID">
-@user000000
+
+
+
+
+
+<div class="hero-buttons">
+
+
+<a href="signup.html"
+class="primary-action">
+
+
+Join Community
+
+
+<i class="fa-solid fa-arrow-right"></i>
+
+
+</a>
+
+
+
+
+
+<a href="#music"
+class="secondary-action">
+
+
+Explore Music
+
+
+<i class="fa-solid fa-play"></i>
+
+
+</a>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="hero-stats">
+
+
+
+<div>
+
+
+<strong>
+10K+
 </strong>
 
 
-
-
-
-<button id="changePhoto">
-
-Change Profile Photo
-
-</button>
-
-
-
-
-<button id="editUsername">
-
-Change Username
-
-</button>
-
-
-
-
-
-<button id="editID">
-
-Change User ID
-
-</button>
-
-
-
-
-
-
-<button id="profileSettings">
-
-Settings
-
-</button>
-
-
+<span>
+Messages
+</span>
 
 
 </div>
-
-
-
-
-
-
-
-
-
-<!-- ================= MAIN BODY ================= -->
-
-
-
-<div class="main">
-
-
-
-
-
-
-<!-- USERS AREA -->
-
-
-<aside id="usersPanel">
-
-
-
-<div class="search-container">
-
-
-<i class="fa-solid fa-magnifying-glass"></i>
-
-
-
-<input
-
-id="searchInput"
-
-placeholder="Search @userID"
-
-autocomplete="off"
-
->
-
-
-</div>
-
-
-
-
-
-
-
-<div id="searchResults">
-
-</div>
-
-
-
-
-
-
-
-<div id="usersList">
-
-
-</div>
-
-
-
-
-
-
-</aside>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ================= CHAT ================= -->
-
-
-
-<section class="chat-area">
-
-
-
-
-
-<div class="chat-header">
-
-
-
-<img
-
-id="chatProfile"
-
-src="default-avatar.png">
 
 
 
@@ -283,16 +334,367 @@ src="default-avatar.png">
 <div>
 
 
-<h3 id="chatName">
+<strong>
+24/7
+</strong>
 
-Select a user
 
+<span>
+Community
+</span>
+
+
+</div>
+
+
+
+
+
+<div>
+
+
+<strong>
+∞
+</strong>
+
+
+<span>
+Possibilities
+</span>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- HERO VISUAL -->
+
+
+
+<div class="hero-preview">
+
+
+
+<div class="glass-window">
+
+
+
+<div class="window-header">
+
+
+<span></span>
+<span></span>
+<span></span>
+
+
+</div>
+
+
+
+
+<div class="community-preview">
+
+
+
+<div class="preview-user">
+
+
+<img src="default-avatar.png">
+
+
+<div>
+
+
+<h4>
+OMID User
+</h4>
+
+
+<p>
+Online now
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="preview-message">
+
+
+<i class="fa-solid fa-message"></i>
+
+
+Welcome to OMID Community 🚀
+
+
+</div>
+
+
+
+
+
+<div class="preview-message second">
+
+
+<i class="fa-solid fa-music"></i>
+
+
+Playing your favorite music
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</section>
+<!-- ================================
+          FEATURES SECTION
+================================ -->
+
+
+<section id="features"
+class="features-section">
+
+
+<div class="section-title">
+
+
+<span>
+Features
+</span>
+
+
+<h2>
+Everything you need in one place
+</h2>
+
+
+<p>
+A complete community experience built for communication,
+creativity and connection.
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="features-grid">
+
+
+
+
+
+<div class="feature-card">
+
+
+<div class="feature-icon">
+
+<i class="fa-solid fa-comments"></i>
+
+</div>
+
+
+<h3>
+Real-Time Chat
 </h3>
 
 
+<p>
+Chat with friends instantly with a modern messaging system.
+</p>
 
-<p id="chatID">
 
+</div>
+
+
+
+
+
+
+
+<div class="feature-card">
+
+
+<div class="feature-icon">
+
+<i class="fa-solid fa-user"></i>
+
+</div>
+
+
+<h3>
+Personal Profiles
+</h3>
+
+
+<p>
+Create your own username, unique ID and customize your profile.
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="feature-card">
+
+
+<div class="feature-icon">
+
+<i class="fa-solid fa-cloud-arrow-up"></i>
+
+</div>
+
+
+<h3>
+File Sharing
+</h3>
+
+
+<p>
+Share images, videos and documents with your community.
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="feature-card">
+
+
+<div class="feature-icon">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+</div>
+
+
+<h3>
+Secure Accounts
+</h3>
+
+
+<p>
+Protected authentication powered by modern technology.
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="feature-card">
+
+
+<div class="feature-icon">
+
+<i class="fa-solid fa-face-smile"></i>
+
+</div>
+
+
+<h3>
+Smart Emojis
+</h3>
+
+
+<p>
+Use emojis naturally across all devices.
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="feature-card">
+
+
+<div class="feature-icon">
+
+<i class="fa-solid fa-mobile-screen"></i>
+
+</div>
+
+
+<h3>
+All Devices
+</h3>
+
+
+<p>
+Perfect experience on Android, iOS, tablets and computers.
 </p>
 
 
@@ -305,43 +707,66 @@ Select a user
 
 
 
+</section>
 
 
 
 
 
 
-<div class="messages" id="messages">
 
 
 
-<div class="welcome">
+<!-- ================================
+          MUSIC SECTION
+================================ -->
 
-Welcome to OMID Community 🚀
+
+<section id="music"
+class="music-section">
+
+
+
+
+
+<div class="section-title">
+
+
+<span>
+Music
+</span>
+
+
+<h2>
+Your personal music space
+</h2>
+
+
+<p>
+Listen to your favorite songs directly inside OMID Community.
+</p>
+
 
 </div>
 
 
 
-</div>
+
+
+
+
+<div class="music-player">
 
 
 
 
 
+<div class="album-area">
 
 
-
-
-
-
-
-
-<!-- ================= EMOJI BOX ================= -->
-
-
-
-<div id="emojiPicker" class="emoji-picker">
+<img id="albumCover"
+src="default-cover.png"
+alt="Album Cover">
 
 
 </div>
@@ -352,44 +777,117 @@ Welcome to OMID Community 🚀
 
 
 
+<div class="song-info">
+
+
+<h3 id="songTitle">
+
+No Song Playing
+
+</h3>
+
+
+<p id="artistName">
+
+Unknown Artist
+
+</p>
+
+
+</div>
 
 
 
 
 
-<!-- ================= MESSAGE BAR ================= -->
-
-
-
-<div class="message-bar">
 
 
 
 
+<div class="progress-container">
 
-<button id="uploadButton">
+
+<input 
+type="range"
+id="progressBar"
+value="0">
 
 
-<i class="fa-solid fa-paperclip"></i>
+</div>
+
+
+
+
+
+
+
+
+<div class="music-controls">
+
+
+
+<button id="previousSong">
+
+
+<i class="fa-solid fa-backward"></i>
 
 
 </button>
 
 
 
+
+
+
+<button id="playMusic"
+class="play-button">
+
+
+<i class="fa-solid fa-play"></i>
+
+
+</button>
+
+
+
+
+
+
+
+<button id="nextSong">
+
+
+<i class="fa-solid fa-forward"></i>
+
+
+</button>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="volume-control">
+
+
+<i class="fa-solid fa-volume-high"></i>
 
 
 <input
+id="volumeControl"
+type="range"
+min="0"
+max="100"
+value="70">
 
-type="file"
 
-id="fileInput"
-
-accept="image/*,video/*,.pdf,.doc,.docx"
-
-hidden
-
->
+</div>
 
 
 
@@ -398,53 +896,27 @@ hidden
 
 
 
-<button id="emojiButton">
-
-
-<i class="fa-regular fa-face-smile"></i>
-
-
-</button>
+<audio id="audioPlayer"></audio>
 
 
 
 
 
 
+<div class="playlist"
+id="playlist">
 
 
-
-<input
-
-id="messageInput"
-
-placeholder="Write a message..."
-
->
+<!-- Songs will be added using JavaScript -->
 
 
-
-
-
-
-
-
-
-<button id="sendButton">
-
-
-<i class="fa-solid fa-paper-plane"></i>
-
-
-</button>
+</div>
 
 
 
 
 
 </div>
-
-
 
 
 
@@ -458,6 +930,540 @@ placeholder="Write a message..."
 
 
 
+
+
+
+<!-- ================================
+          ABOUT SECTION
+================================ -->
+
+
+
+<section id="about"
+class="about-section">
+
+
+
+
+
+
+<div class="about-image">
+
+
+<div class="about-card">
+
+
+<i class="fa-solid fa-rocket"></i>
+
+
+<h3>
+Built With Passion
+</h3>
+
+
+<p>
+OMID Community combines technology,
+design and creativity.
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="about-content">
+
+
+
+<span>
+About OMID
+</span>
+
+
+
+<h2>
+A community made for everyone
+</h2>
+
+
+
+
+<p>
+
+OMID Community is designed to bring people together
+through communication, music and digital experiences.
+
+</p>
+
+
+
+
+<p>
+
+Our goal is to create a clean, fast and modern place
+where users can connect without complicated systems.
+
+</p>
+
+
+
+
+
+
+
+<div class="about-points">
+
+
+<div>
+
+<i class="fa-solid fa-check"></i>
+
+Modern Interface
+
+</div>
+
+
+
+<div>
+
+<i class="fa-solid fa-check"></i>
+
+Fast Experience
+
+</div>
+
+
+
+
+<div>
+
+<i class="fa-solid fa-check"></i>
+
+Cross Platform
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ================================
+          DEVELOPER SECTION
+================================ -->
+
+
+<section class="developer-section">
+
+
+
+<div class="developer-card">
+
+
+
+<img 
+src="default-avatar.png"
+alt="Developer">
+
+
+
+
+
+<div>
+
+
+<span>
+Creator
+</span>
+
+
+<h2>
+OMID NOORI
+</h2>
+
+
+<p>
+
+Developer, designer and creator of OMID Community.
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</section>
+<!-- ================================
+          CONTACT SECTION
+================================ -->
+
+
+<section id="contact"
+class="contact-section">
+
+
+
+
+
+<div class="section-title">
+
+
+<span>
+Contact
+</span>
+
+
+<h2>
+Send your feedback
+</h2>
+
+
+<p>
+Have an idea, suggestion or message?
+I would love to hear from you.
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="contact-container">
+
+
+
+
+
+<div class="contact-info">
+
+
+
+<h3>
+Let's connect
+</h3>
+
+
+
+
+<p>
+
+You can contact me through this form or my social
+platforms.
+
+</p>
+
+
+
+
+
+
+
+<div class="contact-item">
+
+
+<i class="fa-solid fa-envelope"></i>
+
+
+<div>
+
+<h4>
+Email
+</h4>
+
+
+<p>
+Your email here
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="contact-item">
+
+
+<i class="fa-solid fa-location-dot"></i>
+
+
+<div>
+
+<h4>
+Location
+</h4>
+
+
+<p>
+Herat, Afghanistan
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="social-links">
+
+
+
+<a href="#"
+id="githubLink"
+target="_blank">
+
+
+<i class="fa-brands fa-github"></i>
+
+
+</a>
+
+
+
+
+
+
+<a href="#"
+id="linkedinLink"
+target="_blank">
+
+
+<i class="fa-brands fa-linkedin"></i>
+
+
+</a>
+
+
+
+
+
+
+
+<a href="#"
+id="youtubeLink"
+target="_blank">
+
+
+<i class="fa-brands fa-youtube"></i>
+
+
+</a>
+
+
+
+
+
+
+<a href="#"
+id="telegramLink"
+target="_blank">
+
+
+<i class="fa-brands fa-telegram"></i>
+
+
+</a>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="contact-form">
+
+
+
+<form id="feedbackForm">
+
+
+
+
+
+<div class="input-group">
+
+
+<label>
+Name
+</label>
+
+
+<input
+
+id="contactName"
+
+type="text"
+
+placeholder="Your name"
+
+required>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="input-group">
+
+
+<label>
+Email
+</label>
+
+
+<input
+
+id="contactEmail"
+
+type="email"
+
+placeholder="Your email"
+
+required>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="input-group">
+
+
+<label>
+Message
+</label>
+
+
+<textarea
+
+id="contactMessage"
+
+placeholder="Write your feedback..."
+
+rows="6"
+
+required></textarea>
+
+
+</div>
+
+
+
+
+
+
+
+<button
+id="sendMessage"
+type="submit">
+
+
+Send Message
+
+
+<i class="fa-solid fa-paper-plane"></i>
+
+
+</button>
+
+
+
+
+
+
+
+</form>
+
+
+
+
 </div>
 
 
@@ -473,10 +1479,307 @@ placeholder="Write a message..."
 
 
 
+</section>
 
 
 
-<script type="module" src="main.js"></script>
+
+
+
+
+
+
+<!-- ================================
+          CTA SECTION
+================================ -->
+
+
+
+<section class="cta-section">
+
+
+
+<div class="cta-box">
+
+
+
+<h2>
+
+Ready to join OMID Community?
+
+</h2>
+
+
+
+
+<p>
+
+Create your account and start connecting today.
+
+</p>
+
+
+
+
+
+<div>
+
+
+<a href="signup.html"
+class="primary-action">
+
+
+Create Account
+
+</a>
+
+
+
+
+
+<a href="login.html"
+class="secondary-action">
+
+
+Login
+
+</a>
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ================================
+          FOOTER
+================================ -->
+
+
+
+<footer>
+
+
+
+<div class="footer-brand">
+
+
+<h2>
+
+OMID<span>.</span>
+
+</h2>
+
+
+<p>
+
+Building modern digital communities.
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="footer-links">
+
+
+
+<div>
+
+
+<h3>
+Explore
+</h3>
+
+
+<a href="#home">
+Home
+</a>
+
+
+<a href="#features">
+Features
+</a>
+
+
+<a href="#music">
+Music
+</a>
+
+
+</div>
+
+
+
+
+
+
+
+<div>
+
+
+<h3>
+Account
+</h3>
+
+
+<a href="login.html">
+Login
+</a>
+
+
+<a href="signup.html">
+Signup
+</a>
+
+
+</div>
+
+
+
+
+
+
+<div>
+
+
+<h3>
+Community
+</h3>
+
+
+<a href="#contact">
+Contact
+</a>
+
+
+<a href="#">
+Privacy
+</a>
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<p class="copyright">
+
+
+© 2026 OMID Community. All rights reserved.
+
+
+</p>
+
+
+
+
+</footer>
+
+
+
+
+
+
+
+
+
+<!-- ================================
+          MOBILE MENU
+================================ -->
+
+
+<div id="mobileNavigation"
+class="mobile-navigation">
+
+
+<a href="#home">
+Home
+</a>
+
+
+<a href="#features">
+Features
+</a>
+
+
+<a href="#music">
+Music
+</a>
+
+
+<a href="#about">
+About
+</a>
+
+
+<a href="#contact">
+Contact
+</a>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- ================================
+          SCRIPTS
+================================ -->
+
+
+<script
+type="module"
+src="index.js">
+</script>
+
+
+
+<script
+src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+
+
 
 
 
