@@ -47,19 +47,36 @@ let confirmationResult = null;
 // ================================
 
 
-window.recaptchaVerifier = new RecaptchaVerifier(
-    auth,
-    "recaptcha-container",
-    {
-        size: "invisible",
+let appVerifier = null;
 
-        callback: () => {
 
-            console.log(
-                "reCAPTCHA completed"
-            );
+function createRecaptcha(){
 
-        },
+    if(!appVerifier){
+
+        appVerifier = new RecaptchaVerifier(
+            auth,
+            "recaptcha-container",
+            {
+                size:"invisible",
+
+                callback:()=>{
+
+                    console.log("reCAPTCHA verified");
+
+                },
+
+                "expired-callback":()=>{
+
+                    console.log("reCAPTCHA expired");
+
+                }
+            }
+        );
+
+    }
+
+}
 
         "expired-callback": () => {
 
@@ -111,13 +128,15 @@ async ()=>{
     try{
 
 
-        confirmationResult =
-        await signInWithPhoneNumber(
-            auth,
-            phoneNumber,
-            window.recaptchaVerifier
-        );
+    createRecaptcha();
 
+
+confirmationResult =
+await signInWithPhoneNumber(
+    auth,
+    phoneNumber,
+    appVerifier
+);
 
 
         console.log(
@@ -160,14 +179,7 @@ async ()=>{
 
         // Reset captcha
 
-        window.recaptchaVerifier =
-        new RecaptchaVerifier(
-            auth,
-            "recaptcha-container",
-            {
-                size:"invisible"
-            }
-        );
+     appVerifier = null;
 
 
     }
