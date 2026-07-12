@@ -4,21 +4,29 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>OMID Community Chat</title>
+<title>OMID Community</title>
+
 
 <link rel="stylesheet" href="main.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 
 </head>
+
 
 
 <body>
 
 
+
 <div class="background"></div>
+
 
 
 
@@ -26,39 +34,52 @@
 
 
 
-<!-- TOP BAR -->
+<!-- ================= HEADER ================= -->
+
 
 <header>
 
 
-<div class="profile">
+
+<div class="profile-area" id="profileButton">
 
 
-<img src="https://i.pravatar.cc/150" class="profile-image">
+<img 
+id="profileImage"
+src="default-avatar.png"
+alt="Profile">
 
 
-<div class="profile-info">
+<div class="profile-text">
 
-<h3>
+
+<h3 id="displayName">
 Username
 </h3>
 
-<span>
-🟢 Online
-</span>
+
+<p id="displayID">
+@user000000
+</p>
+
 
 </div>
 
 
+
 </div>
 
 
 
-<button class="theme-button" id="themeButton">
+
+
+
+<button id="themeButton">
 
 <i class="fa-solid fa-moon"></i>
 
 </button>
+
 
 
 </header>
@@ -67,26 +88,129 @@ Username
 
 
 
-<!-- MAIN AREA -->
-
-
-<div class="chat-container">
 
 
 
-<!-- USERS SIDEBAR -->
+
+<!-- ================= PROFILE POPUP ================= -->
 
 
-<aside>
+<div class="profile-popup" id="profilePopup">
+
+
+<div class="popup-image">
+
+
+<img
+id="popupImage"
+src="default-avatar.png">
+
+
+</div>
 
 
 
-<div class="search-box">
+<h2 id="popupName">
+Username
+</h2>
 
-<i class="fa-solid fa-search"></i>
 
-<input 
-placeholder="Search users..."
+
+<p>
+Your ID:
+</p>
+
+
+<strong id="popupID">
+@user000000
+</strong>
+
+
+
+
+
+<button id="changePhoto">
+
+Change Profile Photo
+
+</button>
+
+
+
+
+<button id="editUsername">
+
+Change Username
+
+</button>
+
+
+
+
+
+<button id="editID">
+
+Change User ID
+
+</button>
+
+
+
+
+
+
+<button id="profileSettings">
+
+Settings
+
+</button>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- ================= MAIN BODY ================= -->
+
+
+
+<div class="main">
+
+
+
+
+
+
+<!-- USERS AREA -->
+
+
+<aside id="usersPanel">
+
+
+
+<div class="search-container">
+
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+
+
+<input
+
+id="searchInput"
+
+placeholder="Search @userID"
+
+autocomplete="off"
+
 >
 
 
@@ -96,28 +220,9 @@ placeholder="Search users..."
 
 
 
-<div class="users">
 
 
-
-<div class="user active">
-
-
-<img src="https://i.pravatar.cc/100?img=5">
-
-
-<div>
-
-<h4>
-Alex
-</h4>
-
-<p>
-Hello 👋
-</p>
-
-</div>
-
+<div id="searchResults">
 
 </div>
 
@@ -125,23 +230,9 @@ Hello 👋
 
 
 
-<div class="user">
 
 
-<img src="https://i.pravatar.cc/100?img=8">
-
-
-<div>
-
-<h4>
-Sarah
-</h4>
-
-<p>
-See you soon
-</p>
-
-</div>
+<div id="usersList">
 
 
 </div>
@@ -149,8 +240,6 @@ See you soon
 
 
 
-
-</div>
 
 
 </aside>
@@ -161,46 +250,56 @@ See you soon
 
 
 
-<!-- CHAT AREA -->
 
 
-<section class="chat">
+
+
+
+
+<!-- ================= CHAT ================= -->
+
+
+
+<section class="chat-area">
+
+
 
 
 
 <div class="chat-header">
 
 
-<img src="https://i.pravatar.cc/100?img=5">
+
+<img
+
+id="chatProfile"
+
+src="default-avatar.png">
+
+
+
 
 
 <div>
 
-<h3>
-Alex
+
+<h3 id="chatName">
+
+Select a user
+
 </h3>
 
-<span>
-Online
-</span>
+
+
+<p id="chatID">
+
+</p>
 
 
 </div>
 
 
-</div>
 
-
-
-
-
-<div class="messages">
-
-
-
-<div class="message received">
-
-Hey! Welcome to OMID Community 👋
 
 </div>
 
@@ -208,19 +307,17 @@ Hey! Welcome to OMID Community 👋
 
 
 
-<div class="message sent">
-
-Thanks! This looks amazing 🚀
-
-</div>
 
 
 
 
+<div class="messages" id="messages">
 
-<div class="message received">
 
-Let's build something great.
+
+<div class="welcome">
+
+Welcome to OMID Community 🚀
 
 </div>
 
@@ -234,43 +331,122 @@ Let's build something great.
 
 
 
-<!-- MESSAGE INPUT -->
 
 
-<div class="input-area">
 
 
-<button>
+
+
+<!-- ================= EMOJI BOX ================= -->
+
+
+
+<div id="emojiPicker" class="emoji-picker">
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ================= MESSAGE BAR ================= -->
+
+
+
+<div class="message-bar">
+
+
+
+
+
+<button id="uploadButton">
+
 
 <i class="fa-solid fa-paperclip"></i>
+
 
 </button>
 
 
 
-<input 
-type="text"
-placeholder="Write a message..."
+
+
+<input
+
+type="file"
+
+id="fileInput"
+
+accept="image/*,video/*,.pdf,.doc,.docx"
+
+hidden
+
 >
 
 
 
-<button>
 
-<i class="fa-solid fa-face-smile"></i>
+
+
+
+
+<button id="emojiButton">
+
+
+<i class="fa-regular fa-face-smile"></i>
+
 
 </button>
 
 
 
-<button class="send">
+
+
+
+
+
+
+<input
+
+id="messageInput"
+
+placeholder="Write a message..."
+
+>
+
+
+
+
+
+
+
+
+
+<button id="sendButton">
+
 
 <i class="fa-solid fa-paper-plane"></i>
 
+
 </button>
 
 
+
+
+
 </div>
+
+
+
+
 
 
 
@@ -279,7 +455,6 @@ placeholder="Write a message..."
 
 
 
-</div>
 
 
 
@@ -287,7 +462,22 @@ placeholder="Write a message..."
 
 
 
-<script src="main.js"></script>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<script type="module" src="main.js"></script>
+
 
 
 </body>
