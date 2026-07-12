@@ -6,6 +6,25 @@
 
 
 // ===============================
+// EMAILJS INITIALIZATION
+// ===============================
+
+
+emailjs.init({
+
+publicKey:
+
+"ViuNUOQ_RYxORWZlc"
+
+});
+
+
+
+
+
+
+
+// ===============================
 // ELEMENTS
 // ===============================
 
@@ -67,6 +86,8 @@ document.getElementById("playlist");
 
 
 
+
+
 // ===============================
 // DARK / LIGHT MODE
 // ===============================
@@ -74,16 +95,14 @@ document.getElementById("playlist");
 
 
 let lightMode =
-localStorage.getItem("theme")
-===
-"light";
+localStorage.getItem("theme") === "light";
 
 
 
 function loadTheme(){
 
 
-if(lightMode){
+if(lightMode && themeButton){
 
 
 document.body.classList.add(
@@ -96,10 +115,11 @@ themeButton.innerHTML =
 <i class="fa-solid fa-sun"></i>
 `;
 
+}
+
 
 }
 
-}
 
 
 
@@ -109,64 +129,52 @@ loadTheme();
 
 
 
-
-themeButton.addEventListener(
-"click",
-()=>{
+if(themeButton){
 
 
-lightMode =
-!lightMode;
+themeButton.onclick = ()=>{
+
+
+lightMode=!lightMode;
 
 
 
-if(lightMode){
-
-
-document.body.classList.add(
+document.body.classList.toggle(
 "light-mode"
 );
 
 
+
 localStorage.setItem(
+
 "theme",
-"light"
+
+lightMode ? "light" : "dark"
+
 );
 
 
 
 themeButton.innerHTML =
+
+lightMode ?
+
 `
 <i class="fa-solid fa-sun"></i>
-`;
+`
 
+:
 
-}
-
-else{
-
-
-document.body.classList.remove(
-"light-mode"
-);
-
-
-localStorage.setItem(
-"theme",
-"dark"
-);
-
-
-
-themeButton.innerHTML =
 `
 <i class="fa-solid fa-moon"></i>
 `;
 
+
+
+};
+
+
 }
-
-
-});
 
 
 
@@ -182,9 +190,10 @@ themeButton.innerHTML =
 
 
 
-mobileMenu.addEventListener(
-"click",
-()=>{
+if(mobileMenu && mobileNavigation){
+
+
+mobileMenu.onclick=()=>{
 
 
 mobileNavigation.classList.toggle(
@@ -192,7 +201,10 @@ mobileNavigation.classList.toggle(
 );
 
 
-});
+};
+
+
+}
 
 
 
@@ -208,7 +220,7 @@ mobileNavigation.classList.toggle(
 
 
 
-const songs = [
+const songs=[
 
 
 {
@@ -220,6 +232,7 @@ artist:"OMID Music",
 file:"music/song1.mp3",
 
 cover:"music/covers/cover1.jpg"
+
 
 },
 
@@ -234,6 +247,7 @@ file:"music/song2.mp3",
 
 cover:"music/covers/cover2.jpg"
 
+
 },
 
 
@@ -247,6 +261,7 @@ file:"music/song3.mp3",
 
 cover:"music/covers/cover3.jpg"
 
+
 }
 
 
@@ -256,37 +271,48 @@ cover:"music/covers/cover3.jpg"
 
 
 
-let currentSong = 0;
+let currentSong=0;
+
+
 
 
 
 function loadSong(index){
 
 
-let song =
-songs[index];
+if(!audioPlayer)
+return;
 
 
-songTitle.textContent =
-song.title;
+const song=songs[index];
 
 
-artistName.textContent =
-song.artist;
+
+if(songTitle)
+songTitle.textContent=song.title;
 
 
-audioPlayer.src =
-song.file;
+
+if(artistName)
+artistName.textContent=song.artist;
 
 
-albumCover.src =
-song.cover;
+
+audioPlayer.src=song.file;
+
+
+
+if(albumCover)
+albumCover.src=song.cover;
+
 
 
 }
 
 
 
+
+if(audioPlayer)
 loadSong(currentSong);
 
 
@@ -297,9 +323,10 @@ loadSong(currentSong);
 
 
 
-playMusic.addEventListener(
-"click",
-()=>{
+if(playMusic){
+
+
+playMusic.onclick=()=>{
 
 
 if(audioPlayer.paused){
@@ -308,13 +335,13 @@ if(audioPlayer.paused){
 audioPlayer.play();
 
 
-playMusic.innerHTML =
+playMusic.innerHTML=
 `
 <i class="fa-solid fa-pause"></i>
 `;
 
-
 }
+
 
 else{
 
@@ -322,10 +349,108 @@ else{
 audioPlayer.pause();
 
 
-playMusic.innerHTML =
+playMusic.innerHTML=
 `
 <i class="fa-solid fa-play"></i>
 `;
+
+}
+
+
+};
+
+
+}
+
+
+
+
+
+
+
+
+if(nextSong){
+
+
+nextSong.onclick=()=>{
+
+
+currentSong++;
+
+
+if(currentSong>=songs.length)
+
+currentSong=0;
+
+
+
+loadSong(currentSong);
+
+
+audioPlayer.play();
+
+
+
+};
+
+
+}
+
+
+
+
+
+
+
+if(previousSong){
+
+
+previousSong.onclick=()=>{
+
+
+currentSong--;
+
+
+if(currentSong<0)
+
+currentSong=songs.length-1;
+
+
+
+loadSong(currentSong);
+
+
+audioPlayer.play();
+
+
+};
+
+
+}
+
+
+
+
+
+
+
+
+
+if(audioPlayer && progressBar){
+
+
+audioPlayer.addEventListener(
+"timeupdate",
+()=>{
+
+
+if(audioPlayer.duration){
+
+
+progressBar.value=
+
+(audioPlayer.currentTime /
+audioPlayer.duration)*100;
 
 
 }
@@ -334,122 +459,50 @@ playMusic.innerHTML =
 });
 
 
+}
 
 
 
 
 
+if(progressBar){
 
 
-nextSong.addEventListener(
-"click",
-()=>{
+progressBar.oninput=()=>{
 
 
-currentSong++;
+audioPlayer.currentTime=
 
-
-
-if(currentSong >= songs.length)
-
-currentSong=0;
-
-
-
-loadSong(currentSong);
-
-audioPlayer.play();
-
-
-});
-
-
-
-
-
-
-
-previousSong.addEventListener(
-"click",
-()=>{
-
-
-currentSong--;
-
-
-
-if(currentSong < 0)
-
-currentSong =
-songs.length-1;
-
-
-
-loadSong(currentSong);
-
-audioPlayer.play();
-
-
-});
-
-
-
-
-
-
-
-
-audioPlayer.addEventListener(
-"timeupdate",
-()=>{
-
-
-progressBar.value =
-
-(audioPlayer.currentTime /
-audioPlayer.duration)
-*
-100;
-
-
-});
-
-
-
-
-
-
-progressBar.addEventListener(
-"input",
-()=>{
-
-
-audioPlayer.currentTime =
-
-(progressBar.value /
-100)
+(progressBar.value/100)
 *
 audioPlayer.duration;
 
 
-});
+};
+
+
+}
 
 
 
 
 
-
-volumeControl.addEventListener(
-"input",
-()=>{
+if(volumeControl){
 
 
-audioPlayer.volume =
-
-volumeControl.value / 100;
+volumeControl.oninput=()=>{
 
 
-});
+audioPlayer.volume=
+
+volumeControl.value/100;
+
+
+};
+
+
+}
+
 
 
 
@@ -459,36 +512,34 @@ volumeControl.value / 100;
 
 
 // ===============================
-// PLAYLIST GENERATOR
+// PLAYLIST
 // ===============================
 
+
+
+if(playlist){
 
 
 songs.forEach(
 (song,index)=>{
 
 
-let item =
-document.createElement("div");
+const item=document.createElement("div");
 
 
-
-item.className =
-"playlist-item";
+item.className="playlist-item";
 
 
-item.innerHTML =
+item.innerHTML=
+
 `
 <i class="fa-solid fa-music"></i>
-
 ${song.title}
-
 `;
 
 
 
-item.onclick =
-()=>{
+item.onclick=()=>{
 
 
 currentSong=index;
@@ -511,6 +562,9 @@ playlist.appendChild(item);
 });
 
 
+}
+
+
 
 
 
@@ -525,10 +579,16 @@ playlist.appendChild(item);
 
 
 const feedbackForm =
+
 document.getElementById(
 "feedbackForm"
 );
 
+
+
+
+
+if(feedbackForm){
 
 
 feedbackForm.addEventListener(
@@ -540,46 +600,55 @@ e.preventDefault();
 
 
 
-const name =
-document.getElementById(
-"contactName"
-).value;
+
+
+try{
 
 
 
-const email =
-document.getElementById(
-"contactEmail"
-).value;
+await emailjs.send(
 
 
-
-const message =
-document.getElementById(
-"contactMessage"
-).value;
+"service_a5305nm",
 
 
+"template_fjyje18",
 
-emailjs.send(
-
-"YOUR_SERVICE_ID",
-
-"YOUR_TEMPLATE_ID",
 
 {
 
-name:name,
 
-email:email,
+from_name:
 
-message:message
+document.getElementById(
+"contactName"
+).value,
+
+
+
+from_email:
+
+document.getElementById(
+"contactEmail"
+).value,
+
+
+
+message:
+
+document.getElementById(
+"contactMessage"
+).value
+
 
 }
 
-)
-.then(
-()=>{
+
+
+);
+
+
+
 
 
 alert(
@@ -587,14 +656,14 @@ alert(
 );
 
 
+
 feedbackForm.reset();
+
 
 
 }
 
-)
-.catch(
-(error)=>{
+catch(error){
 
 
 console.error(error);
@@ -605,13 +674,16 @@ alert(
 );
 
 
-}
 
-);
+}
 
 
 
 });
+
+
+}
+
 
 
 
@@ -627,14 +699,14 @@ alert(
 
 
 
-const observer =
+const observer=
+
 new IntersectionObserver(
 
 (entries)=>{
 
 
-entries.forEach(
-(entry)=>{
+entries.forEach(entry=>{
 
 
 if(entry.isIntersecting){
@@ -665,20 +737,17 @@ threshold:.15
 
 
 
-
 document
 .querySelectorAll(
-"section, .feature-card"
+"section,.feature-card"
 )
-.forEach(
-(element)=>{
+.forEach(element=>{
 
 
 observer.observe(element);
 
 
 });
-
 
 
 
