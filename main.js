@@ -4,18 +4,103 @@
 // =====================================
 
 
+
 // ===============================
-// THEME SYSTEM
+// ELEMENTS
 // ===============================
 
 
 const themeButton = document.getElementById("themeButton");
 
+const profileButton = document.getElementById("profileButton");
+
+const profilePopup = document.getElementById("profilePopup");
+
+const changePhoto = document.getElementById("changePhoto");
+
+const editUsername = document.getElementById("editUsername");
+
+const editID = document.getElementById("editID");
+
+const profileSettings = document.getElementById("profileSettings");
+
+const logoutButton = document.getElementById("logout");
+
+
+const profileImage = document.getElementById("profileImage");
+
+const popupImage = document.getElementById("popupImage");
+
+
+const displayName = document.getElementById("displayName");
+
+const popupName = document.getElementById("popupName");
+
+
+const displayID = document.getElementById("displayID");
+
+const popupID = document.getElementById("popupID");
+
+
+
+const fileInput = document.getElementById("fileInput");
+
+const uploadButton = document.getElementById("uploadButton");
+
+
+const emojiButton = document.getElementById("emojiButton");
+
+const emojiPicker = document.getElementById("emojiPicker");
+
+
+const messageInput = document.getElementById("messageInput");
+
+const sendButton = document.getElementById("sendButton");
+
+const messages = document.getElementById("messages");
+
+
+const searchInput = document.getElementById("searchInput");
+
+
+
+
+
+
+// ===============================
+// USER DATA
+// (Later replaced by Firebase)
+// ===============================
+
+
+let currentUser = {
+
+    name:"Username",
+
+    id:"@user001",
+
+    photo:"default-avatar.png"
+
+};
+
+
+
+
+
+
+
+// ===============================
+// DARK / LIGHT MODE
+// ===============================
+
+
 let lightMode = false;
 
 
 
-themeButton.addEventListener("click",()=>{
+themeButton.addEventListener(
+"click",
+()=>{
 
 
     lightMode = !lightMode;
@@ -27,7 +112,7 @@ themeButton.addEventListener("click",()=>{
 
         document.documentElement.style.setProperty(
             "--background",
-            "#e9f5ff"
+            "#eaf6ff"
         );
 
 
@@ -47,8 +132,8 @@ themeButton.addEventListener("click",()=>{
         '<i class="fa-solid fa-sun"></i>';
 
 
-
     }
+
     else{
 
 
@@ -84,18 +169,10 @@ themeButton.addEventListener("click",()=>{
 
 
 
+
 // ===============================
 // PROFILE MENU
 // ===============================
-
-
-const profileButton =
-document.getElementById("profileButton");
-
-
-const profilePopup =
-document.getElementById("profilePopup");
-
 
 
 profileButton.addEventListener(
@@ -103,20 +180,17 @@ profileButton.addEventListener(
 ()=>{
 
 
-    if(profilePopup.style.display==="block"){
+    profilePopup.style.display =
 
-        profilePopup.style.display="none";
+    profilePopup.style.display==="block"
 
-    }
+    ? "none"
 
-    else{
-
-        profilePopup.style.display="block";
-
-    }
+    : "block";
 
 
 });
+
 
 
 
@@ -128,12 +202,18 @@ document.addEventListener(
 
 
     if(
+
         !profileButton.contains(e.target)
+
         &&
+
         !profilePopup.contains(e.target)
+
     ){
 
+
         profilePopup.style.display="none";
+
 
     }
 
@@ -149,18 +229,8 @@ document.addEventListener(
 
 
 // ===============================
-// PROFILE IMAGE UPLOAD
+// CHANGE PROFILE PHOTO
 // ===============================
-
-
-const changePhoto =
-document.getElementById("changePhoto");
-
-
-
-const fileInput =
-document.getElementById("fileInput");
-
 
 
 
@@ -191,21 +261,18 @@ fileInput.addEventListener(
     if(file){
 
 
-        const imageURL =
+        const url =
         URL.createObjectURL(file);
 
 
 
-        document.getElementById(
-            "profileImage"
-        ).src=imageURL;
+        profileImage.src=url;
+
+        popupImage.src=url;
 
 
 
-        document.getElementById(
-            "popupImage"
-        ).src=imageURL;
-
+        currentUser.photo=url;
 
 
     }
@@ -220,19 +287,176 @@ fileInput.addEventListener(
 
 
 
+
 // ===============================
-// EMOJI SYSTEM
+// CHANGE USERNAME
 // ===============================
 
 
-const emojiButton =
-document.getElementById("emojiButton");
+
+editUsername.addEventListener(
+"click",
+()=>{
 
 
-const emojiPicker =
-document.getElementById("emojiPicker");
+    let name =
+    prompt(
+        "Enter your new username:"
+    );
 
 
+
+    if(name && name.trim()){
+
+
+        currentUser.name =
+        name.trim();
+
+
+
+        displayName.textContent =
+        currentUser.name;
+
+
+
+        popupName.textContent =
+        currentUser.name;
+
+
+    }
+
+
+});
+
+
+
+
+
+
+
+
+
+// ===============================
+// CHANGE USER ID
+// ===============================
+
+
+
+editID.addEventListener(
+"click",
+()=>{
+
+
+    let id =
+    prompt(
+        "Enter your new ID:"
+    );
+
+
+
+    if(!id)
+    return;
+
+
+
+    if(!id.startsWith("@")){
+
+
+        alert(
+        "ID must start with @"
+        );
+
+
+        return;
+
+
+    }
+
+
+
+    // Firebase uniqueness check will be added later
+
+
+    currentUser.id=id;
+
+
+
+    displayID.textContent=id;
+
+    popupID.textContent=id;
+
+
+
+    alert(
+    "ID changed successfully"
+    );
+
+
+});
+
+
+
+
+
+
+
+
+
+// ===============================
+// SETTINGS
+// ===============================
+
+
+
+profileSettings.addEventListener(
+"click",
+()=>{
+
+
+    alert(
+    "Settings page coming soon"
+    );
+
+
+});
+
+
+
+
+
+
+
+
+
+// ===============================
+// LOGOUT
+// ===============================
+
+
+
+logoutButton.addEventListener(
+"click",
+()=>{
+
+
+    alert(
+    "Logout system will connect with Firebase"
+    );
+
+
+});
+
+
+
+
+
+
+
+
+
+// ===============================
+// EMOJI PICKER
+// ===============================
 
 
 emojiButton.addEventListener(
@@ -240,25 +464,25 @@ emojiButton.addEventListener(
 ()=>{
 
 
-    if(
-        emojiPicker.style.display==="block"
-    ){
+    emojiPicker.style.display =
 
-        emojiPicker.style.display="none";
+    emojiPicker.style.display==="block"
 
-    }
+    ? "none"
 
-    else{
-
-
-        emojiPicker.style.display="block";
+    : "block";
 
 
 
-        loadDeviceEmojis();
+    emojiPicker.innerHTML = `
 
+😀 😃 😄 😁 😂 😊 😎
 
-    }
+❤️ 🔥 🚀 👍 👋
+
+🎉 ⭐ 💯 😍 🤝
+
+`;
 
 
 
@@ -266,33 +490,6 @@ emojiButton.addEventListener(
 
 
 
-
-
-
-function loadDeviceEmojis(){
-
-
-    emojiPicker.innerHTML = `
-
-😀 😃 😄 😁 😂 😊 😎
-
-❤️ 💙 💚 💛 💜
-
-🔥 🚀 ⭐ 👍 👎
-
-👋 🤝 🎉 💯
-
-`;
-
-
-
-}
-
-
-
-
-
-// click emoji
 
 
 emojiPicker.addEventListener(
@@ -300,14 +497,8 @@ emojiPicker.addEventListener(
 (e)=>{
 
 
-    if(e.target.textContent.trim()){
-
-
-        messageInput.value +=
-        e.target.textContent;
-
-
-    }
+    messageInput.value +=
+    e.target.textContent;
 
 
 });
@@ -321,30 +512,15 @@ emojiPicker.addEventListener(
 
 
 // ===============================
-// MESSAGE SYSTEM
+// SEND MESSAGE
 // ===============================
-
-
-
-const messageInput =
-document.getElementById("messageInput");
-
-
-const sendButton =
-document.getElementById("sendButton");
-
-
-const messages =
-document.getElementById("messages");
-
-
 
 
 
 function sendMessage(){
 
 
-    const text =
+    let text =
     messageInput.value.trim();
 
 
@@ -354,22 +530,21 @@ function sendMessage(){
 
 
 
-    const div =
+    let message =
     document.createElement("div");
 
 
 
-    div.className =
+    message.className =
     "message sent";
 
 
 
-    div.textContent =
-    text;
+    message.textContent=text;
 
 
 
-    messages.appendChild(div);
+    messages.appendChild(message);
 
 
 
@@ -381,8 +556,8 @@ function sendMessage(){
     messages.scrollHeight;
 
 
-
 }
+
 
 
 
@@ -404,9 +579,7 @@ messageInput.addEventListener(
 
     if(e.key==="Enter"){
 
-
         sendMessage();
-
 
     }
 
@@ -422,12 +595,8 @@ messageInput.addEventListener(
 
 
 // ===============================
-// USER SEARCH READY
+// SEARCH USER ID
 // ===============================
-
-
-const searchInput =
-document.getElementById("searchInput");
 
 
 
@@ -436,7 +605,7 @@ searchInput.addEventListener(
 ()=>{
 
 
-    const value =
+    let value =
     searchInput.value.trim();
 
 
@@ -445,18 +614,18 @@ searchInput.addEventListener(
 
 
         console.log(
-            "Searching user:",
-            value
+        "Searching:",
+        value
         );
 
 
         /*
         Later:
 
-        Firebase query:
+        Firestore query:
 
         users
-        where userID == value
+        where uniqueID == value
 
         */
 
@@ -480,11 +649,6 @@ searchInput.addEventListener(
 
 
 
-const uploadButton =
-document.getElementById("uploadButton");
-
-
-
 uploadButton.addEventListener(
 "click",
 ()=>{
@@ -502,7 +666,6 @@ uploadButton.addEventListener(
 
 
 
-
 console.log(
-"OMID Community loaded successfully"
+"OMID Community JS loaded"
 );
