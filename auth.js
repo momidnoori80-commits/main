@@ -197,7 +197,7 @@ alert(
 
 
 
-location.href="community.html";
+location.href="main.html";
 
 
 
@@ -299,7 +299,7 @@ return;
 
 
 
-location.href="community.html";
+location.href="main.html";
 
 
 
@@ -347,7 +347,7 @@ options:{
 redirectTo:
 
 window.location.origin+
-"/community.html"
+"/main.html"
 
 
 
