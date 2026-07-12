@@ -1,45 +1,76 @@
 /* =====================================
-   OMID COMMUNITY CHAT
+   OMID COMMUNITY
    main.css
 ===================================== */
 
 
-/* RESET */
+/* ===============================
+   VARIABLES
+================================ */
+
+
+:root{
+
+    --background:#050505;
+
+    --text:white;
+
+    --glass:rgba(255,255,255,.08);
+
+    --glass-border:rgba(255,255,255,.15);
+
+    --secondary:rgba(255,255,255,.12);
+
+    --accent:#00d9ff;
+
+    --accent2:#8a2cff;
+
+}
+
+
+
+
 
 *{
+
     margin:0;
+
     padding:0;
+
     box-sizing:border-box;
+
     font-family:Inter,Arial,sans-serif;
+
 }
+
+
+
 
 
 body{
 
-    min-height:100vh;
-
-    color:white;
+    height:100vh;
 
     overflow:hidden;
 
-    display:flex;
+    color:var(--text);
 
-    justify-content:center;
-
-    align-items:center;
-
-    background:#050505;
+    background:var(--background);
 
 }
 
 
 
-/* ==============================
+
+
+/* ===============================
    ANIMATED BACKGROUND
-============================== */
+================================ */
+
 
 
 .background{
+
 
     position:fixed;
 
@@ -47,18 +78,24 @@ body{
 
     z-index:-1;
 
+
     background:
+
     linear-gradient(
-        135deg,
+        120deg,
         #050505,
-        #101b35,
+        #101d38,
         #050505
     );
 
+
     background-size:300% 300%;
 
+
     animation:
-    backgroundMove 12s infinite alternate;
+
+    moveBackground 15s infinite alternate;
+
 
 }
 
@@ -67,15 +104,16 @@ body{
 .background::before,
 .background::after{
 
+
     content:"";
 
     position:absolute;
 
     border-radius:50%;
 
+
     filter:blur(120px);
 
-    animation:float 10s infinite alternate;
 
 }
 
@@ -83,52 +121,72 @@ body{
 
 .background::before{
 
+
     width:500px;
 
     height:500px;
 
+
     background:#00d9ff;
 
-    top:-150px;
+
+    top:-200px;
 
     left:-150px;
 
-    opacity:.35;
+
+    opacity:.3;
+
+
+    animation:float 8s infinite alternate;
+
 
 }
+
 
 
 
 .background::after{
 
+
     width:450px;
 
     height:450px;
 
+
     background:#8a2cff;
+
+
+    right:-150px;
 
     bottom:-150px;
 
-    right:-120px;
 
     opacity:.35;
+
+
+    animation:float 10s infinite alternate;
+
 
 }
 
 
 
-@keyframes backgroundMove{
+
+
+@keyframes moveBackground{
+
 
     from{
 
-        background-position:left top;
+        background-position:left;
 
     }
 
 
     to{
 
-        background-position:right bottom;
+        background-position:right;
 
     }
 
@@ -137,6 +195,7 @@ body{
 
 
 @keyframes float{
+
 
     from{
 
@@ -157,28 +216,37 @@ body{
 
 
 
-/* ==============================
-   APP CONTAINER
-============================== */
+
+
+
+
+/* ===============================
+   APP
+================================ */
+
 
 
 .app{
 
+
     width:95%;
 
-    height:90vh;
+    max-width:1500px;
 
-    max-width:1400px;
+    height:92vh;
 
 
-    background:
+    margin:auto;
 
-    rgba(255,255,255,.08);
+    margin-top:4vh;
+
+
+    background:var(--glass);
 
 
     border:
 
-    1px solid rgba(255,255,255,.15);
+    1px solid var(--glass-border);
 
 
     backdrop-filter:blur(35px);
@@ -187,41 +255,51 @@ body{
     border-radius:35px;
 
 
+    overflow:hidden;
+
+
     box-shadow:
 
-    0 30px 80px rgba(0,0,0,.5);
+    0 40px 100px rgba(0,0,0,.5);
 
-
-    overflow:hidden;
 
 }
 
 
 
 
-/* ==============================
-   TOP HEADER
-============================== */
+
+
+
+
+/* ===============================
+   HEADER
+================================ */
+
 
 
 header{
+
 
     height:90px;
 
 
     display:flex;
 
-    align-items:center;
 
     justify-content:space-between;
 
 
-    padding:0 35px;
+    align-items:center;
+
+
+    padding:0 30px;
 
 
     border-bottom:
 
-    1px solid rgba(255,255,255,.12);
+    1px solid var(--glass-border);
+
 
 }
 
@@ -229,7 +307,8 @@ header{
 
 
 
-.profile{
+.profile-area{
+
 
     display:flex;
 
@@ -238,48 +317,48 @@ header{
     gap:15px;
 
 
+    cursor:pointer;
+
+
     padding:10px 20px;
 
 
     border-radius:25px;
 
 
-    background:
-
-    rgba(255,255,255,.08);
+    background:var(--secondary);
 
 
     backdrop-filter:blur(20px);
+
 
 }
 
 
 
-.profile-image{
+
+.profile-area img{
+
 
     width:60px;
 
     height:60px;
 
+
     border-radius:50%;
+
 
     object-fit:cover;
 
-
-    border:
-
-    3px solid rgba(255,255,255,.3);
-
-
-    box-shadow:
-
-    0 0 25px #00d9ff88;
 
 }
 
 
 
-.profile-info h3{
+
+
+.profile-text h3{
+
 
     font-size:18px;
 
@@ -287,11 +366,14 @@ header{
 
 
 
-.profile-info span{
+
+.profile-text p{
+
+
+    opacity:.6;
 
     font-size:13px;
 
-    opacity:.7;
 
 }
 
@@ -299,12 +381,7 @@ header{
 
 
 
-
-
-/* THEME BUTTON */
-
-
-.theme-button{
+#themeButton{
 
 
     width:55px;
@@ -321,18 +398,13 @@ header{
     cursor:pointer;
 
 
+    background:var(--secondary);
+
+
+    color:var(--text);
+
+
     font-size:22px;
-
-
-    color:white;
-
-
-    background:
-
-    rgba(255,255,255,.12);
-
-
-    backdrop-filter:blur(20px);
 
 
     transition:.4s;
@@ -342,18 +414,14 @@ header{
 
 
 
-.theme-button:hover{
+#themeButton:hover{
 
 
-    transform:
-
-    rotate(20deg)
-    scale(1.1);
+    transform:rotate(25deg) scale(1.1);
 
 
-    box-shadow:
+    box-shadow:0 0 30px var(--accent);
 
-    0 0 30px #00d9ff;
 
 }
 
@@ -363,17 +431,124 @@ header{
 
 
 
-/* ==============================
-   CONTENT
-============================== */
+
+/* ===============================
+   PROFILE POPUP
+================================ */
 
 
-.chat-container{
+
+.profile-popup{
+
+
+    position:absolute;
+
+
+    top:95px;
+
+    left:30px;
+
+
+    width:300px;
+
+
+    padding:25px;
+
+
+    border-radius:30px;
+
+
+    background:rgba(20,20,20,.8);
+
+
+    backdrop-filter:blur(30px);
+
+
+    border:
+
+    1px solid var(--glass-border);
+
+
+    display:none;
+
+
+    z-index:20;
+
+
+    text-align:center;
+
+
+}
+
+
+
+
+
+.profile-popup img{
+
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+
+}
+
+
+
+.profile-popup button{
+
+
+    width:100%;
+
+
+    margin-top:10px;
+
+
+    padding:13px;
+
+
+    border:none;
+
+
+    border-radius:20px;
+
+
+    background:var(--secondary);
+
+
+    color:white;
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ===============================
+   MAIN
+================================ */
+
+
+
+.main{
+
+
+    height:calc(100% - 90px);
 
 
     display:flex;
 
-    height:calc(100% - 90px);
 
 }
 
@@ -382,15 +557,16 @@ header{
 
 
 
-/* ==============================
+/* ===============================
    USERS
-============================== */
+================================ */
+
 
 
 aside{
 
 
-    width:330px;
+    width:340px;
 
 
     padding:25px;
@@ -398,115 +574,59 @@ aside{
 
     border-right:
 
-    1px solid rgba(255,255,255,.1);
+    1px solid var(--glass-border);
+
 
 }
 
 
 
-.search-box{
+
+
+
+.search-container{
 
 
     display:flex;
 
+
     align-items:center;
+
 
     gap:10px;
 
 
-    background:
-
-    rgba(255,255,255,.1);
-
-
     padding:15px;
 
 
-    border-radius:20px;
+    border-radius:25px;
 
 
-    margin-bottom:25px;
+    background:var(--secondary);
 
 
 }
 
 
 
-.search-box input{
+
+.search-container input{
+
+
+    width:100%;
+
+
+    border:none;
+
+
+    outline:none;
 
 
     background:none;
 
-    border:none;
-
-    outline:none;
 
     color:white;
 
-    width:100%;
-
-}
-
-
-
-
-.user{
-
-
-    display:flex;
-
-    gap:15px;
-
-
-    padding:15px;
-
-
-    border-radius:20px;
-
-
-    cursor:pointer;
-
-
-    transition:.3s;
-
-
-}
-
-
-
-.user:hover,
-.user.active{
-
-
-    background:
-
-    rgba(255,255,255,.12);
-
-
-    transform:translateX(5px);
-
-}
-
-
-
-.user img{
-
-
-    width:50px;
-
-    height:50px;
-
-    border-radius:50%;
-
-}
-
-
-
-.user p{
-
-    opacity:.6;
-
-    font-size:13px;
 
 }
 
@@ -514,21 +634,42 @@ aside{
 
 
 
-/* ==============================
+
+
+#usersList,
+#searchResults{
+
+
+    margin-top:20px;
+
+
+}
+
+
+
+
+
+
+/* ===============================
    CHAT
-============================== */
+================================ */
 
 
-.chat{
+
+.chat-area{
 
 
     flex:1;
 
+
     display:flex;
+
 
     flex-direction:column;
 
+
 }
+
 
 
 
@@ -554,7 +695,7 @@ aside{
 
     border-bottom:
 
-    1px solid rgba(255,255,255,.1);
+    1px solid var(--glass-border);
 
 
 }
@@ -569,6 +710,7 @@ aside{
 
     height:55px;
 
+
     border-radius:50%;
 
 
@@ -577,22 +719,6 @@ aside{
 
 
 
-.chat-header span{
-
-
-    opacity:.6;
-
-    font-size:13px;
-
-}
-
-
-
-
-
-
-
-/* MESSAGES */
 
 
 .messages{
@@ -601,76 +727,51 @@ aside{
     flex:1;
 
 
-    padding:30px;
-
-
     overflow-y:auto;
 
 
+    padding:30px;
+
+
 }
+
+
+
+
+
+.welcome{
+
+
+    text-align:center;
+
+
+    opacity:.5;
+
+
+}
+
+
+
 
 
 
 .message{
 
 
-    max-width:60%;
+    max-width:65%;
 
 
     padding:15px 20px;
 
 
-    margin-bottom:20px;
+    margin-bottom:15px;
 
 
     border-radius:25px;
 
 
-    animation:
-
-    messageShow .4s ease;
-
-
 }
 
-
-
-@keyframes messageShow{
-
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(20px);
-
-    }
-
-
-    to{
-
-        opacity:1;
-
-        transform:none;
-
-    }
-
-}
-
-
-
-.received{
-
-
-    background:
-
-    rgba(255,255,255,.12);
-
-
-    backdrop-filter:blur(20px);
-
-
-}
 
 
 
@@ -683,9 +784,9 @@ aside{
     background:
 
     linear-gradient(
-        135deg,
-        #00d9ff,
-        #8a2cff
+    135deg,
+    var(--accent),
+    var(--accent2)
     );
 
 
@@ -694,11 +795,60 @@ aside{
 
 
 
+.received{
 
-/* INPUT */
+
+    background:var(--secondary);
 
 
-.input-area{
+}
+
+
+
+
+
+
+
+
+
+/* ===============================
+   EMOJI
+================================ */
+
+
+
+.emoji-picker{
+
+
+    display:none;
+
+
+    padding:15px;
+
+
+    background:var(--secondary);
+
+
+    font-size:25px;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ===============================
+   INPUT
+================================ */
+
+
+
+.message-bar{
 
 
     display:flex;
@@ -714,16 +864,12 @@ aside{
 
 
 
-.input-area input{
+
+
+.message-bar input{
 
 
     flex:1;
-
-
-    padding:18px;
-
-
-    border-radius:25px;
 
 
     border:none;
@@ -732,23 +878,27 @@ aside{
     outline:none;
 
 
+    border-radius:25px;
+
+
+    padding:15px 20px;
+
+
+    background:var(--secondary);
+
+
     color:white;
-
-
-    background:
-
-    rgba(255,255,255,.1);
 
 
 }
 
 
 
-.input-area button{
+
+.message-bar button{
 
 
     width:55px;
-
 
     height:55px;
 
@@ -762,29 +912,27 @@ aside{
     cursor:pointer;
 
 
+    background:var(--secondary);
+
+
     color:white;
-
-
-    background:
-
-    rgba(255,255,255,.12);
 
 
 }
 
 
 
-
-.input-area .send{
+#sendButton{
 
 
     background:
 
     linear-gradient(
-        135deg,
-        #00d9ff,
-        #8a2cff
+    135deg,
+    var(--accent),
+    var(--accent2)
     );
+
 
 }
 
@@ -793,30 +941,76 @@ aside{
 
 
 
-/* ==============================
+
+
+
+/* ===============================
    MOBILE
-============================== */
+================================ */
+
 
 
 @media(max-width:800px){
 
 
-    aside{
 
-        display:none;
-
-    }
+.app{
 
 
-    .app{
+    width:100%;
 
-        width:100%;
+    height:100vh;
 
-        height:100vh;
+    margin:0;
 
-        border-radius:0;
+    border-radius:0;
 
-    }
+
+}
+
+
+
+aside{
+
+
+    width:100%;
+
+
+}
+
+
+
+
+.main{
+
+
+    flex-direction:column;
+
+
+}
+
+
+
+.chat-area{
+
+
+    display:none;
+
+
+}
+
+
+
+.profile-area img{
+
+
+    width:50px;
+
+    height:50px;
+
+
+}
+
 
 
 }
