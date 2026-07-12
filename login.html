@@ -1,140 +1,325 @@
+```html
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Enter Community | Mohammad Omid Noori</title>
+
+<title>
+OMID Community | Login
+</title>
+
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<style>
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+
+
+<style>
 
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Inter,sans-serif;
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,sans-serif;
+
 }
+
 
 
 body{
 
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
 
-    background:
-    radial-gradient(circle at top,#26315f,#050505 60%);
+min-height:100vh;
 
-    color:white;
-    overflow:hidden;
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+
+background:
+
+radial-gradient(circle at top,#243b75,#020305 65%);
+
+
+color:white;
+
+overflow:hidden;
+
 
 }
+
+
+
+
+
+body::before,
+body::after{
+
+
+content:"";
+
+position:absolute;
+
+border-radius:50%;
+
+filter:blur(120px);
+
+z-index:0;
+
+
+}
+
 
 
 body::before{
 
-content:"";
-
-position:absolute;
 
 width:500px;
+
 height:500px;
 
 background:#00d9ff;
 
-filter:blur(150px);
+top:-200px;
 
-opacity:.25;
+left:-200px;
 
-top:-150px;
-left:-150px;
+opacity:.35;
+
 
 }
+
 
 
 body::after{
 
-content:"";
 
-position:absolute;
+width:500px;
 
-width:400px;
-height:400px;
+height:500px;
 
-background:#9d00ff;
+background:#8a2cff;
 
-filter:blur(150px);
+right:-200px;
 
-opacity:.25;
+bottom:-200px;
 
-bottom:-100px;
-right:-100px;
+opacity:.3;
+
 
 }
+
+
+
+
+
+.container{
+
+
+width:100%;
+
+max-width:450px;
+
+padding:20px;
+
+z-index:2;
+
+
+}
+
 
 
 .card{
 
-position:relative;
-z-index:2;
 
-width:420px;
+background:
 
-padding:45px;
+rgba(255,255,255,.08);
 
-background:rgba(255,255,255,.08);
 
-border:1px solid rgba(255,255,255,.15);
+border:
 
-backdrop-filter:blur(25px);
+1px solid rgba(255,255,255,.15);
 
-border-radius:30px;
+
+backdrop-filter:
+
+blur(30px);
+
+
+border-radius:35px;
+
+
+padding:45px 35px;
+
 
 box-shadow:
-0 0 60px rgba(0,0,0,.5);
 
-animation:appear .8s ease;
+0 30px 90px rgba(0,0,0,.5);
+
+
+animation:
+
+show .8s ease;
 
 
 }
 
 
-@keyframes appear{
+
+
+
+@keyframes show{
+
 
 from{
+
 opacity:0;
-transform:translateY(40px);
+
+transform:
+
+translateY(50px)
+scale(.95);
+
+
 }
+
 
 to{
+
+
 opacity:1;
-transform:translateY(0);
-}
+
+transform:
+
+translateY(0)
+scale(1);
+
 
 }
+
+
+}
+
+
+
+
+
+
+.back{
+
+
+display:inline-flex;
+
+gap:10px;
+
+align-items:center;
+
+color:white;
+
+opacity:.7;
+
+text-decoration:none;
+
+margin-bottom:30px;
+
+transition:.3s;
+
+
+}
+
+
+
+.back:hover{
+
+color:#00d9ff;
+
+}
+
+
+
 
 
 .logo{
 
+
 text-align:center;
 
-font-size:30px;
+margin-bottom:35px;
 
-font-weight:800;
-
-margin-bottom:10px;
 
 }
+
+
+
+
+.logo i{
+
+
+font-size:55px;
+
+
+width:100px;
+
+height:100px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+margin:auto;
+
+
+border-radius:30px;
+
+
+background:
+
+linear-gradient(135deg,#00d9ff,#8a2cff);
+
+
+box-shadow:
+
+0 20px 50px #00d9ff55;
+
+
+}
+
+
+
+
+
+.logo h1{
+
+
+font-size:38px;
+
+margin-top:20px;
+
+font-weight:900;
+
+
+}
+
 
 
 .logo span{
@@ -144,167 +329,341 @@ color:#00d9ff;
 }
 
 
-.subtitle{
 
-text-align:center;
+.logo p{
 
-opacity:.7;
 
-margin-bottom:35px;
+opacity:.6;
+
+margin-top:8px;
+
 
 }
 
 
 
-.input{
+
+
+h2{
+
+
+font-size:30px;
+
+margin-bottom:25px;
+
+text-align:center;
+
+
+}
+
+
+
+
+
+
+
+.input-box{
+
 
 position:relative;
 
 margin-bottom:20px;
 
+
 }
 
 
-.input i{
+
+.input-box i{
+
 
 position:absolute;
 
-left:15px;
+left:18px;
 
-top:16px;
+top:18px;
 
 opacity:.6;
 
+
 }
+
+
 
 
 input{
 
+
 width:100%;
 
-padding:15px 45px;
 
-background:#ffffff10;
+padding:17px 50px;
 
-border:1px solid #ffffff20;
 
-border-radius:15px;
+border-radius:18px;
+
+
+background:
+
+rgba(255,255,255,.08);
+
+
+border:
+
+1px solid rgba(255,255,255,.15);
+
 
 color:white;
 
+
 outline:none;
+
 
 font-size:15px;
 
+
+transition:.3s;
+
+
 }
+
+
 
 
 input:focus{
 
+
 border-color:#00d9ff;
 
-box-shadow:0 0 20px #00d9ff55;
+
+box-shadow:
+
+0 0 25px #00d9ff55;
+
 
 }
 
 
 
-.main-btn{
+
+
+
+
+
+button{
+
 
 width:100%;
 
-padding:15px;
-
-border:none;
-
-border-radius:15px;
-
-background:
-linear-gradient(90deg,#00d9ff,#7b2cff);
-
-color:white;
-
-font-size:16px;
-
-font-weight:700;
 
 cursor:pointer;
 
+
+border:none;
+
+
+font-size:16px;
+
+font-weight:800;
+
+
+}
+
+
+
+
+#loginBtn{
+
+
+padding:17px;
+
+border-radius:18px;
+
+
+background:
+
+linear-gradient(
+135deg,
+#00d9ff,
+#8a2cff
+);
+
+
+color:white;
+
+
 margin-top:10px;
 
+
+transition:.3s;
+
+
 }
 
 
 
-.main-btn:hover{
 
-transform:scale(1.03);
+#loginBtn:hover{
+
+
+transform:
+
+translateY(-4px);
+
+
+box-shadow:
+
+0 20px 40px #00d9ff55;
+
 
 }
+
+
+
+
+
 
 
 
 .divider{
 
-text-align:center;
 
-margin:25px 0;
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+margin:30px 0;
 
 opacity:.5;
 
+
 }
 
 
 
-.google{
+.divider::before,
+.divider::after{
 
-width:100%;
 
-padding:14px;
+content:"";
 
-border-radius:15px;
-
-border:none;
-
-cursor:pointer;
+height:1px;
 
 background:white;
 
-color:#111;
+flex:1;
 
-font-weight:600;
-
-font-size:15px;
 
 }
 
 
-.google i{
 
-margin-right:10px;
+
+
+
+
+
+#googleBtn{
+
+
+padding:16px;
+
+border-radius:18px;
+
+
+background:white;
+
+
+color:#111;
+
+
+transition:.3s;
+
+
+}
+
+
+
+
+#googleBtn:hover{
+
+
+transform:
+
+translateY(-3px);
+
+
+}
+
+
+
+
+#googleBtn i{
+
 
 color:#4285f4;
 
+margin-right:10px;
+
+
 }
+
+
 
 
 
 .bottom{
 
+
 text-align:center;
 
-margin-top:25px;
+margin-top:30px;
 
 opacity:.8;
+
 
 }
 
 
-a{
+
+.bottom a{
+
 
 color:#00d9ff;
 
 text-decoration:none;
+
+font-weight:700;
+
+
+}
+
+
+
+
+
+
+@media(max-width:500px){
+
+
+
+.card{
+
+padding:35px 25px;
+
+}
+
+
+
+.logo h1{
+
+font-size:32px;
+
+}
+
+
 
 }
 
@@ -312,45 +671,150 @@ text-decoration:none;
 
 </style>
 
+
 </head>
+
+
+
+
+
 
 <body>
 
+
+
+<div class="container">
+
+
 <div class="card">
+
+
+
+
+
+<a class="back" href="index.html">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Back Home
+
+</a>
+
+
+
+
+
+
+
 
 <div class="logo">
 
-Mohammad Omid<span>.</span>
+
+<i class="fa-solid fa-users"></i>
+
+
+<h1>
+
+OMID<span>.</span>
+
+</h1>
+
+
+<p>
+
+Your modern community
+
+</p>
+
 
 </div>
 
-<div class="subtitle">
 
-Enter your community account
 
-</div>
 
-<div class="input">
+
+
+
+<h2>
+
+Welcome Back
+
+</h2>
+
+
+
+
+
+
+
+
+<div class="input-box">
+
 
 <i class="fa-solid fa-envelope"></i>
 
-<input id="email" type="email" placeholder="Email">
+
+<input
+
+id="email"
+
+type="email"
+
+placeholder="Email address"
+
+autocomplete="email">
+
 
 </div>
 
-<div class="input">
+
+
+
+
+
+
+
+<div class="input-box">
+
 
 <i class="fa-solid fa-lock"></i>
 
-<input id="password" type="password" placeholder="Password">
+
+<input
+
+id="password"
+
+type="password"
+
+placeholder="Password"
+
+autocomplete="current-password">
+
 
 </div>
 
-<button class="main-btn" id="loginBtn">
 
-Enter Community
+
+
+
+
+
+
+<button id="loginBtn">
+
+
+<i class="fa-solid fa-right-to-bracket"></i>
+
+Login
+
 
 </button>
+
+
+
+
+
+
 
 <div class="divider">
 
@@ -358,194 +822,66 @@ OR
 
 </div>
 
-<button class="google" id="googleBtn">
+
+
+
+
+
+
+<button id="googleBtn">
+
 
 <i class="fa-brands fa-google"></i>
 
+
 Continue with Google
+
 
 </button>
 
+
+
+
+
+
+
+
 <div class="bottom">
+
 
 Don't have an account?
 
-<a href="Signup.html">
-Create Account
+
+<a href="signup.html">
+
+Create one
+
 </a>
 
+
+</div>
+
+
+
+
+
+
+
 </div>
 
 </div>
 
-<script type="module">
 
 
-import {auth, db} from "./firebase.js";
 
 
-import {
 
-signInWithEmailAndPassword,
 
-GoogleAuthProvider,
+<script type="module" src="auth.js"></script>
 
-signInWithPopup
 
-}
-
-from
-
-"https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
-
-
-import {
-
-doc,
-
-getDoc
-
-}
-
-from
-
-"https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
-
-
-
-loginBtn.onclick=async()=>{
-
-try{
-
-const result = await signInWithEmailAndPassword(
-
-auth,
-
-email.value,
-
-password.value
-
-);
-
-
-const userDoc = await getDoc(
-    doc(db,"users",result.user.uid)
-);
-
-
-if(!userDoc.exists()){
-
-    location.href="main.html";
-
-}
-
-else{
-
-
-const data = userDoc.data();
-
-
-if(data.phoneVerified !== true){
-
-    location.href="main.html";
-
-}
-
-else if(data.passwordCreated !== true){
-
-    location.href="create-password.html";
-
-}
-
-else{
-
-    location.href="index.html";
-
-}
-
-
-}
-
-
-}
-
-catch(error){
-
-alert(error.message);
-
-}
-
-};
-
-
-
-
-
-googleBtn.onclick=async()=>{
-
-
-try{
-
-
-const provider =
-new GoogleAuthProvider();
-
-
-const result = await signInWithPopup(auth,provider);
-
-
-const userDoc = await getDoc(
-    doc(db,"users",result.user.uid)
-);
-
-
-if(!userDoc.exists()){
-
-    location.href="main.html";
-
-}
-
-else{
-
-
-const data = userDoc.data();
-
-
-if(data.phoneVerified !== true){
-
-    location.href="main.html";
-
-}
-
-else if(data.passwordCreated !== true){
-
-    location.href="create-password.html";
-
-}
-
-else{
-
-    location.href="index.html";
-
-}
-
-
-}
-
-}
-
-catch(error){
-
-alert(error.message);
-
-}
-
-
-};
-
-
-
-</script>
 
 </body>
+
 </html>
+```
