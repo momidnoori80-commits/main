@@ -1,37 +1,50 @@
 // =====================================
-// OMID COMMUNITY CHAT
+// OMID COMMUNITY
 // main.js
 // =====================================
 
 
-
-// ==============================
-// THEME SWITCHING
-// ==============================
+// ===============================
+// THEME SYSTEM
+// ===============================
 
 
 const themeButton = document.getElementById("themeButton");
 
-let darkMode = true;
+let lightMode = false;
 
 
 
 themeButton.addEventListener("click",()=>{
 
 
-    darkMode = !darkMode;
+    lightMode = !lightMode;
 
 
 
-    if(darkMode){
+    if(lightMode){
 
 
-        document.body.style.background =
-        "#050505";
+        document.documentElement.style.setProperty(
+            "--background",
+            "#e9f5ff"
+        );
+
+
+        document.documentElement.style.setProperty(
+            "--text",
+            "#111"
+        );
+
+
+        document.documentElement.style.setProperty(
+            "--glass",
+            "rgba(255,255,255,.55)"
+        );
 
 
         themeButton.innerHTML =
-        '<i class="fa-solid fa-moon"></i>';
+        '<i class="fa-solid fa-sun"></i>';
 
 
 
@@ -39,16 +52,210 @@ themeButton.addEventListener("click",()=>{
     else{
 
 
-        document.body.style.background =
-        "linear-gradient(135deg,#dff6ff,#ffffff,#d9e8ff)";
+        document.documentElement.style.setProperty(
+            "--background",
+            "#050505"
+        );
 
 
-        document.body.style.color =
-        "#111";
+        document.documentElement.style.setProperty(
+            "--text",
+            "white"
+        );
+
+
+        document.documentElement.style.setProperty(
+            "--glass",
+            "rgba(255,255,255,.08)"
+        );
 
 
         themeButton.innerHTML =
-        '<i class="fa-solid fa-sun"></i>';
+        '<i class="fa-solid fa-moon"></i>';
+
+    }
+
+
+});
+
+
+
+
+
+
+
+// ===============================
+// PROFILE MENU
+// ===============================
+
+
+const profileButton =
+document.getElementById("profileButton");
+
+
+const profilePopup =
+document.getElementById("profilePopup");
+
+
+
+profileButton.addEventListener(
+"click",
+()=>{
+
+
+    if(profilePopup.style.display==="block"){
+
+        profilePopup.style.display="none";
+
+    }
+
+    else{
+
+        profilePopup.style.display="block";
+
+    }
+
+
+});
+
+
+
+
+
+document.addEventListener(
+"click",
+(e)=>{
+
+
+    if(
+        !profileButton.contains(e.target)
+        &&
+        !profilePopup.contains(e.target)
+    ){
+
+        profilePopup.style.display="none";
+
+    }
+
+
+});
+
+
+
+
+
+
+
+
+
+// ===============================
+// PROFILE IMAGE UPLOAD
+// ===============================
+
+
+const changePhoto =
+document.getElementById("changePhoto");
+
+
+
+const fileInput =
+document.getElementById("fileInput");
+
+
+
+
+changePhoto.addEventListener(
+"click",
+()=>{
+
+
+    fileInput.click();
+
+
+});
+
+
+
+
+
+
+fileInput.addEventListener(
+"change",
+()=>{
+
+
+    const file =
+    fileInput.files[0];
+
+
+    if(file){
+
+
+        const imageURL =
+        URL.createObjectURL(file);
+
+
+
+        document.getElementById(
+            "profileImage"
+        ).src=imageURL;
+
+
+
+        document.getElementById(
+            "popupImage"
+        ).src=imageURL;
+
+
+
+    }
+
+
+});
+
+
+
+
+
+
+
+
+// ===============================
+// EMOJI SYSTEM
+// ===============================
+
+
+const emojiButton =
+document.getElementById("emojiButton");
+
+
+const emojiPicker =
+document.getElementById("emojiPicker");
+
+
+
+
+emojiButton.addEventListener(
+"click",
+()=>{
+
+
+    if(
+        emojiPicker.style.display==="block"
+    ){
+
+        emojiPicker.style.display="none";
+
+    }
+
+    else{
+
+
+        emojiPicker.style.display="block";
+
+
+
+        loadDeviceEmojis();
 
 
     }
@@ -62,25 +269,73 @@ themeButton.addEventListener("click",()=>{
 
 
 
+function loadDeviceEmojis(){
 
-// ==============================
+
+    emojiPicker.innerHTML = `
+
+😀 😃 😄 😁 😂 😊 😎
+
+❤️ 💙 💚 💛 💜
+
+🔥 🚀 ⭐ 👍 👎
+
+👋 🤝 🎉 💯
+
+`;
+
+
+
+}
+
+
+
+
+
+// click emoji
+
+
+emojiPicker.addEventListener(
+"click",
+(e)=>{
+
+
+    if(e.target.textContent.trim()){
+
+
+        messageInput.value +=
+        e.target.textContent;
+
+
+    }
+
+
+});
+
+
+
+
+
+
+
+
+
+// ===============================
 // MESSAGE SYSTEM
-// ==============================
+// ===============================
+
 
 
 const messageInput =
-document.querySelector(".input-area input");
-
+document.getElementById("messageInput");
 
 
 const sendButton =
-document.querySelector(".send");
+document.getElementById("sendButton");
 
 
-
-const messagesContainer =
-document.querySelector(".messages");
-
+const messages =
+document.getElementById("messages");
 
 
 
@@ -94,44 +349,36 @@ function sendMessage(){
 
 
 
-    if(text === ""){
-
-        return;
-
-    }
+    if(!text)
+    return;
 
 
 
-
-    const message =
+    const div =
     document.createElement("div");
 
 
 
-    message.classList.add(
-        "message",
-        "sent"
-    );
+    div.className =
+    "message sent";
 
 
 
-    message.textContent =
+    div.textContent =
     text;
 
 
 
-
-    messagesContainer.appendChild(
-        message
-    );
+    messages.appendChild(div);
 
 
 
-    messageInput.value = "";
+    messageInput.value="";
 
 
 
-    scrollMessages();
+    messages.scrollTop =
+    messages.scrollHeight;
 
 
 
@@ -141,9 +388,6 @@ function sendMessage(){
 
 
 
-
-// Button click
-
 sendButton.addEventListener(
 "click",
 sendMessage
@@ -152,14 +396,13 @@ sendMessage
 
 
 
-// Enter key
 
 messageInput.addEventListener(
 "keydown",
-(event)=>{
+(e)=>{
 
 
-    if(event.key === "Enter"){
+    if(e.key==="Enter"){
 
 
         sendMessage();
@@ -175,75 +418,53 @@ messageInput.addEventListener(
 
 
 
-// ==============================
-// AUTO SCROLL
-// ==============================
-
-
-function scrollMessages(){
-
-
-    messagesContainer.scrollTop =
-    messagesContainer.scrollHeight;
-
-
-}
 
 
 
-scrollMessages();
+// ===============================
+// USER SEARCH READY
+// ===============================
+
+
+const searchInput =
+document.getElementById("searchInput");
 
 
 
+searchInput.addEventListener(
+"input",
+()=>{
+
+
+    const value =
+    searchInput.value.trim();
 
 
 
-
-// ==============================
-// USER PROFILE PLACEHOLDER
-// READY FOR FIREBASE
-// ==============================
+    if(value.startsWith("@")){
 
 
-const userProfile = {
+        console.log(
+            "Searching user:",
+            value
+        );
 
 
-    username:"Username",
+        /*
+        Later:
 
-    photo:
-    "https://i.pravatar.cc/150"
+        Firebase query:
 
+        users
+        where userID == value
 
-};
-
-
-
-// Later Firebase will replace this:
+        */
 
 
-
-function loadUserProfile(){
-
-
-    document.querySelector(
-        ".profile-image"
-    ).src =
-    userProfile.photo;
+    }
 
 
-
-    document.querySelector(
-        ".profile-info h3"
-    ).textContent =
-    userProfile.username;
-
-
-
-}
-
-
-
-loadUserProfile();
+});
 
 
 
@@ -251,27 +472,30 @@ loadUserProfile();
 
 
 
-// ==============================
-// ONLINE STATUS ANIMATION
-// ==============================
 
 
-const status =
-document.querySelector(".profile-info span");
-
-
-
-setInterval(()=>{
-
-
-    status.style.opacity =
-    status.style.opacity === "0.4"
-    ? "1"
-    :"0.4";
+// ===============================
+// UPLOAD BUTTON
+// ===============================
 
 
 
-},1200);
+const uploadButton =
+document.getElementById("uploadButton");
+
+
+
+uploadButton.addEventListener(
+"click",
+()=>{
+
+
+    fileInput.click();
+
+
+});
+
+
 
 
 
@@ -280,5 +504,5 @@ setInterval(()=>{
 
 
 console.log(
-"OMID Chat System Loaded"
+"OMID Community loaded successfully"
 );
