@@ -4,63 +4,120 @@
 // =====================================
 
 
+import { auth, db } from "./firebase.js";
+
+import {
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+
+import {
+    doc,
+    getDoc,
+    updateDoc,
+    query,
+    collection,
+    where,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+
+
 
 // ===============================
 // ELEMENTS
 // ===============================
 
 
-const themeButton = document.getElementById("themeButton");
-
-const profileButton = document.getElementById("profileButton");
-
-const profilePopup = document.getElementById("profilePopup");
-
-const changePhoto = document.getElementById("changePhoto");
-
-const editUsername = document.getElementById("editUsername");
-
-const editID = document.getElementById("editID");
-
-const profileSettings = document.getElementById("profileSettings");
-
-const logoutButton = document.getElementById("logout");
+const themeButton =
+document.getElementById("themeButton");
 
 
-const profileImage = document.getElementById("profileImage");
-
-const popupImage = document.getElementById("popupImage");
-
-
-const displayName = document.getElementById("displayName");
-
-const popupName = document.getElementById("popupName");
+const profileButton =
+document.getElementById("profileButton");
 
 
-const displayID = document.getElementById("displayID");
-
-const popupID = document.getElementById("popupID");
-
+const profilePopup =
+document.getElementById("profilePopup");
 
 
-const fileInput = document.getElementById("fileInput");
-
-const uploadButton = document.getElementById("uploadButton");
-
-
-const emojiButton = document.getElementById("emojiButton");
-
-const emojiPicker = document.getElementById("emojiPicker");
+const profileImage =
+document.getElementById("profileImage");
 
 
-const messageInput = document.getElementById("messageInput");
-
-const sendButton = document.getElementById("sendButton");
-
-const messages = document.getElementById("messages");
+const popupImage =
+document.getElementById("popupImage");
 
 
-const searchInput = document.getElementById("searchInput");
+const displayName =
+document.getElementById("displayName");
+
+
+const popupName =
+document.getElementById("popupName");
+
+
+const displayID =
+document.getElementById("displayID");
+
+
+const popupID =
+document.getElementById("popupID");
+
+
+
+const changePhoto =
+document.getElementById("changePhoto");
+
+
+const editUsername =
+document.getElementById("editUsername");
+
+
+const editID =
+document.getElementById("editID");
+
+
+const profileSettings =
+document.getElementById("profileSettings");
+
+
+const logoutButton =
+document.getElementById("logout");
+
+
+
+const fileInput =
+document.getElementById("fileInput");
+
+
+
+const emojiButton =
+document.getElementById("emojiButton");
+
+
+const emojiPicker =
+document.getElementById("emojiPicker");
+
+
+
+const messageInput =
+document.getElementById("messageInput");
+
+
+const sendButton =
+document.getElementById("sendButton");
+
+
+const messages =
+document.getElementById("messages");
+
+
+
+const searchInput =
+document.getElementById("searchInput");
+
 
 
 
@@ -68,18 +125,17 @@ const searchInput = document.getElementById("searchInput");
 
 
 // ===============================
-// USER DATA
-// (Later replaced by Firebase)
+// CURRENT USER
 // ===============================
 
 
-let currentUser = {
+let firebaseUser = null;
 
-    name:"Username",
+let userData = {
 
-    id:"@user001",
-
-    photo:"default-avatar.png"
+    username:"",
+    userID:"",
+    photoURL:""
 
 };
 
@@ -89,21 +145,129 @@ let currentUser = {
 
 
 
+
+
 // ===============================
-// DARK / LIGHT MODE
+// LOAD USER AFTER LOGIN
 // ===============================
 
 
-let lightMode = false;
+onAuthStateChanged(auth, async(user)=>{
+
+
+    if(!user){
+
+
+        window.location.href =
+        "index.html";
+
+
+        return;
+
+    }
 
 
 
-themeButton.addEventListener(
-"click",
-()=>{
+    firebaseUser = user;
 
 
-    lightMode = !lightMode;
+
+    const userRef =
+    doc(
+        db,
+        "users",
+        user.uid
+    );
+
+
+
+    const snapshot =
+    await getDoc(userRef);
+
+
+
+    if(snapshot.exists()){
+
+
+        userData =
+        snapshot.data();
+
+
+
+        displayProfile();
+
+
+    }
+
+
+
+});
+
+
+
+
+
+
+
+function displayProfile(){
+
+
+
+    displayName.textContent =
+    userData.username || "User";
+
+
+    popupName.textContent =
+    userData.username || "User";
+
+
+
+    displayID.textContent =
+    userData.userID || "@unknown";
+
+
+    popupID.textContent =
+    userData.userID || "@unknown";
+
+
+
+    if(userData.photoURL){
+
+
+        profileImage.src =
+        userData.photoURL;
+
+
+        popupImage.src =
+        userData.photoURL;
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// DARK LIGHT MODE
+// ===============================
+
+
+
+let lightMode=false;
+
+
+themeButton.onclick=()=>{
+
+
+    lightMode=!lightMode;
 
 
 
@@ -111,47 +275,35 @@ themeButton.addEventListener(
 
 
         document.documentElement.style.setProperty(
-            "--background",
-            "#eaf6ff"
+        "--background",
+        "#eaf6ff"
         );
 
 
         document.documentElement.style.setProperty(
-            "--text",
-            "#111"
-        );
-
-
-        document.documentElement.style.setProperty(
-            "--glass",
-            "rgba(255,255,255,.55)"
+        "--text",
+        "#111"
         );
 
 
         themeButton.innerHTML =
         '<i class="fa-solid fa-sun"></i>';
 
-
     }
+
 
     else{
 
 
         document.documentElement.style.setProperty(
-            "--background",
-            "#050505"
+        "--background",
+        "#050505"
         );
 
 
         document.documentElement.style.setProperty(
-            "--text",
-            "white"
-        );
-
-
-        document.documentElement.style.setProperty(
-            "--glass",
-            "rgba(255,255,255,.08)"
+        "--text",
+        "white"
         );
 
 
@@ -161,7 +313,8 @@ themeButton.addEventListener(
     }
 
 
-});
+};
+
 
 
 
@@ -175,110 +328,19 @@ themeButton.addEventListener(
 // ===============================
 
 
-profileButton.addEventListener(
-"click",
-()=>{
+profileButton.onclick=()=>{
 
 
     profilePopup.style.display =
 
     profilePopup.style.display==="block"
 
-    ? "none"
+    ?"none"
 
-    : "block";
-
-
-});
+    :"block";
 
 
-
-
-
-
-document.addEventListener(
-"click",
-(e)=>{
-
-
-    if(
-
-        !profileButton.contains(e.target)
-
-        &&
-
-        !profilePopup.contains(e.target)
-
-    ){
-
-
-        profilePopup.style.display="none";
-
-
-    }
-
-
-});
-
-
-
-
-
-
-
-
-
-// ===============================
-// CHANGE PROFILE PHOTO
-// ===============================
-
-
-
-changePhoto.addEventListener(
-"click",
-()=>{
-
-
-    fileInput.click();
-
-
-});
-
-
-
-
-
-
-fileInput.addEventListener(
-"change",
-()=>{
-
-
-    const file =
-    fileInput.files[0];
-
-
-    if(file){
-
-
-        const url =
-        URL.createObjectURL(file);
-
-
-
-        profileImage.src=url;
-
-        popupImage.src=url;
-
-
-
-        currentUser.photo=url;
-
-
-    }
-
-
-});
+};
 
 
 
@@ -293,40 +355,46 @@ fileInput.addEventListener(
 // ===============================
 
 
-
-editUsername.addEventListener(
-"click",
-()=>{
+editUsername.onclick=async()=>{
 
 
     let name =
     prompt(
-        "Enter your new username:"
+    "Enter new username"
     );
 
 
 
-    if(name && name.trim()){
-
-
-        currentUser.name =
-        name.trim();
+    if(!name)
+    return;
 
 
 
-        displayName.textContent =
-        currentUser.name;
+    await updateDoc(
+
+        doc(
+            db,
+            "users",
+            firebaseUser.uid
+        ),
+
+        {
+
+            username:name
+
+        }
+
+    );
 
 
 
-        popupName.textContent =
-        currentUser.name;
+    userData.username=name;
 
 
-    }
+    displayProfile();
 
 
-});
+};
 
 
 
@@ -341,58 +409,160 @@ editUsername.addEventListener(
 // ===============================
 
 
-
-editID.addEventListener(
-"click",
-()=>{
+editID.onclick=async()=>{
 
 
-    let id =
-    prompt(
-        "Enter your new ID:"
-    );
+let id =
+prompt(
+"Enter new ID like @omid001"
+);
 
 
 
-    if(!id)
-    return;
-
-
-
-    if(!id.startsWith("@")){
-
-
-        alert(
-        "ID must start with @"
-        );
-
-
-        return;
-
-
-    }
-
-
-
-    // Firebase uniqueness check will be added later
-
-
-    currentUser.id=id;
-
-
-
-    displayID.textContent=id;
-
-    popupID.textContent=id;
-
+if(!id.startsWith("@")){
 
 
     alert(
-    "ID changed successfully"
+    "ID must start with @"
     );
 
 
-});
+    return;
+
+
+}
+
+
+
+
+
+const check =
+query(
+
+collection(db,"users"),
+
+where(
+"userID",
+"==",
+id
+)
+
+);
+
+
+
+const result =
+await getDocs(check);
+
+
+
+
+if(!result.empty){
+
+
+    alert(
+    "This ID already exists"
+    );
+
+
+    return;
+
+
+}
+
+
+
+
+
+
+await updateDoc(
+
+doc(
+db,
+"users",
+firebaseUser.uid
+),
+
+{
+
+userID:id
+
+}
+
+);
+
+
+
+userData.userID=id;
+
+
+displayProfile();
+
+
+
+alert(
+"ID changed successfully"
+);
+
+
+
+};
+
+
+
+
+
+
+
+
+
+// ===============================
+// PROFILE IMAGE
+// ===============================
+
+
+changePhoto.onclick=()=>{
+
+
+fileInput.click();
+
+
+};
+
+
+
+
+
+fileInput.onchange=()=>{
+
+
+const file =
+fileInput.files[0];
+
+
+if(file){
+
+
+const url =
+URL.createObjectURL(file);
+
+
+
+profileImage.src=url;
+
+
+popupImage.src=url;
+
+
+
+// Firebase Storage will replace this later
+
+
+}
+
+
+
+};
 
 
 
@@ -407,19 +577,15 @@ editID.addEventListener(
 // ===============================
 
 
-
-profileSettings.addEventListener(
-"click",
-()=>{
+profileSettings.onclick=()=>{
 
 
-    alert(
-    "Settings page coming soon"
-    );
+alert(
+"Settings page coming soon"
+);
 
 
-});
-
+};
 
 
 
@@ -433,18 +599,58 @@ profileSettings.addEventListener(
 // ===============================
 
 
-
-logoutButton.addEventListener(
-"click",
-()=>{
+logoutButton.onclick=()=>{
 
 
-    alert(
-    "Logout system will connect with Firebase"
-    );
+signOut(auth);
 
 
-});
+};
+
+
+
+
+
+
+
+
+// ===============================
+// EMOJI
+// ===============================
+
+
+emojiButton.onclick=()=>{
+
+
+emojiPicker.style.display =
+
+emojiPicker.style.display==="block"
+
+?"none"
+
+:"block";
+
+
+
+emojiPicker.textContent =
+
+"😀 😃 😄 😂 ❤️ 🔥 👍 👋 🚀 🎉 😎";
+
+
+};
+
+
+
+
+
+emojiPicker.onclick=(e)=>{
+
+
+messageInput.value +=
+e.target.textContent;
+
+
+};
 
 
 
@@ -455,217 +661,110 @@ logoutButton.addEventListener(
 
 
 // ===============================
-// EMOJI PICKER
+// MESSAGE
 // ===============================
-
-
-emojiButton.addEventListener(
-"click",
-()=>{
-
-
-    emojiPicker.style.display =
-
-    emojiPicker.style.display==="block"
-
-    ? "none"
-
-    : "block";
-
-
-
-    emojiPicker.innerHTML = `
-
-😀 😃 😄 😁 😂 😊 😎
-
-❤️ 🔥 🚀 👍 👋
-
-🎉 ⭐ 💯 😍 🤝
-
-`;
-
-
-
-});
-
-
-
-
-
-emojiPicker.addEventListener(
-"click",
-(e)=>{
-
-
-    messageInput.value +=
-    e.target.textContent;
-
-
-});
-
-
-
-
-
-
-
-
-
-// ===============================
-// SEND MESSAGE
-// ===============================
-
 
 
 function sendMessage(){
 
 
-    let text =
-    messageInput.value.trim();
+let text =
+messageInput.value.trim();
 
 
 
-    if(!text)
-    return;
+if(!text)
+return;
 
 
 
-    let message =
-    document.createElement("div");
+let div =
+document.createElement("div");
 
 
 
-    message.className =
-    "message sent";
+div.className =
+"message sent";
+
+
+div.textContent=text;
 
 
 
-    message.textContent=text;
+messages.appendChild(div);
 
 
 
-    messages.appendChild(message);
+messageInput.value="";
 
 
-
-    messageInput.value="";
-
-
-
-    messages.scrollTop =
-    messages.scrollHeight;
+messages.scrollTop =
+messages.scrollHeight;
 
 
 }
 
 
 
+sendButton.onclick =
+sendMessage;
 
 
 
-sendButton.addEventListener(
-"click",
-sendMessage
+messageInput.onkeydown=(e)=>{
+
+
+if(e.key==="Enter"){
+
+sendMessage();
+
+}
+
+
+};
+
+
+
+
+
+
+
+
+
+// ===============================
+// SEARCH USER
+// ===============================
+
+
+searchInput.oninput=()=>{
+
+
+let value =
+searchInput.value.trim();
+
+
+
+if(value.startsWith("@")){
+
+
+console.log(
+"Searching user:",
+value
 );
 
 
+// Firebase user search will go here
 
 
-
-messageInput.addEventListener(
-"keydown",
-(e)=>{
+}
 
 
-    if(e.key==="Enter"){
-
-        sendMessage();
-
-    }
-
-
-});
-
-
-
-
-
-
-
-
-
-// ===============================
-// SEARCH USER ID
-// ===============================
-
-
-
-searchInput.addEventListener(
-"input",
-()=>{
-
-
-    let value =
-    searchInput.value.trim();
-
-
-
-    if(value.startsWith("@")){
-
-
-        console.log(
-        "Searching:",
-        value
-        );
-
-
-        /*
-        Later:
-
-        Firestore query:
-
-        users
-        where uniqueID == value
-
-        */
-
-
-    }
-
-
-});
-
-
-
-
-
-
-
-
-
-// ===============================
-// UPLOAD BUTTON
-// ===============================
-
-
-
-uploadButton.addEventListener(
-"click",
-()=>{
-
-
-    fileInput.click();
-
-
-});
-
-
-
+};
 
 
 
 
 
 console.log(
-"OMID Community JS loaded"
+"OMID Community connected"
 );
