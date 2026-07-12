@@ -1,27 +1,11 @@
-// =====================================
-// OMID COMMUNITY
-// main.js
-// =====================================
+/* =====================================
+   OMID COMMUNITY
+   MAIN.JS
+   SUPABASE VERSION
+===================================== */
 
 
-import { auth, db } from "./firebase.js";
-
-import {
-    onAuthStateChanged,
-    signOut
-} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
-
-
-import {
-    doc,
-    getDoc,
-    updateDoc,
-    query,
-    collection,
-    where,
-    getDocs
-} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
-
+import { supabase } from "./supabase.js";
 
 
 
@@ -66,7 +50,6 @@ const popupID =
 document.getElementById("popupID");
 
 
-
 const changePhoto =
 document.getElementById("changePhoto");
 
@@ -87,10 +70,8 @@ const logoutButton =
 document.getElementById("logout");
 
 
-
 const fileInput =
 document.getElementById("fileInput");
-
 
 
 const emojiButton =
@@ -99,7 +80,6 @@ document.getElementById("emojiButton");
 
 const emojiPicker =
 document.getElementById("emojiPicker");
-
 
 
 const messageInput =
@@ -114,28 +94,33 @@ const messages =
 document.getElementById("messages");
 
 
-
 const searchInput =
 document.getElementById("searchInput");
 
 
+const usersList =
+document.getElementById("usersList");
+
 
 
 
 
 
 // ===============================
-// CURRENT USER
+// USER DATA
 // ===============================
 
 
-let firebaseUser = null;
+let currentUser = null;
 
-let userData = {
 
-    username:"",
-    userID:"",
-    photoURL:""
+let profileData = {
+
+username:"",
+
+user_id:"",
+
+avatar_url:""
 
 };
 
@@ -145,104 +130,317 @@ let userData = {
 
 
 
-
-
 // ===============================
-// LOAD USER AFTER LOGIN
+// AUTH CHECK
 // ===============================
 
 
-onAuthStateChanged(auth, async(user)=>{
-
-
-    if(!user){
-
-
-        window.location.href =
-        "main.html";
-
-
-        return;
-
-    }
+async function loadUser(){
 
 
 
-    firebaseUser = user;
+const {
+
+data,
+
+error
+
+}= await supabase.auth.getUser();
 
 
 
-    const userRef =
-    doc(
-        db,
-        "users",
-        user.uid
-    );
+
+if(error || !data.user){
+
+
+window.location.href =
+"login.html";
+
+
+return;
+
+
+}
 
 
 
-    const snapshot =
-    await getDoc(userRef);
 
-
-
-    if(snapshot.exists()){
-
-
-        userData =
-        snapshot.data();
-
-
-
-        displayProfile();
-
-
-    }
-
-
-
-});
+currentUser =
+data.user;
 
 
 
 
 
+const {
+
+data:profile,
+
+error:profileError
+
+}= await supabase
+
+.from("profiles")
+
+.select("*")
+
+.eq("id",currentUser.id)
+
+.single();
+
+
+
+
+
+if(profileError){
+
+
+console.log(
+"Profile loading error:",
+profileError.message
+);
+
+
+return;
+
+
+}
+
+
+
+
+
+profileData = profile;
+
+
+displayProfile();
+
+
+
+console.log(
+"User loaded:",
+currentUser.email
+);
+
+
+
+}
+
+
+
+loadUser();
+
+
+
+
+
+
+
+
+// ===============================
+// DISPLAY PROFILE
+// ===============================
 
 
 function displayProfile(){
 
 
 
-    displayName.textContent =
-    userData.username || "User";
+if(displayName)
 
+displayName.textContent =
 
-    popupName.textContent =
-    userData.username || "User";
-
-
-
-    displayID.textContent =
-    userData.userID || "@unknown";
-
-
-    popupID.textContent =
-    userData.userID || "@unknown";
+profileData.username || "Username";
 
 
 
-    if(userData.photoURL){
+
+if(popupName)
+
+popupName.textContent =
+
+profileData.username || "Username";
 
 
-        profileImage.src =
-        userData.photoURL;
 
 
-        popupImage.src =
-        userData.photoURL;
+if(displayID)
+
+displayID.textContent =
+
+"@" + (profileData.user_id || "user");
 
 
-    }
+
+
+if(popupID)
+
+popupID.textContent =
+
+"@" + (profileData.user_id || "user");
+
+
+
+
+
+
+if(profileData.avatar_url){
+
+
+if(profileImage)
+
+profileImage.src =
+profileData.avatar_url;
+
+
+
+if(popupImage)
+
+popupImage.src =
+profileData.avatar_url;
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+// ===============================
+// LOGOUT
+// ===============================
+
+
+if(logoutButton){
+
+
+logoutButton.onclick = async()=>{
+
+
+await supabase.auth.signOut();
+
+
+window.location.href =
+"login.html";
+
+
+};
+
+
+}
+// ===============================
+// DARK / LIGHT MODE
+// ===============================
+
+
+let lightMode =
+
+localStorage.getItem("community-theme")
+===
+"light";
+
+
+
+
+
+function applyTheme(){
+
+
+
+if(lightMode){
+
+
+document.body.classList.add(
+"light-mode"
+);
+
+
+
+if(themeButton)
+
+themeButton.innerHTML =
+`
+<i class="fa-solid fa-sun"></i>
+`;
+
+
+
+}
+
+else{
+
+
+document.body.classList.remove(
+"light-mode"
+);
+
+
+
+if(themeButton)
+
+themeButton.innerHTML =
+`
+<i class="fa-solid fa-moon"></i>
+`;
+
+
+
+}
+
+
+
+}
+
+
+
+
+applyTheme();
+
+
+
+
+
+
+if(themeButton){
+
+
+
+themeButton.onclick = ()=>{
+
+
+lightMode =
+!lightMode;
+
+
+
+localStorage.setItem(
+
+"community-theme",
+
+lightMode ?
+
+"light"
+
+:
+
+"dark"
+
+);
+
+
+
+applyTheme();
+
+
+
+};
+
 
 
 }
@@ -255,92 +453,93 @@ function displayProfile(){
 
 
 
+
+
 // ===============================
-// DARK LIGHT MODE
+// PROFILE POPUP
 // ===============================
 
 
 
-let lightMode=false;
-
-
-themeButton.onclick=()=>{
-
-
-    lightMode=!lightMode;
+if(profileButton){
 
 
 
-    if(lightMode){
+profileButton.onclick = ()=>{
 
 
-        document.documentElement.style.setProperty(
-        "--background",
-        "#eaf6ff"
-        );
+
+if(profilePopup.style.display === "block"){
 
 
-        document.documentElement.style.setProperty(
-        "--text",
-        "#111"
-        );
+profilePopup.style.display =
+"none";
 
 
-        themeButton.innerHTML =
-        '<i class="fa-solid fa-sun"></i>';
+}
 
-    }
-
-
-    else{
+else{
 
 
-        document.documentElement.style.setProperty(
-        "--background",
-        "#050505"
-        );
+profilePopup.style.display =
+"block";
 
 
-        document.documentElement.style.setProperty(
-        "--text",
-        "white"
-        );
-
-
-        themeButton.innerHTML =
-        '<i class="fa-solid fa-moon"></i>';
-
-    }
+}
 
 
 };
 
 
 
+}
 
 
 
 
 
 
-// ===============================
-// PROFILE MENU
-// ===============================
 
 
-profileButton.onclick=()=>{
+// close popup when clicking outside
 
 
-    profilePopup.style.display =
+document.addEventListener(
 
-    profilePopup.style.display==="block"
+"click",
 
-    ?"none"
-
-    :"block";
+(e)=>{
 
 
-};
+if(
+
+profilePopup &&
+
+profileButton &&
+
+!profilePopup.contains(e.target)
+
+&&
+
+!profileButton.contains(e.target)
+
+){
+
+
+profilePopup.style.display =
+"none";
+
+
+}
+
+
+
+}
+
+);
+
+
+
 
 
 
@@ -355,46 +554,98 @@ profileButton.onclick=()=>{
 // ===============================
 
 
-editUsername.onclick=async()=>{
 
-
-    let name =
-    prompt(
-    "Enter new username"
-    );
+if(editUsername){
 
 
 
-    if(!name)
-    return;
+editUsername.onclick = async()=>{
 
 
 
-    await updateDoc(
+let newName =
 
-        doc(
-            db,
-            "users",
-            firebaseUser.uid
-        ),
-
-        {
-
-            username:name
-
-        }
-
-    );
+prompt(
+"Enter your new username"
+);
 
 
 
-    userData.username=name;
 
 
-    displayProfile();
+if(!newName)
+
+return;
+
+
+
+
+
+const {
+
+error
+
+}= await supabase
+
+.from("profiles")
+
+.update({
+
+username:newName
+
+})
+
+.eq(
+
+"id",
+
+currentUser.id
+
+);
+
+
+
+
+
+
+if(error){
+
+
+alert(
+error.message
+);
+
+
+return;
+
+
+}
+
+
+
+
+
+
+profileData.username =
+newName;
+
+
+
+displayProfile();
+
+
+
+alert(
+"Username updated successfully"
+);
+
 
 
 };
+
+
+
+}
 
 
 
@@ -409,25 +660,74 @@ editUsername.onclick=async()=>{
 // ===============================
 
 
-editID.onclick=async()=>{
+
+if(editID){
 
 
-let id =
+
+editID.onclick = async()=>{
+
+
+
+let newID =
+
 prompt(
-"Enter new ID like @omid001"
+"Enter your new user ID"
 );
 
 
 
-if(!id.startsWith("@")){
 
 
-    alert(
-    "ID must start with @"
-    );
+if(!newID)
+
+return;
 
 
-    return;
+
+
+
+
+newID =
+newID.replace("@","");
+
+
+
+
+
+
+const {
+
+data:exists
+
+}= await supabase
+
+.from("profiles")
+
+.select("id")
+
+.eq(
+
+"user_id",
+
+newID
+
+);
+
+
+
+
+
+
+if(exists && exists.length > 0){
+
+
+alert(
+"This ID is already taken"
+);
+
+
+return;
 
 
 }
@@ -436,36 +736,45 @@ if(!id.startsWith("@")){
 
 
 
-const check =
-query(
 
-collection(db,"users"),
 
-where(
-"userID",
-"==",
-id
-)
+const {
+
+error
+
+}= await supabase
+
+.from("profiles")
+
+.update({
+
+user_id:newID
+
+})
+
+.eq(
+
+"id",
+
+currentUser.id
 
 );
 
 
 
-const result =
-await getDocs(check);
 
 
 
 
-if(!result.empty){
+if(error){
 
 
-    alert(
-    "This ID already exists"
-    );
+alert(
+error.message
+);
 
 
-    return;
+return;
 
 
 }
@@ -475,25 +784,10 @@ if(!result.empty){
 
 
 
-await updateDoc(
 
-doc(
-db,
-"users",
-firebaseUser.uid
-),
+profileData.user_id =
+newID;
 
-{
-
-userID:id
-
-}
-
-);
-
-
-
-userData.userID=id;
 
 
 displayProfile();
@@ -501,7 +795,7 @@ displayProfile();
 
 
 alert(
-"ID changed successfully"
+"User ID changed successfully"
 );
 
 
@@ -510,6 +804,10 @@ alert(
 
 
 
+}
+
+
+
 
 
 
@@ -517,192 +815,340 @@ alert(
 
 
 // ===============================
-// PROFILE IMAGE
+// PROFILE IMAGE PREVIEW
 // ===============================
 
 
-changePhoto.onclick=()=>{
 
+if(changePhoto){
+
+
+
+changePhoto.onclick = ()=>{
+
+
+if(fileInput)
 
 fileInput.click();
 
 
+
 };
 
-
-
-
-
-fileInput.onchange=()=>{
-
-
-const file =
-fileInput.files[0];
-
-
-if(file){
-
-
-const url =
-URL.createObjectURL(file);
-
-
-
-profileImage.src=url;
-
-
-popupImage.src=url;
-
-
-
-// Firebase Storage will replace this later
 
 
 }
 
 
 
-};
 
 
 
+if(fileInput){
 
 
 
+fileInput.onchange = ()=>{
 
 
+const file =
 
-// ===============================
-// SETTINGS
-// ===============================
+fileInput.files[0];
 
 
-profileSettings.onclick=()=>{
 
+if(!file)
 
-alert(
-"Settings page coming soon"
-);
-
-
-};
-
-
-
-
-
-
-
-
-// ===============================
-// LOGOUT
-// ===============================
-
-
-logoutButton.onclick=()=>{
-
-
-signOut(auth);
-
-
-};
-
-
-
-
-
-
-
-
-// ===============================
-// EMOJI
-// ===============================
-
-
-emojiButton.onclick=()=>{
-
-
-emojiPicker.style.display =
-
-emojiPicker.style.display==="block"
-
-?"none"
-
-:"block";
-
-
-
-emojiPicker.textContent =
-
-"😀 😃 😄 😂 ❤️ 🔥 👍 👋 🚀 🎉 😎";
-
-
-};
-
-
-
-
-
-emojiPicker.onclick=(e)=>{
-
-
-messageInput.value +=
-e.target.textContent;
-
-
-};
-
-
-
-
-
-
-
-
-
-// ===============================
-// MESSAGE
-// ===============================
-
-
-function sendMessage(){
-
-
-let text =
-messageInput.value.trim();
-
-
-
-if(!text)
 return;
 
 
 
-let div =
+
+
+const preview =
+
+URL.createObjectURL(file);
+
+
+
+
+
+if(profileImage)
+
+profileImage.src =
+preview;
+
+
+
+if(popupImage)
+
+popupImage.src =
+preview;
+
+
+
+
+
+console.log(
+"Image selected:",
+file.name
+);
+
+
+
+// Supabase Storage upload
+// will be added next
+
+
+
+};
+
+
+
+}
+// ===============================
+// EMOJI PICKER
+// ===============================
+
+
+
+const emojis = [
+
+"😀",
+"😃",
+"😄",
+"😂",
+"🤣",
+"😍",
+"❤️",
+"🔥",
+"👍",
+"👎",
+"👏",
+"🎉",
+"🚀",
+"😎",
+"🤝",
+"😭",
+"😡",
+"🤔"
+
+];
+
+
+
+
+
+
+if(emojiButton && emojiPicker){
+
+
+
+emojiButton.onclick = ()=>{
+
+
+
+emojiPicker.style.display =
+
+emojiPicker.style.display === "block"
+
+?
+
+"none"
+
+:
+
+"block";
+
+
+
+
+
+if(
+emojiPicker.innerHTML === ""
+){
+
+
+
+emojis.forEach(
+emoji=>{
+
+
+const span =
+document.createElement("span");
+
+
+span.textContent =
+emoji;
+
+
+span.style.cursor =
+"pointer";
+
+
+span.style.fontSize =
+"25px";
+
+
+span.style.margin =
+"5px";
+
+
+
+span.onclick = ()=>{
+
+
+messageInput.value += emoji;
+
+
+
+};
+
+
+
+emojiPicker.appendChild(span);
+
+
+
+}
+
+);
+
+
+
+}
+
+
+
+};
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+// ===============================
+// SEND MESSAGE
+// ===============================
+
+
+
+async function sendMessage(){
+
+
+
+const text =
+
+messageInput.value.trim();
+
+
+
+
+
+if(!text)
+
+return;
+
+
+
+
+
+if(!currentUser){
+
+
+alert(
+"Please login first"
+);
+
+
+return;
+
+
+}
+
+
+
+
+
+
+
+const messageBox =
+
 document.createElement("div");
 
 
 
-div.className =
+messageBox.className =
 "message sent";
 
 
-div.textContent=text;
+
+messageBox.textContent =
+text;
 
 
 
-messages.appendChild(div);
+
+messages.appendChild(
+messageBox
+);
 
 
 
-messageInput.value="";
+
+
+messageInput.value = "";
+
+
+
 
 
 messages.scrollTop =
+
 messages.scrollHeight;
 
 
+
+
+
+/*
+
+Later this will insert into:
+
+messages table
+
+Example:
+
+await supabase
+.from("messages")
+.insert({
+sender_id:currentUser.id,
+message:text
+})
+
+
+*/
+
+
+
 }
+
+
+
+
+
+
+
+if(sendButton){
 
 
 
@@ -711,20 +1157,42 @@ sendMessage;
 
 
 
-messageInput.onkeydown=(e)=>{
+}
 
 
-if(e.key==="Enter"){
+
+
+
+
+
+if(messageInput){
+
+
+
+messageInput.onkeydown =
+(e)=>{
+
+
+if(e.key === "Enter"){
+
 
 sendMessage();
 
+
 }
+
 
 
 };
 
 
 
+}
+
+
+
+
+
 
 
 
@@ -732,39 +1200,729 @@ sendMessage();
 
 
 // ===============================
-// SEARCH USER
+// USER SEARCH
 // ===============================
 
 
-searchInput.oninput=()=>{
 
-
-let value =
-searchInput.value.trim();
+async function searchUsers(value){
 
 
 
-if(value.startsWith("@")){
+if(!usersList)
+
+return;
 
 
-console.log(
-"Searching user:",
-value
+
+
+if(!value){
+
+
+usersList.innerHTML = "";
+
+
+return;
+
+
+}
+
+
+
+
+
+const {
+
+data,
+
+error
+
+}= await supabase
+
+.from("profiles")
+
+.select(
+
+"username,user_id,avatar_url"
+
+)
+
+.ilike(
+
+"user_id",
+
+`%${value}%`
+
+)
+
+.limit(10);
+
+
+
+
+
+
+
+if(error){
+
+
+console.log(error);
+
+
+return;
+
+
+}
+
+
+
+
+
+
+usersList.innerHTML = "";
+
+
+
+
+
+
+
+data.forEach(
+(user)=>{
+
+
+
+const card =
+
+document.createElement("div");
+
+
+
+card.className =
+"user-card";
+
+
+
+
+card.innerHTML =
+
+`
+
+<img src="${user.avatar_url || "default-avatar.png"}">
+
+
+<div>
+
+<h4>
+${user.username}
+</h4>
+
+
+<p>
+@${user.user_id}
+</p>
+
+
+</div>
+
+`;
+
+
+
+
+
+usersList.appendChild(card);
+
+
+
+
+
+}
+
 );
 
 
-// Firebase user search will go here
+
 
 
 }
+
+
+
+
+
+
+
+
+
+
+if(searchInput){
+
+
+
+searchInput.oninput = ()=>{
+
+
+const value =
+
+searchInput.value
+
+.trim()
+
+.replace("@","");
+
+
+
+
+searchUsers(value);
+
 
 
 };
 
 
 
+}
+// ===============================
+// REALTIME CHAT SYSTEM
+// ===============================
+
+
+
+let selectedUser = null;
+
+
+
+
+
+
+// ===============================
+// OPEN CHAT WITH USER
+// ===============================
+
+
+
+async function openChat(user){
+
+
+
+selectedUser = user;
+
 
 
 console.log(
-"OMID Community connected"
+"Chat opened with:",
+user.user_id
+);
+
+
+
+// You can update your chat header here
+
+
+const chatName =
+
+document.getElementById(
+"chatName"
+);
+
+
+
+const chatID =
+
+document.getElementById(
+"chatID"
+);
+
+
+
+const chatProfile =
+
+document.getElementById(
+"chatProfile"
+);
+
+
+
+
+
+if(chatName)
+
+chatName.textContent =
+user.username;
+
+
+
+if(chatID)
+
+chatID.textContent =
+"@" + user.user_id;
+
+
+
+if(chatProfile)
+
+chatProfile.src =
+user.avatar_url || "default-avatar.png";
+
+
+
+
+
+loadMessages();
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// LOAD OLD MESSAGES
+// ===============================
+
+
+
+async function loadMessages(){
+
+
+
+if(!selectedUser || !currentUser)
+
+return;
+
+
+
+
+
+
+const {
+
+data,
+
+error
+
+}= await supabase
+
+.from("messages")
+
+.select("*")
+
+.or(
+
+`and(sender_id.eq.${currentUser.id},receiver_id.eq.${selectedUser.id}),and(sender_id.eq.${selectedUser.id},receiver_id.eq.${currentUser.id})`
+
+)
+
+.order(
+
+"created_at",
+
+{
+
+ascending:true
+
+}
+
+);
+
+
+
+
+
+
+
+if(error){
+
+
+console.log(
+"Message error:",
+error.message
+);
+
+
+return;
+
+
+}
+
+
+
+
+
+
+
+messages.innerHTML = "";
+
+
+
+
+
+
+
+data.forEach(
+(msg)=>{
+
+
+const div =
+
+document.createElement("div");
+
+
+
+div.className =
+
+msg.sender_id === currentUser.id
+
+?
+
+"message sent"
+
+:
+
+"message received";
+
+
+
+
+div.textContent =
+msg.message;
+
+
+
+messages.appendChild(div);
+
+
+
+}
+
+);
+
+
+
+
+
+
+messages.scrollTop =
+
+messages.scrollHeight;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+// ===============================
+// SEND TO DATABASE
+// ===============================
+
+
+
+async function sendDatabaseMessage(){
+
+
+
+const text =
+
+messageInput.value.trim();
+
+
+
+
+
+if(!text || !selectedUser)
+
+return;
+
+
+
+
+
+
+const {
+
+error
+
+}= await supabase
+
+.from("messages")
+
+.insert({
+
+
+sender_id:
+
+currentUser.id,
+
+
+
+receiver_id:
+
+selectedUser.id,
+
+
+
+message:text
+
+
+
+});
+
+
+
+
+
+
+if(error){
+
+
+console.log(error);
+
+
+alert(
+"Message failed"
+);
+
+
+return;
+
+
+}
+
+
+
+
+
+
+messageInput.value="";
+
+
+
+loadMessages();
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// replace previous send button
+
+
+if(sendButton){
+
+
+sendButton.onclick =
+sendDatabaseMessage;
+
+
+}
+
+
+
+
+
+
+
+
+
+// ===============================
+// REALTIME LISTENER
+// ===============================
+
+
+
+function startRealtime(){
+
+
+
+supabase
+
+.channel("messages-channel")
+
+.on(
+
+"postgres_changes",
+
+{
+
+event:"INSERT",
+
+schema:"public",
+
+table:"messages"
+
+},
+
+(payload)=>{
+
+
+
+const msg =
+payload.new;
+
+
+
+
+if(
+
+selectedUser &&
+
+(
+
+msg.sender_id === selectedUser.id ||
+
+msg.receiver_id === selectedUser.id
+
+)
+
+){
+
+
+
+loadMessages();
+
+
+
+}
+
+
+
+}
+
+)
+
+.subscribe();
+
+
+
+}
+
+
+
+
+
+startRealtime();
+
+
+
+
+
+
+
+
+
+
+
+// ===============================
+// CLICK USER CARD
+// ===============================
+
+
+
+document.addEventListener(
+
+"click",
+
+(e)=>{
+
+
+
+const card =
+
+e.target.closest(
+".user-card"
+);
+
+
+
+
+
+if(card){
+
+
+
+const id =
+
+card.querySelector("p")
+
+.textContent
+
+.replace("@","");
+
+
+
+
+
+supabase
+
+.from("profiles")
+
+.select("*")
+
+.eq(
+
+"user_id",
+
+id
+
+)
+
+.single()
+
+.then(
+
+({data})=>{
+
+
+if(data)
+
+openChat(data);
+
+
+
+}
+
+);
+
+
+
+}
+
+
+
+}
+
+);
+
+
+
+
+
+
+
+
+console.log(
+"OMID Community Supabase system ready 🚀"
 );
