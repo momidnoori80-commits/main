@@ -1,121 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-    <meta name="description" content="Mohammad Omid Noori - Programmer, Graphic Designer, Computer Enthusiast, English Learner, and Powerlifting Athlete.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="author" content="Mohammad Omid Noori">
-
-    <title>Mohammad Omid Noori | Developer Portfolio</title>
-
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<title>OMID Community</title>
 
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="main.css">
 
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 
 </head>
 
 
+
 <body>
 
-<!-- Loading Screen -->
-<div class="loader">
-    <div class="loader-circle"></div>
-</div>
 
 
-<!-- Animated Background -->
-<div class="background-effects">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
+<div class="background"></div>
 
 
-<!-- Navigation -->
+
+
+<div class="app">
+
+
+
+<!-- ================= HEADER ================= -->
+
 
 <header>
 
-<nav class="navbar">
-
-    <div class="logo">
-        Mohammad Omid<span>.</span>
-    </div>
 
 
-    <ul class="nav-links">
-
-        <li><a href="#home">Home</a></li>
-
-        <li><a href="#about">About</a></li>
-
-        <li><a href="#skills">Skills</a></li>
-
-        <li><a href="#projects">Projects</a></li>
-
-        <li><a href="#blog">Blog</a></li>
-
-        <li><a href="#contact">Contact</a></li>
-
-    </ul>
-
-<div class="nav-actions">
+<div class="profile-area" id="profileButton">
 
 
-    <div id="auth-buttons">
-
-        <a href="login.html" class="auth-btn login-btn">
-            Login
-        </a>
-
-
-        <a href="Signup.html" class="auth-btn signup-btn">
-            Sign Up
-        </a>
-
-    </div>
+<img 
+id="profileImage"
+src="default-avatar.png"
+alt="Profile">
 
 
-
-    <div id="platform-button" style="display:none;">
-
-        <a href="chat.html" class="platform-btn">
-            Welcome to our Platform
-        </a>
-
-    </div>
+<div class="profile-text">
 
 
-
-    <button id="theme-toggle">
-
-        <i class="fa-solid fa-moon"></i>
-
-    </button>
+<h3 id="displayName">
+Username
+</h3>
 
 
-
-    <button class="menu-btn">
-
-        <i class="fa-solid fa-bars"></i>
-
-    </button>
+<p id="displayID">
+@user000000
+</p>
 
 
 </div>
-</nav>
+
+
+
+</div>
+
+
+
+
+
+
+<button id="themeButton">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+
 
 </header>
 
@@ -123,775 +88,366 @@
 
 
 
-<!-- HERO SECTION -->
-
-<section id="home" class="hero">
 
 
-<div class="hero-content">
 
 
-<div class="profile-container">
+<!-- ================= PROFILE POPUP ================= -->
 
-<img 
-src="pics/me.jpg"
-loading="lazy"
-alt="Mohammad Omid Noori"
-class="profile-image">
+
+<div class="profile-popup" id="profilePopup">
+
+
+<div class="popup-image">
+
+
+<img
+id="popupImage"
+src="default-avatar.png">
+
 
 </div>
 
 
 
-<h1>
-Mohammad Omid Noori
-</h1>
-
-
-
-<h2>
-I'm a 
-<span class="typing">
-Programmer
-</span>
+<h2 id="popupName">
+Username
 </h2>
 
 
 
 <p>
-
-A young programmer, graphic designer, computer enthusiast,
-and powerlifting athlete passionate about technology,
-creativity, and continuous self-improvement.
-
+Your ID:
 </p>
 
 
-
-<div class="hero-buttons">
-
-<a href="#blog" class="btn primary">
-Read My Blog
-</a>
-
-
-<a href="#projects" class="btn secondary">
-View My Projects
-</a>
-
-
-<a href="#contact" class="btn secondary">
-Contact Me
-</a>
-
-
-</div>
-
-
-
-<div class="social-links">
-
-<a href="https://github.com/momidnoori80-commits">
-<i class="fab fa-github"></i>
-</a>
-
-<a href="https://www.instagram.com/mohammadomidnoori786/">
-<i class="fab fa-instagram"></i>
-</a>
-
-
-<a href="https://www.linkedin.com/in/mohammad-omid-noori-68b723420/" target="_blank" rel="noopener">
-
-<i class="fab fa-linkedin"></i>
-
-LinkedIn
-
-</a>
-
-
-</div>
-
-
-
-<div class="clock">
-
-<i class="fa-regular fa-clock"></i>
-
-<span id="live-clock">
-00:00:00
-</span>
-
-</div>
-
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-<!-- ABOUT SECTION -->
-
-<section id="about" class="section">
-
-
-<div class="section-title">
-
-<h2>
-About Me
-</h2>
-
-<p>
-My story, journey, goals, and philosophy.
-</p>
-
-</div>
-
-
-
-
-<div class="about-grid">
-
-
-<div class="glass-card">
-
-<h3>
-My Story
-</h3>
-
-
-<p>
-
-I was born in Kabul, Afghanistan and currently live in Herat.
-Since childhood, I have been fascinated by computers,
-technology, and learning new skills.
-
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="glass-card">
-
-
-<h3>
-My Journey
-</h3>
-
-
-<p>
-
-I started graphic design in 2021 and programming in 2023.
-Through self-learning, I developed skills in HTML, CSS,
-JavaScript, and Python.
-
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="glass-card">
-
-
-<h3>
-My Goals
-</h3>
-
-
-<p>
-
-My goal is to become a professional developer,
-create useful technology, and continue improving
-my knowledge every day.
-
-</p>
-
-
-</div>
-
-
-
-
-<div class="glass-card">
-
-
-<h3>
-My Philosophy
-</h3>
-
-
-<p>
-
-Discipline, curiosity, and consistency create growth.
-I believe improvement comes from learning and action.
-
-</p>
-
-
-</div>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-<!-- EXPERIENCE SECTION -->
-
-<section class="section experience" id="experience">
-
-
-<div class="section-title">
-
-<h2>
-Experience
-</h2>
-
-</div>
-
-
-
-<div class="timeline">
-
-
-<div class="timeline-item">
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-card">
-
-<h3>
-Graphic Design
-</h3>
-
-<p>
-5 years of experience creating designs,
-digital artwork, and visual content.
-</p>
-
-</div>
-
-</div>
-
-
-
-
-<div class="timeline-item">
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-card">
-
-<h3>
-Programming
-</h3>
-
-<p>
-3 years of programming experience with
-HTML, CSS, JavaScript, and Python.
-</p>
-
-</div>
-
-</div>
-
-
-
-
-
-<div class="timeline-item">
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-card">
-
-<h3>
-Computer Technician
-</h3>
-
-<p>
-Helping people solve computer problems
-and gaining practical hardware knowledge.
-</p>
-
-</div>
-
-</div>
-
-
-
-
-<div class="timeline-item">
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-card">
-
-<h3>
-Accounting Experience
-</h3>
-
-<p>
-Experience working with accounting tasks
-in a hospital and a company environment.
-</p>
-
-</div>
-
-</div>
-
-
-
-</div>
-
-
-</section>
-<!-- SKILLS SECTION -->
-
-<section id="skills" class="section">
-
-
-<div class="section-title">
-
-<h2>
-My Skills
-</h2>
-
-<p>
-Technologies and abilities I have developed.
-</p>
-
-</div>
-
-
-
-<div class="skills-container">
-
-
-
-<div class="skill-card glass-card">
-
-<i class="fa-solid fa-code"></i>
-
-<h3>
-Programming
-</h3>
-
-
-<div class="skill-list">
-
-<span>HTML5</span>
-<span>CSS3</span>
-<span>JavaScript</span>
-<span>Python</span>
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div class="skill-card glass-card">
-
-
-<i class="fa-solid fa-palette"></i>
-
-
-<h3>
-Graphic Design
-</h3>
-
-
-
-<div class="skill-list">
-
-<span>Photoshop</span>
-<span>Illustrator</span>
-<span>Digital Art</span>
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div class="skill-card glass-card">
-
-
-<i class="fa-solid fa-laptop-code"></i>
-
-
-<h3>
-Other Skills
-</h3>
-
-
-
-<div class="skill-list">
-
-<span>Computer Troubleshooting</span>
-<span>English Communication</span>
-<span>Problem Solving</span>
-
-</div>
-
-
-</div>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- PROJECTS SECTION -->
-
-
-<section id="projects" class="section">
-
-
-<div class="section-title">
-
-<h2>
-My Projects
-</h2>
-
-
-<p>
-Things I have built and designed.
-</p>
-
-
-</div>
-
-
-
-
-<div class="projects-grid">
-
-
-
-
-
-<div class="project-card glass-card">
-
-
-<img 
-src="pics/p1.jpg"
-loading="lazy"
-alt="Website Project">
-
-
-<div class="project-content">
-
-
-<h3>
-Website Projects
-</h3>
-
-
-<p>
-
-Modern responsive websites built using
-HTML, CSS, and JavaScript.
-
-</p>
-
-
-<div class="tech-tags">
-
-<span>HTML</span>
-<span>CSS</span>
-<span>JS</span>
-
-</div>
-
-
-
-<a href="#" class="project-btn">
-View Project
-</a>
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="project-card glass-card">
-
-
-<img 
-src="pics/p2.jpg"
-loading="lazy"
-alt="Programming Project">
-
-
-
-<div class="project-content">
-
-
-<h3>
-Programming Projects
-</h3>
-
-
-
-<p>
-
-Small applications and experiments created
-to improve my programming skills.
-
-</p>
-
-
-
-<div class="tech-tags">
-
-<span>Python</span>
-<span>Logic</span>
-<span>Automation</span>
-
-</div>
-
-
-
-<a href="#" class="project-btn">
-View Project
-</a>
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="project-card glass-card">
-
-
-<img 
-src="pics/p3.jpg"
-loading="lazy"
-alt="Design Project">
-
-
-
-<div class="project-content">
-
-
-<h3>
-Graphic Design Projects
-</h3>
-
-
-<p>
-
-Creative designs, digital artwork,
-and visual experiments.
-
-</p>
-
-
-
-<div class="tech-tags">
-
-<span>Photoshop</span>
-<span>Illustrator</span>
-<span>Art</span>
-
-</div>
-
-
-
-<a href="#" class="project-btn">
-View Project
-</a>
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- FITNESS SECTION -->
-
-
-<section id="fitness" class="section fitness-section">
-
-
-
-<div class="section-title">
-
-
-<h2>
-Athletic Journey
-</h2>
-
-
-<p>
-Strength, discipline, and consistency.
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="fitness-content glass-card">
-
-
-<div class="fitness-icon">
-
-<i class="fa-solid fa-dumbbell"></i>
-
-</div>
-
-
-
-<h3>
-Powerlifting & Strength Training
-</h3>
-
-
-
-<p>
-
-Fitness has taught me discipline,
-patience, and the importance of constant improvement.
-
-Through powerlifting and strength training,
-I focus on building physical and mental strength.
-
-</p>
-
-
-
-
-<div class="achievement-grid">
-
-
-
-<div>
-
-<strong>
-200kg+
+<strong id="popupID">
+@user000000
 </strong>
 
-<span>
-Squat Goal
-</span>
+
+
+
+
+<button id="changePhoto">
+
+Change Profile Photo
+
+</button>
+
+
+
+
+<button id="editUsername">
+
+Change Username
+
+</button>
+
+
+
+
+
+<button id="editID">
+
+Change User ID
+
+</button>
+
+
+
+
+
+
+<button id="profileSettings">
+
+Settings
+
+</button>
+
+
+
 
 </div>
 
 
 
-<div>
 
-<strong>
-220kg+
-</strong>
 
-<span>
-Deadlift Strength
-</span>
+
+
+
+
+<!-- ================= MAIN BODY ================= -->
+
+
+
+<div class="main">
+
+
+
+
+
+
+<!-- USERS AREA -->
+
+
+<aside id="usersPanel">
+
+
+
+<div class="search-container">
+
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+
+
+<input
+
+id="searchInput"
+
+placeholder="Search @userID"
+
+autocomplete="off"
+
+>
+
 
 </div>
+
+
+
+
+
+
+
+<div id="searchResults">
+
+</div>
+
+
+
+
+
+
+
+<div id="usersList">
+
+
+</div>
+
+
+
+
+
+
+</aside>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ================= CHAT ================= -->
+
+
+
+<section class="chat-area">
+
+
+
+
+
+<div class="chat-header">
+
+
+
+<img
+
+id="chatProfile"
+
+src="default-avatar.png">
+
 
 
 
 
 <div>
 
-<strong>
-Daily
-</strong>
 
-<span>
-Self Improvement
-</span>
+<h3 id="chatName">
+
+Select a user
+
+</h3>
+
+
+
+<p id="chatID">
+
+</p>
+
+
+</div>
+
+
+
 
 </div>
 
 
 
 
+
+
+
+
+
+<div class="messages" id="messages">
+
+
+
+<div class="welcome">
+
+Welcome to OMID Community 🚀
+
 </div>
 
 
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ================= EMOJI BOX ================= -->
+
+
+
+<div id="emojiPicker" class="emoji-picker">
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ================= MESSAGE BAR ================= -->
+
+
+
+<div class="message-bar">
+
+
+
+
+
+<button id="uploadButton">
+
+
+<i class="fa-solid fa-paperclip"></i>
+
+
+</button>
+
+
+
+
+
+<input
+
+type="file"
+
+id="fileInput"
+
+accept="image/*,video/*,.pdf,.doc,.docx"
+
+hidden
+
+>
+
+
+
+
+
+
+
+
+<button id="emojiButton">
+
+
+<i class="fa-regular fa-face-smile"></i>
+
+
+</button>
+
+
+
+
+
+
+
+
+
+<input
+
+id="messageInput"
+
+placeholder="Write a message..."
+
+>
+
+
+
+
+
+
+
+
+
+<button id="sendButton">
+
+
+<i class="fa-solid fa-paper-plane"></i>
+
+
+</button>
+
+
+
+
+
+</div>
+
+
+
+
+
 
 
 
@@ -902,67 +458,11 @@ Self Improvement
 
 
 
-
-
-
-<!-- BLOG SECTION -->
-
-
-<section id="blog" class="section">
-
-
-
-<div class="section-title">
-
-<h2>
-My Blog
-</h2>
-
-
-<p>
-Articles, experiences, and thoughts.
-</p>
-
-
 </div>
 
 
 
 
-
-<div class="blog-tools">
-
-
-<input 
-type="search"
-placeholder="Search articles..."
-id="blog-search">
-
-
-
-<div class="categories">
-
-<button>
-Programming
-</button>
-
-<button>
-Technology
-</button>
-
-<button>
-AI
-</button>
-
-<button>
-Fitness
-</button>
-
-<button>
-Design
-</button>
-
-</div>
 
 
 
@@ -974,497 +474,10 @@ Design
 
 
 
-<div class="blog-grid">
 
 
+<script type="module" src="main.js"></script>
 
-
-
-<article class="blog-card glass-card">
-
-
-<div class="featured-label">
-Featured
-</div>
-
-
-<h3>
-My Programming Journey
-</h3>
-
-
-
-<p>
-
-How I started learning programming
-and building projects from zero.
-
-</p>
-
-
-
-<div class="article-info">
-
-<span>
-<i class="fa-regular fa-calendar"></i>
-July 2026
-</span>
-
-
-<span>
-<i class="fa-regular fa-clock"></i>
-5 min read
-</span>
-
-
-</div>
-
-
-
-
-<div class="tags">
-
-<span>
-JavaScript
-</span>
-
-<span>
-Coding
-</span>
-
-</div>
-
-
-
-<a href="#">
-Read Article
-</a>
-
-
-
-</article>
-
-
-
-
-
-
-
-
-
-<article class="blog-card glass-card">
-
-
-<h3>
-Technology Thoughts
-</h3>
-
-
-<p>
-
-My opinions and discoveries about
-modern technology.
-
-</p>
-
-
-
-<div class="article-info">
-
-
-<span>
-<i class="fa-regular fa-clock"></i>
-4 min read
-</span>
-
-
-</div>
-
-
-
-<a href="#">
-Read Article
-</a>
-
-
-
-</article>
-
-
-
-
-
-
-<article class="blog-card glass-card">
-
-
-<h3>
-Fitness Discipline
-</h3>
-
-
-<p>
-
-Lessons learned from strength training
-and personal development.
-
-</p>
-
-
-<div class="article-info">
-
-
-<span>
-<i class="fa-regular fa-clock"></i>
-6 min read
-</span>
-
-
-</div>
-
-
-
-<a href="#">
-Read Article
-</a>
-
-
-
-</article>
-
-
-
-
-
-
-</div>
-
-
-
-</section>
-<!-- CONTACT SECTION -->
-
-<section id="contact" class="section contact-section">
-
-
-<div class="section-title">
-
-<h2>
-Contact Me
-</h2>
-
-
-<p>
-Let's connect and create something meaningful.
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="contact-container">
-
-
-
-<div class="contact-info glass-card">
-
-
-<h3>
-Get In Touch
-</h3>
-
-
-
-<p>
-
-Whether you want to discuss technology,
-design, projects, or collaboration,
-feel free to contact me.
-
-</p>
-
-
-
-
-<div class="contact-links">
-
-
-<a href="mailto:m.omid.n786@gmail.com">
-
-<i class="fa-solid fa-envelope"></i>
-
-m.omid.n786@gmail.com
-
-</a>
-
-
-
-<a href="https://github.com/momidnoori80-commits">
-
-<i class="fab fa-github"></i>
-
-https://github.com/momidnoori80-commits
-
-</a>
-
-
-
-<a href="https://www.instagram.com/mohammadomidnoori786/">
-
-<i class="fab fa-instagram"></i>
-
-@mohammadomidnoori786
-
-</a>
-
-
-
-<a href="www.linkedin.com/in/mohammad-omid-noori-68b723420">
-
-<i class="fab fa-linkedin"></i>
-
-www.linkedin.com/in/mohammad-omid-noori-68b723420
-
-</a>
-
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-
-<form class="contact-form glass-card" id="contact-form">
-
-
-<div class="input-group">
-
-<input 
-type="text"
-name="name"
-placeholder="Your Name"
-required>
-
-</div>
-
-
-
-
-<div class="input-group">
-
-<input 
-type="email"
-name="email"
-placeholder="Your Email"
-required>
-
-</div>
-
-
-
-
-
-<div class="input-group">
-
-<textarea 
-name="message"
-rows="6"
-placeholder="Your Message"
-required></textarea>
-
-</div>
-
-
-
-
-
-<button class="btn primary" type="submit">
-
-Send Message
-
-</button>
-
-
-
-</form>
-
-
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- FOOTER -->
-
-
-<footer>
-
-
-<div class="footer-content">
-
-
-<div class="logo">
-
-OMID<span>.</span>
-
-</div>
-
-
-
-<p>
-
-© 2026 Mohammad Omid Noori.
-All rights reserved.
-
-</p>
-
-
-
-
-<div class="footer-social">
-
-
-<a href="https://github.com/momidnoori80-commits">
-<i class="fab fa-github"></i>
-</a>
-
-
-<a href="https://www.instagram.com/mohammadomidnoori786/">
-<i class="fab fa-instagram"></i>
-</a>
-
-
-<a href="www.linkedin.com/in/mohammad-omid-noori-68b723420">
-<i class="fab fa-linkedin"></i>
-</a>
-
-
-</div>
-
-
-
-</div>
-
-
-</footer>
-
-
-<!-- BACK TO TOP BUTTON -->
-
-<button id="back-top">
-
-<i class="fa-solid fa-arrow-up"></i>
-
-</button>
-
-
-<!-- MUSIC PLAYER -->
-
-<!-- MUSIC PLAYER -->
-
-<div class="music-player">
-
-    <button class="music-toggle">
-        <i class="fa-solid fa-music"></i>
-    </button>
-
-
-    <div class="music-panel">
-
-        <h3>My Playlist</h3>
-
-        <div class="songs">
-
-            <button class="song">
-                Navazesh by Amir Tataloo
-            </button>
-
-            <button class="song">
-                Qatre Qatre - Amir Tataloo
-            </button>
-
-            <button class="song">
-                My Third Song
-            </button>
-
-        </div>
-
-
-        <audio id="audio-player"></audio>
-
-
-        <h4 id="current-song">
-            No song selected
-        </h4>
-
-
-        <div class="music-controls">
-
-            <button id="previous-song">
-                <i class="fa-solid fa-backward"></i>
-            </button>
-
-
-            <button id="play-song">
-                <i class="fa-solid fa-play"></i>
-            </button>
-
-
-            <button id="next-song">
-                <i class="fa-solid fa-forward"></i>
-            </button>
-
-        </div>
-
-
-        <input 
-        id="progress"
-        type="range"
-        value="0">
-
-
-        <input 
-        id="volume"
-        type="range"
-        min="0"
-        max="1"
-        step="0.01"
-        value="1">
-
-
-    </div>
-
-</div>
-
-
-<!-- JavaScript -->
-
-<script type="text/javascript"
-src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-</script>
-
-<script type="module" src="script.js"></script>
 
 
 </body>
