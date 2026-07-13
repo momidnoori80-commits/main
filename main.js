@@ -1098,72 +1098,88 @@ alert(
 // PROFILE IMAGE UPLOAD
 // =====================================
 
-
-
 if(changePhoto){
-
-
 
 changePhoto.onclick = ()=>{
 
-
-
 if(fileInput)
-
 fileInput.click();
-
-
 
 };
 
-
-
 }
-
-
-
-
 
 
 
 if(fileInput){
 
 
-
 fileInput.onchange = async()=>{
 
 
-
-const file =
-
-fileInput.files[0];
-
-
-
-
+const file = fileInput.files[0];
 
 
 if(!file)
-
 return;
 
 
 
+// Allow only images
+
+const allowedTypes = [
+"image/jpeg",
+"image/png",
+"image/jpg",
+"image/heif"
+];
+
+
+if(!allowedTypes.includes(file.type)){
+
+
+alert(
+"Only JPG, JPEG, PNG and HEIF images are allowed"
+);
+
+
+return;
+
+
+}
+
+
+
+if(!currentUser){
+
+
+alert(
+"User not logged in"
+);
+
+
+return;
+
+
+}
+
+
+
+// Correct storage path
+
+const filePath =
+
+`${currentUser.id}/avatar-${Date.now()}.${file.name.split(".").pop()}`;
 
 
 
 
-const fileName =
 
-`${currentUser.id}-${Date.now()}-${file.name}`;
-
-
-
-
-
-
+// Upload
 
 const {
+
+data,
 
 error:uploadError
 
@@ -1177,7 +1193,7 @@ await supabase.storage
 
 .upload(
 
-fileName,
+filePath,
 
 file,
 
@@ -1193,10 +1209,10 @@ upsert:true
 
 
 
-
-
 if(uploadError){
 
+
+console.error(uploadError);
 
 
 alert(
@@ -1204,9 +1220,7 @@ uploadError.message
 );
 
 
-
 return;
-
 
 
 }
@@ -1216,7 +1230,7 @@ return;
 
 
 
-
+// Get public URL
 
 const {
 
@@ -1232,7 +1246,7 @@ supabase.storage
 
 .getPublicUrl(
 
-fileName
+filePath
 
 );
 
@@ -1240,18 +1254,22 @@ fileName
 
 
 
-
-
 const avatarURL =
-
 urlData.publicUrl;
 
 
 
 
 
+// Save URL in profile table
 
+const {
 
+error:updateError
+
+}
+
+=
 
 await supabase
 
@@ -1275,13 +1293,24 @@ currentUser.id
 
 
 
+if(updateError){
+
+
+alert(updateError.message);
+
+
+return;
+
+
+}
+
+
+
+
 
 
 profileData.avatar_url =
 avatarURL;
-
-
-
 
 
 displayProfile();
@@ -1290,16 +1319,13 @@ displayProfile();
 
 
 
-
 alert(
-"Profile photo updated"
+"Profile photo updated successfully 🚀"
 );
 
 
 
-
 };
-
 
 
 }
