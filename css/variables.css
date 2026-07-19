@@ -1,0 +1,276 @@
+/* ==========================================
+   OMID COMMUNITY v2.0
+   variables.css
+   Global Design System
+   ========================================== */
+
+:root{
+
+    /* ======================================
+       BRAND COLORS
+    ====================================== */
+
+    --primary:#00D4FF;
+    --primary-light:#59E5FF;
+    --primary-dark:#0098C2;
+
+    --secondary:#8A2EFF;
+    --secondary-light:#A85BFF;
+    --secondary-dark:#6517C8;
+
+    --success:#00D26A;
+    --warning:#FFC107;
+    --danger:#FF4B5C;
+    --info:#29B6F6;
+
+
+    /* ======================================
+       DARK THEME
+    ====================================== */
+
+    --background:#09090B;
+    --background-secondary:#101014;
+    --background-tertiary:#18181D;
+
+    --surface:#121217;
+    --surface-hover:#1A1A20;
+
+    --text:#FFFFFF;
+    --text-secondary:#D4D4D8;
+    --text-muted:#A1A1AA;
+
+    --border:rgba(255,255,255,.08);
+
+    --glass:rgba(255,255,255,.07);
+    --glass-hover:rgba(255,255,255,.12);
+
+    --overlay:rgba(0,0,0,.65);
+
+
+    /* ======================================
+       GRADIENTS
+    ====================================== */
+
+    --gradient-primary:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    --gradient-background:
+        linear-gradient(
+            135deg,
+            #050505,
+            #10192E,
+            #09090B
+        );
+
+
+
+    /* ======================================
+       SHADOWS
+    ====================================== */
+
+    --shadow-sm:
+        0 5px 12px rgba(0,0,0,.18);
+
+    --shadow-md:
+        0 15px 35px rgba(0,0,0,.25);
+
+    --shadow-lg:
+        0 30px 70px rgba(0,0,0,.35);
+
+    --shadow-xl:
+        0 50px 120px rgba(0,0,0,.45);
+
+    --glow:
+        0 0 40px rgba(0,212,255,.35);
+
+
+
+    /* ======================================
+       BORDER RADIUS
+    ====================================== */
+
+    --radius-xs:8px;
+    --radius-sm:12px;
+    --radius-md:18px;
+    --radius-lg:24px;
+    --radius-xl:32px;
+    --radius-round:999px;
+
+
+
+    /* ======================================
+       SPACING
+    ====================================== */
+
+    --space-1:4px;
+    --space-2:8px;
+    --space-3:12px;
+    --space-4:16px;
+    --space-5:20px;
+    --space-6:24px;
+    --space-8:32px;
+    --space-10:40px;
+    --space-12:48px;
+    --space-16:64px;
+
+
+
+    /* ======================================
+       TYPOGRAPHY
+    ====================================== */
+
+    --font-family:
+        "Inter",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    --font-xs:.75rem;
+    --font-sm:.875rem;
+    --font-md:1rem;
+    --font-lg:1.125rem;
+    --font-xl:1.5rem;
+    --font-2xl:2rem;
+    --font-3xl:3rem;
+    --font-4xl:4rem;
+
+    --weight-light:300;
+    --weight-normal:400;
+    --weight-medium:500;
+    --weight-semibold:600;
+    --weight-bold:700;
+    --weight-black:900;
+
+
+
+    /* ======================================
+       TRANSITIONS
+    ====================================== */
+
+    --transition-fast:.18s ease;
+    --transition:.30s ease;
+    --transition-slow:.45s ease;
+
+
+
+    /* ======================================
+       Z INDEX
+    ====================================== */
+
+    --z-background:-10;
+    --z-base:1;
+    --z-dropdown:100;
+    --z-popup:500;
+    --z-modal:900;
+    --z-loader:9999;
+
+
+
+    /* ======================================
+       HEADER
+    ====================================== */
+
+    --header-height:80px;
+
+
+
+    /* ======================================
+       SIDEBAR
+    ====================================== */
+
+    --sidebar-width:340px;
+
+
+
+    /* ======================================
+       CHAT
+    ====================================== */
+
+    --message-max-width:72%;
+
+
+
+    /* ======================================
+       SCROLLBAR
+    ====================================== */
+
+    --scrollbar-width:8px;
+
+}
+/* ==========================================
+   LIGHT MODE
+========================================== */
+
+body.light-mode{
+
+    --background:#F5F7FB;
+    --background-secondary:#FFFFFF;
+    --background-tertiary:#EDF2F8;
+
+    --surface:#FFFFFF;
+    --surface-hover:#F2F6FC;
+
+    --text:#111827;
+    --text-secondary:#374151;
+    --text-muted:#6B7280;
+
+    --border:rgba(0,0,0,.08);
+
+    --glass:rgba(255,255,255,.82);
+    --glass-hover:rgba(255,255,255,.96);
+
+    --overlay:rgba(0,0,0,.18);
+
+    --gradient-background:
+        linear-gradient(
+            135deg,
+            #FFFFFF,
+            #E8F2FF,
+            #F8FBFF
+        );
+
+}
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+
+    width:var(--scrollbar-width);
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--primary);
+    border-radius:999px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:var(--secondary);
+
+}
+::selection{
+
+    background:var(--primary);
+    color:white;
+
+}
+:focus-visible{
+
+    outline:2px solid var(--primary);
+    outline-offset:3px;
+
+}
